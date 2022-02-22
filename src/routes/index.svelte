@@ -66,14 +66,20 @@
 </header>
 <main id="main">
     <section id="hero" class="content">
-        <p>
-            The disappearing <span id="graphql-text">GraphQL</span> 
-            client for the <span id="svelte-text">Svelte</span> 
-            community.
-        </p>
+        <div>
+            <h1>
+                The disappearing <span id="graphql-text">GraphQL</span> 
+                client for the <span id="svelte-text">Svelte</span> 
+                community.
+            </h1>
+            <nav id="hero-buttons">
+                <a href="/get-started" class="button-shadow">Get Started</a>
+                <a href="/docs" class="button-shadow">Docs</a>
+            </nav>
+        </div>
         <pre class="shadow"><HighlightSvelte code={example} /></pre>
     </section>
-    <section id="below-fold">
+    <section id="info">
         <div id="angle"/>
         <article>
             <div class="content">
@@ -152,8 +158,12 @@
         margin-top: 90px;
     }
 
-    #hero p { 
+    #hero div {
         width: 10px;
+        flex-grow:1;
+    }
+
+    #hero h1 { 
         flex-grow:1;
         font-size: 3rem;
         margin-right: 4rem;
@@ -185,7 +195,11 @@
         box-shadow: 10px 12px 25px 3px rgba(23, 40, 102, .25);
     }
 
-    #below-fold { 
+    .button-shadow {
+        box-shadow: 1px 2px 25px 3px rgba(23, 40, 102, .1);
+    }
+
+    #info { 
         display: flex;
         flex-direction: column;
         margin-top: 80px;
@@ -202,6 +216,26 @@
     article { 
         flex-grow: 1;
         background: #161B22;
+    }
+
+    #hero-buttons { 
+        display: flex;
+        flex-direction: row;
+        margin-top: 40px;
+    }
+
+    #hero-buttons a { 
+        font-family: 'Roboto', sans;
+        font-weight: 500;
+        color: white;
+        background-color: #FF3E00;
+        height: 35px;
+        width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 13px;
+        text-decoration: none;
     }
 
 </style>
