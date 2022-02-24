@@ -1,6 +1,6 @@
 pre code.hljs {
 	display: block;
-	overflow-x: auto;
+	overflow-x: hidden;
 	padding: 1.5em;
 	line-height: 1.5rem;
 }

@@ -1,7 +1,7 @@
 <script>
-    import { HighlightSvelte } from 'svelte-highlight';
+    import { HighlightAuto, HighlightSvelte } from 'svelte-highlight';
     
-  const example = `<script>
+  const heroExample = `<script>
     import { query, graphql } from '$houdini'
 
     const { data } = query(graphql\`
@@ -21,22 +21,71 @@
     const sellingPoints = [ 
         {
         header: 'Composable',
-        text: 'Your components define what data they need to do their job and you can mix them together however you want.',
+        text: 'Your components can define what data they need to do their job by and you can mix them together however you want.',
+        example: `<script>
+    import { query, graphql } from '$houdini'
+    import { UserAvatar } from '~/components'
+
+    const { data } = query(graphql\`
+        query AllUsers {
+            users {
+                ...UserAvatar
+            }
+        }
+    \`)
+<\/script>
+
+{#each $data.users as user}
+    <UserAvatar />
+{/each}`,
     }, {
         header: "Performant",
         text: 'Houdini shifts what is traditionally handled by a bloated runtime into a compile step that facilitates an incredibly lean application.',
+        example: heroExample,
     }, { 
         header: 'Type Safe',
         text: 'Generate TypeScript definitions for every document in your application.',
+        example: `<script lang="ts">
+    import { query, graphql } from '$houdini'
+    import type { AllTodoItems } from '$houdini'
+
+    const { data } = query<AllTodoItems>(graphql\`
+        query AllTodoItems {
+            items {
+                text
+            }
+        }
+    \`)
+<\/script>
+
+{#each $data.items as item}
+    <div>{item.text}</div>
+{/each}
+`,
     }, { 
         header: 'Declarative',
         text: 'Updates to your application cache are made with a set of declarative fragments that the avoids surgical logic necessary to keep your application up to date.',
+        example: `<script>
+    import { mutation, graphql } from '$houdini'
+
+    const addProject = mutation(graphql\`
+            mutation AddProject {
+                addUser(name: "houdini") { 
+                    ...All_Projects_insert
+                }
+            }
+    \`)
+<\/script>
+
+<button onClick={addProject} />`,
     }, {
         header: 'Consistent',
-        text: 'The command line tool validates your documents so you can feel confident before you deploy your code.'
+        text: 'The command line tool validates your documents so you can feel confident before you deploy your code.',
+        example: heroExample,
     }, { 
         header: 'SvelteKit Ready',
         text: 'Automatically generated loaders let you focus on what matters: your business needs.',
+        example: heroExample,
     }]
 
 </script>
@@ -51,7 +100,9 @@
 </a>
 
 <header class="content">
-    <img src="/static/images/logo.svg" alt="Houdini Logo" width="175px" />
+    <a href="/">
+        <img src="/static/images/logo.svg" alt="Houdini Logo" width="175px" />
+    </a>
     <nav>
         <a href="/get-started">
             Get Started
@@ -59,7 +110,10 @@
         <a href="/docs">
             Docs
         </a>
-        <a href="https://www.github.com/AlecAivazis/houdini">
+        <a href="/support">
+            Support
+        </a>
+        <a href="https://www.github.com/AlecAivazis/houdini" target="_blank">
             <img src="/static/images/github.svg" alt="Github" height="20px" />
         </a>
     </nav>
@@ -70,20 +124,32 @@
             <h1>
                 The disappearing <span id="graphql-text">GraphQL</span> 
                 client for the <span id="svelte-text">Svelte</span> 
-                community.
+                community
             </h1>
             <nav id="hero-buttons">
                 <a href="/get-started" class="button-shadow">Get Started</a>
                 <a href="/docs" class="button-shadow">Docs</a>
             </nav>
         </div>
-        <pre class="shadow"><HighlightSvelte code={example} /></pre>
+        <pre class="shadow"><HighlightSvelte code={heroExample} /></pre>
     </section>
     <section id="info">
         <div id="angle"/>
         <article>
-            <div class="content">
-                hello
+            <div id="showcase" class="content">
+                {#each sellingPoints as point }
+                <div class="showcase-item">
+                    <div class="showcase-text">
+                        <h2>{point.header}</h2> 
+                        <p>
+                            {point.text}
+                        </p>
+                    </div>
+                    <pre class="showcase-example">
+                        <HighlightAuto code={point.example} />
+                    </pre>
+                </div>
+                {/each}
             </div>
         </article>
     </section>
@@ -133,13 +199,13 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 0 60px;
+        padding: 15px 60px;
     }
 
     nav { 
         display: flex;
         flex-direction: row;
-        align-items: center;;
+        align-items: center;
     }
 
     nav a { 
@@ -161,6 +227,7 @@
     #hero div {
         width: 10px;
         flex-grow:1;
+        margin-top: 24px;
     }
 
     #hero h1 { 
@@ -236,6 +303,49 @@
         justify-content: center;
         border-radius: 13px;
         text-decoration: none;
+    }
+
+    #showcase { 
+        display: grid;
+        width: 100%;
+        margin-top: 75px;
+        margin-bottom: 100px;
+    }
+
+    .showcase-item { 
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 100px;
+    }
+    
+    h2 { 
+        font-family: 'Roboto', sans;
+        color: white;
+        font-size: 40px;
+        margin-bottom: 16px;
+    }
+
+    p { 
+        font-family: 'Roboto', sans;
+        color: white;
+        font-size: 28px;
+        line-height: 1.3;
+    }
+
+    .showcase-text { 
+        width: 10px;
+        flex-grow: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 24px;
+    }
+
+    .showcase-example { 
+        width: 10px;
+        flex-grow: 4;
+        font-size: 20px;
+        font-family: 'Roboto Mono', monospace;
     }
 
 </style>
