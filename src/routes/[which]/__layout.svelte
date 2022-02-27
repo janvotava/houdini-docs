@@ -28,6 +28,7 @@
 		<nav>
 			<a href="/tour" class:current={$currentPage.startsWith('/tour')}>Guided Tour</a>
 			<a href="/docs" class:current={$currentPage.startsWith('/docs')}>Docs</a>
+			<a href="/api" class:current={$currentPage.startsWith('/api')}>API</a>
 		</nav>
 		<ul>
 			{#each files as file}
@@ -82,7 +83,7 @@
 		color: white;
 		font-size: 18px;
 		font-family: 'Roboto', sans-serif;
-		margin-right: 10px;
+		margin-right: 20px;
 	}
 
 	nav > a:hover {

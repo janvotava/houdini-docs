@@ -41,7 +41,7 @@
 		},
 		{
 			header: 'Declarative',
-			text: 'Updates to your application cache are made with a set of declarative fragments that the avoids surgical logic necessary to keep your application up to date.',
+			text: 'Updates to your application cache are made with a set of declarative fragments that avoid the surgical logic necessary to keep your application up to date.',
 			example: `<script>
     import { mutation, graphql } from '$houdini'
 

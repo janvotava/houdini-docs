@@ -6,10 +6,14 @@ export async function get({ params }) {
 	// load the files from the appropriate directory
 	// the glob expression has to be statically analyzable so we can't just
 	// interpolate which into the path
-	const fileModules =
-		which === 'tour'
-			? import.meta.glob(`../../content/tour/*.svx`)
-			: import.meta.glob(`../../content/docs/*.svx`);
+	let fileModules;
+	if (which === 'tour') {
+		fileModules = import.meta.glob(`../../content/tour/*.svx`);
+	} else if (which === 'docs') {
+		fileModules = import.meta.glob(`../../content/docs/*.svx`);
+	} else if (which === 'api') {
+		fileModules = import.meta.glob(`../../content/api/*.svx`);
+	}
 
 	// load every file to grab its metadata
 	const files = await Promise.all(

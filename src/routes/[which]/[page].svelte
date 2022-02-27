@@ -59,7 +59,7 @@
 		font-size: 18px;
 		font-family: 'Roboto', sans-serif;
 		margin-left: 45px;
-		margin-top: 10px;
+		margin-top: 5px;
 		line-height: 24px;
 	}
 
