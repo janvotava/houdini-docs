@@ -1,0 +1,16 @@
+---
+title: Welcome
+---
+
+# Welcome to Houdini
+
+This goal of this guide is to show you enough of Houdini so you can start building your own applications. There are a lot of different approaches to building apps with GraphQL and rather than assume you are used to our approach, we’re going to start from the ground up and show you how we like to use Houdini - hopefully you like it!
+
+What we’ll cover:
+
+- A simple query
+- Building reusable components
+- Sending a mutation to the server
+- How to paginate large lists of data
+
+If you are looking for a more exhaustive coverage of Houdini’s features and APIs, you should check out the [API docs](/docs).

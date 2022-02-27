@@ -93,8 +93,8 @@
 		<img src="/static/images/logo.svg" alt="Houdini Logo" width="175px" />
 	</a>
 	<nav>
-		<a href="/get-started" class="nav-link"> Get Started </a>
-		<a href="/docs" class="nav-link"> Docs </a>
+		<a href="/tour" class="nav-link">Get Started</a>
+		<a href="/docs" class="nav-link">Docs</a>
 		<a href="https://opencollective.com/houdini" class="nav-link" target="_blank"> Support </a>
 		<a href="https://www.github.com/AlecAivazis/houdini" target="_blank" id="gh-link">
 			<img src="/static/images/github.svg" alt="Github" height="20px" />
@@ -109,7 +109,7 @@
 				client for <span class="svelte-text">SvelteKit</span>.
 			</h1>
 			<nav id="hero-buttons">
-				<a href="/get-started" class="button-shadow">Get Started</a>
+				<a href="/tour" class="button-shadow" rel="prefetch">Get Started</a>
 				<a href="/docs" class="button-shadow">Docs</a>
 			</nav>
 		</div>
