@@ -13,7 +13,7 @@ What we’ll cover here:
 - Sending a mutation to the server
 - How to paginate large lists of data
 
-If you are looking for a more exhaustive coverage of Houdini’s features and APIs, you should check out the [API docs](/docs).
+If you are looking for a more exhaustive coverage of Houdini’s features and APIs, you should check out the [API docs](/api).
 
 ## Getting Started
 

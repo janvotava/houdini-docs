@@ -58,9 +58,11 @@
 		flex-shrink: 0;
 	}
 
-	nav,
 	h1 {
 		margin-left: 40px;
+	}
+	nav > a:first-child {
+		margin-left: 30px;
 	}
 
 	h1 {
@@ -79,11 +81,18 @@
 	}
 
 	nav > a {
-		padding-bottom: 5px;
+		padding-bottom: 10px;
 		color: white;
 		font-size: 18px;
 		font-family: 'Roboto', sans-serif;
-		margin-right: 20px;
+		padding-left: 10px;
+		padding-right: 10px;
+		margin-right: 5px;
+	}
+
+	nav {
+		height: 30px;
+		border-bottom: 3px solid #303a48;
 	}
 
 	nav > a:hover {
@@ -92,7 +101,6 @@
 
 	nav > a.current {
 		border-bottom: 3px solid #ff3e00;
-		margin-bottom: -3px;
 	}
 
 	ul {
@@ -104,7 +112,7 @@
 		font-size: 20px;
 		font-family: 'Roboto', sans-serif;
 		padding-left: 40px;
-		padding-right: 40px;
+		padding-right: 20px;
 		margin-bottom: 5px;
 	}
 
