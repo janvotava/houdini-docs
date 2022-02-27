@@ -26,6 +26,13 @@
 		font-family: 'Roboto', sans-serif;
 	}
 
+	article h2 {
+		margin-top: 20px;
+		font-size: 30px;
+		margin-bottom: 30px;
+		font-family: 'Roboto', sans-serif;
+	}
+
 	article p {
 		font-size: 18px;
 		line-height: 24px;
@@ -49,5 +56,19 @@
 	article a {
 		color: #ff3e00;
 		text-decoration: none;
+	}
+
+	article pre {
+		margin-bottom: 30px;
+	}
+
+	p > code {
+		background: #8390a1;
+		padding: 2px 6px;
+		border-radius: 5px;
+		font-size: 14px;
+		font-family: 'Roboto Mono', monospace;
+		white-space: nowrap;
+		color: #161b22;
 	}
 </style>
