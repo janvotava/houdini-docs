@@ -37,7 +37,7 @@
 			{/each}
 		</ul>
 	</aside>
-	<article>
+	<article id="doc-content">
 		<slot />
 	</article>
 </main>

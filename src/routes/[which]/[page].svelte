@@ -15,47 +15,47 @@
 {@html content}
 
 <style global>
-	article {
+	#doc-content {
 		padding-top: 30px;
 		padding-right: 100px;
 		margin-bottom: 200px;
 	}
 
-	article h1,
+	#doc-content h1,
 	h2,
 	h3 {
 		margin-bottom: 30px;
 		font-family: 'Roboto', sans-serif;
 	}
 
-	article h1 {
+	#doc-content h1 {
 		font-size: 40px;
 	}
 
-	article h2 {
+	#doc-content h2 {
 		margin-top: 20px;
 		font-size: 30px;
 	}
 
-	article h3 {
+	#doc-content h3 {
 		margin-top: 20px;
 		font-size: 24px;
 	}
 
-	article p {
+	#doc-content p {
 		font-size: 18px;
 		line-height: 24px;
 		font-family: 'Roboto', sans-serif;
 		margin-bottom: 30px;
 	}
 
-	article ul,
+	#doc-content ul,
 	ol {
 		margin-top: -30px;
 		margin-bottom: 30px;
 	}
 
-	article li {
+	#doc-content li {
 		font-size: 18px;
 		font-family: 'Roboto', sans-serif;
 		margin-left: 45px;
@@ -63,20 +63,20 @@
 		line-height: 24px;
 	}
 
-	article ol > li {
+	#doc-content ol > li {
 		list-style: numbers;
 	}
 
-	article ul > li {
+	#doc-content ul > li {
 		list-style: disc;
 	}
 
-	article a {
+	#doc-content a {
 		color: #ff3e00;
 		text-decoration: none;
 	}
 
-	article pre {
+	#doc-content pre {
 		margin-bottom: 30px;
 	}
 
