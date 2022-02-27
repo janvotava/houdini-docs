@@ -51,7 +51,7 @@
 	aside {
 		padding: 20px 0px;
 		margin-right: 50px;
-		width: 275px;
+		width: 300px;
 		display: flex;
 		flex-direction: column;
 		flex-shrink: 0;

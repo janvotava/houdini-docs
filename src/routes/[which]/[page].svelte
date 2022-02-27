@@ -18,19 +18,28 @@
 	article {
 		padding-top: 30px;
 		padding-right: 100px;
+		margin-bottom: 200px;
+	}
+
+	article h1,
+	h2,
+	h3 {
+		margin-bottom: 30px;
+		font-family: 'Roboto', sans-serif;
 	}
 
 	article h1 {
 		font-size: 40px;
-		margin-bottom: 30px;
-		font-family: 'Roboto', sans-serif;
 	}
 
 	article h2 {
 		margin-top: 20px;
 		font-size: 30px;
-		margin-bottom: 30px;
-		font-family: 'Roboto', sans-serif;
+	}
+
+	article h3 {
+		margin-top: 20px;
+		font-size: 24px;
 	}
 
 	article p {
@@ -40,7 +49,8 @@
 		margin-bottom: 30px;
 	}
 
-	article ul {
+	article ul,
+	ol {
 		margin-top: -30px;
 		margin-bottom: 30px;
 	}
@@ -48,9 +58,17 @@
 	article li {
 		font-size: 18px;
 		font-family: 'Roboto', sans-serif;
-		list-style: disc;
 		margin-left: 45px;
 		margin-top: 10px;
+		line-height: 24px;
+	}
+
+	article ol > li {
+		list-style: numbers;
+	}
+
+	article ul > li {
+		list-style: disc;
 	}
 
 	article a {

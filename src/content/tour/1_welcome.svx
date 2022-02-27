@@ -4,7 +4,7 @@ title: Getting Started
 
 # Welcome to Houdini
 
-This goal of this guide is to show you enough of Houdini so you can start building your own applications. There are a lot of different approaches to building apps with GraphQL and rather than assume you are used to our approach, we’re going to start from the ground up and show you how we like to use Houdini - hopefully you like it!
+This goal of this guide is to show you enough of Houdini so you can start building your own applications. There are a lot of different approaches to building interfaces with GraphQL and rather than assume you are familiar our approach, we’re going to start from the ground up and show you how we like to use Houdini - hopefully you like it!
 
 What we’ll cover here:
 
