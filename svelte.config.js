@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
+import path from 'path';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -16,6 +17,14 @@ const config = {
 		vite: {
 			optimizeDeps: {
 				include: ['highlight.js/lib/core']
+			},
+			vite: {
+				resolve: {
+					alias: {
+						// these are the aliases and paths to them
+						$content: path.resolve('./src/content')
+					}
+				}
 			}
 		}
 	}
