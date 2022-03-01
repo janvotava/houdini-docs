@@ -1,8 +1,8 @@
 import path from 'path';
 
-export async function list(which: string): Promise<Page[]> {
+export async function listAll(): Promise<{ [which: string]: Page[] }> {
 	// return the cached value if its been computed
-	const existing = readCache(which);
+	const existing = readCache();
 	if (existing) {
 		return existing;
 	}
@@ -44,6 +44,12 @@ export async function list(which: string): Promise<Page[]> {
 	cacheList(files);
 
 	// return the files associated with the particular category
+	return files;
+}
+
+export async function list(which: string): Promise<Page[]> {
+	const files = await listAll();
+	// return the files associated with the particular category
 	return files[which];
 }
 
@@ -59,7 +65,7 @@ type Page = {
 };
 
 // cache the list in production
-let content: { [which: string]: null | Page[] } = {};
+let content: { [which: string]: Page[] } | null = null;
 
 // cache the list in production
 function cacheList(value: typeof content) {
@@ -72,6 +78,6 @@ function cacheList(value: typeof content) {
 }
 
 // read the cached value
-function readCache(which: string): null | Page[] {
-	return content[which];
+function readCache(): typeof content {
+	return content;
 }
