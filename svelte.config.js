@@ -1,8 +1,8 @@
-import adapter from '@sveltejs/adapter-auto';
-import preprocess from 'svelte-preprocess';
-import { mdsvex } from 'mdsvex';
-import path from 'path';
-import hljs from 'highlight.js';
+import adapter from '@sveltejs/adapter-auto'
+import preprocess from 'svelte-preprocess'
+import { mdsvex } from 'mdsvex'
+import path from 'path'
+import hljs from 'highlight.js'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -15,15 +15,15 @@ const config = {
 		mdsvex({
 			highlight: {
 				highlighter(str, lang) {
-					let code = str;
+					let code = str
 
 					if (lang && hljs.getLanguage(lang)) {
 						try {
-							code = hljs.highlight(str.replace(/\t/g, '    '), { language: lang }).value;
+							code = hljs.highlight(str.replace(/\t/g, '    '), { language: lang }).value
 						} catch (__) {}
 					}
 
-					return `<pre class="hljs" data-language="${lang}"><code class="hljs">{@html \`${code}\`}</code></pre>`;
+					return `<pre class="hljs" data-language="${lang}"><code class="hljs">{@html \`${code}\`}</code></pre>`
 				}
 			}
 		}),
@@ -44,6 +44,6 @@ const config = {
 			}
 		}
 	}
-};
+}
 
-export default config;
+export default config

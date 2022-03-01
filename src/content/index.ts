@@ -1,10 +1,10 @@
-import path from 'path';
+import path from 'path'
 
 export async function listAll(): Promise<{ [which: string]: Page[] }> {
 	// return the cached value if its been computed
-	const existing = readCache();
+	const existing = readCache()
 	if (existing) {
-		return existing;
+		return existing
 	}
 
 	// this is the first time we are loading the list of pages
@@ -15,69 +15,69 @@ export async function listAll(): Promise<{ [which: string]: Page[] }> {
 		tour: import.meta.glob('./tour/*.svx'),
 		docs: import.meta.glob('./docs/*.svx'),
 		api: import.meta.glob('./api/*.svx')
-	};
+	}
 
-	const files: typeof content = {};
+	const files: typeof content = {}
 	for (const [category, imported] of Object.entries(fileModules)) {
 		files[category] = await Promise.all(
 			Object.entries(imported).map(async ([filepath, module]) => {
 				// look at the file meta data for the name
-				const { metadata, default: mod } = await module();
+				const { metadata, default: mod } = await module()
 
-				const fileName = path.basename(filepath);
+				const fileName = path.basename(filepath)
 				return {
 					fileName,
 					title: metadata.title,
 					slug: fileName.substring(fileName.indexOf('_') + 1, fileName.indexOf('.')),
 					content: mod.render().html
-				};
+				}
 			})
-		);
+		)
 
 		// sort the files by index
 		files[category].sort((a, b) => {
-			return a.fileName > b.fileName ? 1 : -1;
-		});
+			return a.fileName > b.fileName ? 1 : -1
+		})
 	}
 
 	// save the list so we dont have to compute it again
-	cacheList(files);
+	cacheList(files)
 
 	// return the files associated with the particular category
-	return files;
+	return files
 }
 
 export async function list(which: string): Promise<Page[]> {
-	const files = await listAll();
+	const files = await listAll()
 	// return the files associated with the particular category
-	return files[which];
+	return files[which]
 }
 
 export async function getPage(which: string, slug: string): Promise<Page> {
-	return (await list(which)).find((page) => page.slug === slug);
+	return (await list(which)).find((page) => page.slug === slug)
 }
 
 type Page = {
-	fileName: string;
-	title: string;
-	slug: string;
-	content: string;
-};
+	fileName: string
+	title: string
+	slug: string
+	content: string
+}
 
 // cache the list in production
-let content: { [which: string]: Page[] } | null = null;
+let content: { [which: string]: Page[] } | null = null
 
 // cache the list in production
 function cacheList(value: typeof content) {
 	// if we are disabled, dont do anything
 	if (true) {
-		return;
+		return
 	}
 
-	content = value;
+	content = value
 }
 
 // read the cached value
 function readCache(): typeof content {
-	return content;
+	return content
 }

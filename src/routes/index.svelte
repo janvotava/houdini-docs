@@ -1,5 +1,5 @@
 <script>
-	import { HighlightAuto, HighlightSvelte } from 'svelte-highlight';
+	import { HighlightAuto, HighlightSvelte } from 'svelte-highlight'
 
 	const heroExample = `<script>
     import { query, graphql } from '$houdini'
@@ -16,7 +16,7 @@
 {#each $data.items as item}
     <div>{item.text}</div>
 {/each}
-`;
+`
 
 	const sellingPoints = [
 		{
@@ -79,7 +79,7 @@
 {/each}
 `
 		}
-	];
+	]
 </script>
 
 <svelte:head>

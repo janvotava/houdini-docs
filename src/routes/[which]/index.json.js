@@ -1,7 +1,7 @@
-import { listAll } from '~/content';
+import { listAll } from '~/content'
 
 export async function get({ params }) {
-	const { which } = params;
+	const { which } = params
 
 	// return the file information
 	return {
@@ -9,5 +9,5 @@ export async function get({ params }) {
 			which,
 			files: await listAll()
 		}
-	};
+	}
 }

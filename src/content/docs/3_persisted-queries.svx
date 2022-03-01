@@ -27,7 +27,7 @@ async function sendFetch({ text, variables, hash }) {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			query: text ? text : undefined,
+			query: text,
 			variables,
 			extensions: {
 				persistedQuery: {
@@ -36,24 +36,28 @@ async function sendFetch({ text, variables, hash }) {
 				}
 			}
 		})
-	});
+	})
 
-	return result.json();
+	return result.json()
 }
 
-export default new Environment(async function ({ text, variables = {}, hash }) {
+export default new Environment(async function (args) {
 	// first send the request without the text, only the hash
-	const response = await sendFetch.call(this, { variables, hash, text: null });
+	const response = await sendFetch.call(this, {
+		variables: args.variables,
+		hash: args.hash,
+		text: null
+	})
 
 	// if there were no errors, we're good to go
 	if (!response.errors) {
-		return response;
+		return response
 	}
 
-	// there were errors, send the hash and the query to associate the two for
-	// future requests
-	return await sendFetch.call(this, { variables, hash, text });
-});
+	// there were errors, send the hash and the query to associate
+	// the two for future requests
+	return await sendFetch.call(this, args)
+})
 ```
 
 ### Fixed List of Persisted Queries
@@ -64,9 +68,9 @@ To support this, you can pass the `--persist-output` flag to the `generate` comm
 and provide a path to save the map:
 
 ```bash
-npx houdini generate --persist-output ./path/to/persisted-queries.json
+npx houdini generate --persist-output ./path/to/queries.json
 # or
-npx houdini generate -po ./path/to/persisted-queries.json
+npx houdini generate -po ./path/to/queries.json
 ```
 
 Once this map has been created, you will have to make it available to your server.
@@ -76,19 +80,19 @@ pass the hash under whatever field name you prefer:
 
 ```typescript
 /// src/environment.ts
-export default new Environment(async function ({ text, variables = {}, hash }) {
+export default new Environment(async function (args) {
 	const result = await this.fetch('http://localhost:4000', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			doc_id: hash,
-			variables
+			doc_id: args.hash,
+			variables: args.variables
 		})
-	});
+	})
 
 	// parse the result as json
-	return await result.json();
-});
+	return await result.json()
+})
 ```

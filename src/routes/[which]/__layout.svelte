@@ -1,73 +1,68 @@
 <script context="module">
 	export async function load({ fetch, params }) {
 		// load the page meta data by reading from the groups endpoint
-		const response = await fetch(`/${params.which}.json`);
+		const response = await fetch(`/${params.which}.json`)
 		return {
 			props: await response.json()
-		};
+		}
 	}
 </script>
 
 <script>
-	import { page, navigating } from '$app/stores';
-	import Icon from '~/components/Icon.svelte';
-	import { derived } from 'svelte/store';
-	import { onMount } from 'svelte';
+	import { page, navigating } from '$app/stores'
+	import Icon from '~/components/Icon.svelte'
+	import { derived } from 'svelte/store'
+	import { onMount } from 'svelte'
 
 	// the list of files we can render
-	export let files;
-	export let which = undefined;
+	export let files
+	export let which = undefined
 
 	// some state to control the menu
-	let menuOpen = false;
+	let menuOpen = false
 	function toggleMenu() {
-		menuOpen = !menuOpen;
-		currentCategory = which;
+		menuOpen = !menuOpen
+		currentCategory = which
 	}
 
 	// pull out the current page
-	const currentPage = derived(page, ({ url }) => url.pathname);
+	const currentPage = derived(page, ({ url }) => url.pathname)
 
 	// we have to drive the current category off of state so that the responsive
 	// layout can swap it around without relying on page transitions
-	let currentCategory = which;
-	const categories = Object.keys(files);
+	let currentCategory = which
+	const categories = Object.keys(files)
 
 	// a more human readable version of each category
 	const prettyName = {
 		tour: 'Guided Tour',
 		docs: 'Docs',
 		api: 'Api'
-	};
+	}
 
 	// when navigating, keep the current category in sync
 	navigating.subscribe((nav) => {
 		if (!nav) {
-			return;
+			return
 		}
-		menuOpen = false;
-		currentCategory = nav.to.pathname.split('/')[1].toLowerCase();
-	});
+		menuOpen = false
+		currentCategory = nav.to.pathname.split('/')[1].toLowerCase()
+	})
 
 	// whenever the browser resizes above the thin breakpoint we need to
 	// close the popup menu so there's no funky link/button mismatch
 	onMount(() => {
-		let debounceTimer = null;
-
 		window.onresize = () => {
-			clearTimeout(debounceTimer);
-			debounceTimer = setTimeout(() => {
-				// if the window is above the thin width
-				if (window.innerWidth > 1000) {
-					menuOpen = false;
-					currentCategory = which;
-				}
-			}, 20);
-		};
-	});
+			// if the window is above the thin width
+			if (window.innerWidth > 1000) {
+				menuOpen = false
+				currentCategory = which
+			}
+		}
+	})
 
 	// show the files associated with the current category
-	$: currentFiles = files[currentCategory] || [];
+	$: currentFiles = files[currentCategory] || []
 </script>
 
 <svelte:head>
@@ -261,7 +256,7 @@
 		display: flex;
 	}
 
-	@media (max-width: 1005px) {
+	@media (max-width: 1000px) {
 		main {
 			flex-direction: column;
 		}
@@ -305,6 +300,11 @@
 
 		nav > button {
 			display: flex;
+		}
+
+		li.current {
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
 		}
 	}
 </style>

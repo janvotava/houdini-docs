@@ -8,12 +8,12 @@
 			return {
 				error: 'invalid url',
 				status: 404
-			};
+			}
 		}
 
 		return {
 			redirect: params.which + '/welcome',
 			status: 302
-		};
+		}
 	}
 </script>
