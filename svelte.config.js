@@ -36,12 +36,10 @@ const config = {
 			optimizeDeps: {
 				include: ['highlight.js/lib/core']
 			},
-			vite: {
-				resolve: {
-					alias: {
-						// these are the aliases and paths to them
-						$content: path.resolve('./src/content')
-					}
+			resolve: {
+				alias: {
+					// these are the aliases and paths to them
+					'~': path.resolve('./src')
 				}
 			}
 		}

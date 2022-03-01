@@ -10,33 +10,54 @@
 
 <script>
 	import { page } from '$app/stores';
+	import Icon from '~/components/Icon.svelte';
 	import { derived } from 'svelte/store';
 
+	// the list of files we can render
 	export let files;
+
+	// some state to control the menu
+	let menuOpen = false;
+	function toggleMenu() {
+		menuOpen = !menuOpen;
+	}
 
 	// pull out the current page
 	const currentPage = derived(page, ({ url }) => url.pathname);
 </script>
 
 <svelte:head>
-	<link rel="stylesheet" href="/styles/docs.css" />
+	<link rel="stylesheet" href="/static/styles/md.css" />
 </svelte:head>
 
 <main>
-	<aside>
-		<h1><a href="/">Houdini</a></h1>
-		<nav>
-			<a href="/tour" class:current={$currentPage.startsWith('/tour')}>Guided Tour</a>
-			<a href="/docs" class:current={$currentPage.startsWith('/docs')}>Docs</a>
-			<a href="/api" class:current={$currentPage.startsWith('/api')}>API</a>
-		</nav>
-		<ul>
-			{#each files as file}
-				<li class:current={$currentPage.endsWith(file.slug)}>
-					<a href={file.slug}>{file.title}</a>
-				</li>
-			{/each}
-		</ul>
+	<aside class:open={menuOpen}>
+		<h1>
+			<buton
+				aria-haspopup="true"
+				aria-expanded={menuOpen}
+				class="menu-icon"
+				tabindex="0"
+				on:click={toggleMenu}
+			>
+				<Icon name="menu" width="20px" />
+			</buton>
+			<a href="/">Houdini</a>
+		</h1>
+		<div class:hidden={!menuOpen}>
+			<nav>
+				<a href="/tour" class:current={$currentPage.startsWith('/tour')}>Guided Tour</a>
+				<a href="/docs" class:current={$currentPage.startsWith('/docs')}>Docs</a>
+				<a href="/api" class:current={$currentPage.startsWith('/api')}>API</a>
+			</nav>
+			<ul>
+				{#each files as file}
+					<li class:current={$currentPage.endsWith(file.slug)}>
+						<a href={file.slug} on:click={toggleMenu}>{file.title}</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
 	</aside>
 	<article id="doc-content">
 		<slot />
@@ -56,6 +77,28 @@
 		display: flex;
 		flex-direction: column;
 		flex-shrink: 0;
+		top: 0;
+		position: sticky;
+		background-color: #161b22;
+	}
+
+	article {
+		max-width: 850px;
+		overflow-y: auto;
+		padding-top: 30px;
+		padding-right: 100px;
+		margin-bottom: 50px;
+	}
+
+	:global(.menu-icon) {
+		margin-right: 15px;
+		display: none;
+	}
+
+	aside h1 {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
 	}
 
 	h1 {
@@ -126,5 +169,43 @@
 		display: flex;
 		flex-grow: 1;
 		flex-direction: column;
+	}
+
+	@media (max-width: 1005px) {
+		main {
+			flex-direction: column;
+		}
+
+		article {
+			margin-left: 0px;
+			padding-left: 55px;
+			padding-right: 48px;
+			padding-top: 20px;
+			max-width: none;
+		}
+
+		aside {
+			width: 100%;
+			padding: 0;
+			margin-right: 0px;
+		}
+
+		aside.open {
+			height: 100%;
+			position: fixed;
+		}
+
+		h1 {
+			margin-left: 20px;
+		}
+
+		:global(.menu-icon) {
+			display: flex;
+			cursor: pointer;
+		}
+
+		.hidden {
+			display: none;
+		}
 	}
 </style>

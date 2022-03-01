@@ -1,4 +1,4 @@
-import { list } from '../../content';
+import { list } from '~/content';
 
 export async function get({ params }) {
 	const { which } = params;
