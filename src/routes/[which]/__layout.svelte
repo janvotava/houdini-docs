@@ -67,7 +67,7 @@
 	});
 
 	// show the files associated with the current category
-	$: currentFiles = files[currentCategory];
+	$: currentFiles = files[currentCategory] || [];
 </script>
 
 <svelte:head>
