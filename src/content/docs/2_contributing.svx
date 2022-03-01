@@ -1,6 +1,7 @@
 ---
 title: Contributing
 ---
+
 # Contributing to Houdini
 
 🎉🎉 First off, thanks for the interest in contributing to Houdini! 🎉🎉
@@ -40,17 +41,17 @@ command is defined in [packages/houdini/cmd/generate.ts](./packages/houdini/cmd/
 [pipeline](./packages/houdini/cmd/generate.ts#L34) of tasks that operate on the strings found in a project.
 These tasks fall into three categories:
 
--   **Validators** are defined in [packages/houdini/cmd/validators](./packages/houdini/cmd/validators) and ensure that
-    assumptions made by the rest of the tasks are true. For example, the
-    [uniqueNames validator](./packages/houdini/cmd/validators/uniqueNames.ts) makes sure that every document
-    has a unique name so that the preprocessor can reliably import the correct artifact.
--   **Transforms** are defined in [packages/houdini/cmd/transforms](./packages/houdini/cmd/transforms) and
-    modify the actual documents that the user provides. For example, the
-    [composeQueries transform](./packages/houdini/cmd/transforms/composeQueries.ts) is responsible for adding
-    any definitions for fragments used by an operation so they can be included in the network request.
--   **Generators** are defined in [packages/houdini/cmd/generators](./packages/houdini/cmd/generators)
-    and write things to disk. For example, the [typescript generator](./packages/houdini/cmd/generators/typescript/index.ts)
-    creates type definitions for every document in a project.
+- **Validators** are defined in [packages/houdini/cmd/validators](./packages/houdini/cmd/validators) and ensure that
+  assumptions made by the rest of the tasks are true. For example, the
+  [uniqueNames validator](./packages/houdini/cmd/validators/uniqueNames.ts) makes sure that every document
+  has a unique name so that the preprocessor can reliably import the correct artifact.
+- **Transforms** are defined in [packages/houdini/cmd/transforms](./packages/houdini/cmd/transforms) and
+  modify the actual documents that the user provides. For example, the
+  [composeQueries transform](./packages/houdini/cmd/transforms/composeQueries.ts) is responsible for adding
+  any definitions for fragments used by an operation so they can be included in the network request.
+- **Generators** are defined in [packages/houdini/cmd/generators](./packages/houdini/cmd/generators)
+  and write things to disk. For example, the [typescript generator](./packages/houdini/cmd/generators/typescript/index.ts)
+  creates type definitions for every document in a project.
 
 ### Internal GraphQL Schema
 

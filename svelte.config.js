@@ -2,6 +2,7 @@ import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
 import path from 'path';
+import hljs from 'highlight.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,7 +11,24 @@ const config = {
 
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: [mdsvex(), preprocess()],
+	preprocess: [
+		mdsvex({
+			highlight: {
+				highlighter(str, lang) {
+					let code = str;
+
+					if (lang && hljs.getLanguage(lang)) {
+						try {
+							code = hljs.highlight(str.replace(/\t/g, '    '), { language: lang }).value;
+						} catch (__) {}
+					}
+
+					return `<pre class="hljs" data-language="${lang}"><code class="hljs">{@html \`${code}\`}</code></pre>`;
+				}
+			}
+		}),
+		preprocess()
+	],
 
 	kit: {
 		adapter: adapter(),

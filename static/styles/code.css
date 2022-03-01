@@ -3,6 +3,7 @@ pre code.hljs {
 	padding: 1.5em;
 	line-height: 1.5rem;
 }
+
 code.hljs {
 	padding: 3px 5px;
 }
@@ -67,22 +68,6 @@ code.hljs {
 }
 .hljs-link {
 	text-decoration: underline;
-}
-
-[data-language='bash'] {
-	background: #bac4d1;
-	border-top: 20px solid #58677b;
-	box-sizing: border-box;
-	border-radius: 10px;
-}
-
-[data-language='bash'] code {
-	color: #161b22 !important;
-	padding-top: 15px !important;
-}
-
-[data-language='bash'] .hljs-built_in {
-	color: #161b22;
 }
 
 pre {

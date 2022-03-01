@@ -72,27 +72,23 @@
 	}
 
 	#doc-content a {
-		color: #ff3e00;
+		color: #fc602d;
 		text-decoration: none;
+		white-space: nowrap;
 	}
 
 	#doc-content pre {
-		margin-left: 20px;
-		margin-top: 30px;
-		margin-bottom: 60px;
-	}
-
-	#doc-content pre[data-language='bash'] {
-		box-shadow: 10px 12px 25px 3px rgba(0, 0, 0, 0.25);
+		margin-bottom: 30px;
 	}
 
 	p > code {
-		background: #8390a1;
-		padding: 2px 6px;
+		/* background: #ffffff; */
+		/* padding: 2px 6px; */
 		border-radius: 5px;
-		font-size: 14px;
+		font-size: 16px;
+		padding-bottom: 1px;
 		font-family: 'Roboto Mono', monospace;
 		white-space: nowrap;
-		color: #161b22;
+		color: #a1c5f8;
 	}
 </style>

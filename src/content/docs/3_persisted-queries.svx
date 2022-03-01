@@ -20,13 +20,11 @@ query string. This might look something like:
 
 ```typescript
 /// src/environment.ts
-
-// This sends the actual fetch request to the server
 async function sendFetch({ text, variables, hash }) {
 	const result = await this.fetch('localhost:4000/graphql', {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
 			query: text ? text : undefined,
@@ -34,28 +32,28 @@ async function sendFetch({ text, variables, hash }) {
 			extensions: {
 				persistedQuery: {
 					version: 1,
-					sha256Hash: hash,
-				},
-			},
-		}),
-	})
+					sha256Hash: hash
+				}
+			}
+		})
+	});
 
 	return result.json();
 }
 
-export default new Environment(async function({ text, variables = {}, hash }){
+export default new Environment(async function ({ text, variables = {}, hash }) {
 	// first send the request without the text, only the hash
-	const response = await sendFetch.call(this, { variables, hash, text: null })
+	const response = await sendFetch.call(this, { variables, hash, text: null });
 
 	// if there were no errors, we're good to go
 	if (!response.errors) {
-		return response
+		return response;
 	}
 
 	// there were errors, send the hash and the query to associate the two for
 	// future requests
-	return await sendFetch.call(this, { variables, hash, text })
-})
+	return await sendFetch.call(this, { variables, hash, text });
+});
 ```
 
 ### Fixed List of Persisted Queries
@@ -78,20 +76,19 @@ pass the hash under whatever field name you prefer:
 
 ```typescript
 /// src/environment.ts
+export default new Environment(async function ({ text, variables = {}, hash }) {
+	const result = await this.fetch('http://localhost:4000', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			doc_id: hash,
+			variables
+		})
+	});
 
-export default new Environment(async function({ text, variables = {}, hash }){
-    const result = await this.fetch('http://localhost:4000', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            doc_id: hash,
-            variables,
-        }),
-    })
-
-    // parse the result as json
-    return await result.json()
-})
+	// parse the result as json
+	return await result.json();
+});
 ```
