@@ -47,7 +47,7 @@ export async function list(which: string): Promise<Page[]> {
 	return files[which];
 }
 
-export async function get(which: string, slug: string): Promise<Page> {
+export async function getPage(which: string, slug: string): Promise<Page> {
 	return (await list(which)).find((page) => page.slug === slug);
 }
 

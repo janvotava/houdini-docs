@@ -1,4 +1,4 @@
-import { get as getPage } from '../../content';
+import { getPage } from '../../content';
 
 export async function get({ params }) {
 	return {

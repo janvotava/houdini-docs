@@ -77,7 +77,13 @@
 	}
 
 	#doc-content pre {
-		margin-bottom: 30px;
+		margin-left: 20px;
+		margin-top: 30px;
+		margin-bottom: 60px;
+	}
+
+	#doc-content pre[data-language='bash'] {
+		box-shadow: 10px 12px 25px 3px rgba(0, 0, 0, 0.25);
 	}
 
 	p > code {
