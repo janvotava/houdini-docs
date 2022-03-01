@@ -192,7 +192,6 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		padding: 10px 60px;
 	}
 
 	.nav-link {

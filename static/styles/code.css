@@ -2,7 +2,6 @@ pre code.hljs {
 	display: block;
 	padding: 1.5em;
 	line-height: 1.5rem;
-	overflow-x: auto;
 }
 
 code.hljs {
