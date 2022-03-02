@@ -95,8 +95,10 @@
 	</a>
 	<nav>
 		<a href="/tour" class="nav-link">Get Started</a>
-		<a href="/docs" class="nav-link small-hidden">Docs</a>
-		<a href="https://opencollective.com/houdini" class="nav-link" target="_blank"> Support </a>
+		<a href="/docs" class="nav-link">Docs</a>
+		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
+			Support
+		</a>
 		<a href="https://www.github.com/AlecAivazis/houdini" target="_blank" id="gh-link">
 			<img src="/static/images/github.svg" alt="Github" height="20px" />
 		</a>
@@ -128,9 +130,7 @@
 								{point.text}
 							</p>
 						</div>
-						<pre class="showcase-example">
-							<HighlightAuto code={point.example} />
-						</pre>
+						<HighlightSvelte code={point.example} class="showcase-example" />
 					</div>
 				{/each}
 			</div>
@@ -188,7 +188,7 @@
 	}
 
 	header {
-		height: 80px;
+		height: 100px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -264,7 +264,7 @@
 	#info {
 		display: flex;
 		flex-direction: column;
-		margin-top: 80px;
+		margin-top: 100px;
 		flex-grow: 1;
 	}
 
@@ -354,7 +354,11 @@
 		h1 {
 			margin-left: 30px;
 			text-align: center;
-			width: 80%;
+			width: 100%;
+		}
+
+		#hero-buttons {
+			justify-content: center;
 		}
 
 		header {
@@ -381,6 +385,7 @@
 
 		p {
 			font-size: 20px;
+			margin-right: 0;
 		}
 
 		#hero-buttons {
@@ -393,18 +398,25 @@
 
 		.showcase-item {
 			flex-direction: column;
-			width: 95%;
+			width: 100%;
 			overflow-x: hidden;
 		}
 
 		.showcase-text {
-			width: 80%;
+			width: 100%;
 			align-self: center;
+			padding: 0 10%;
+			margin-right: 0;
+			margin-left: 0;
+			box-sizing: border-box;
 		}
 
-		.showcase-example {
-			width: 80%;
+		:global(.showcase-example) {
+			width: 100%;
 			align-self: center;
+			margin-right: 0;
+			padding: 0 50px;
+			box-sizing: border-box;
 		}
 
 		#hero {
@@ -422,7 +434,7 @@
 
 		:global(#hero pre) {
 			align-self: center;
-			width: 90%;
+			width: 100%;
 			margin-top: 50px;
 			margin-right: 0;
 		}
@@ -430,6 +442,13 @@
 		:global(code) {
 			font-size: 18px;
 			overflow-x: auto;
+		}
+	}
+
+	@media (max-width: 790px) {
+		:global(#hero pre) {
+			width: 80%;
+			box-sizing: border-box;
 		}
 	}
 
