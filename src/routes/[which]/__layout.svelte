@@ -67,6 +67,7 @@
 
 <svelte:head>
 	<link rel="stylesheet" href="/static/styles/md.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
 <main>

@@ -84,6 +84,7 @@
 
 <svelte:head>
 	<title>Houdini</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
 <a id="skip-nav" href="#main"> Skip to Content </a>
