@@ -352,6 +352,8 @@
 	@media (max-width: 1150px) {
 		h1 {
 			margin-left: 30px;
+			text-align: center;
+			width: 80%;
 		}
 
 		header {
