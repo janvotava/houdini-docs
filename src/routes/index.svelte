@@ -94,7 +94,7 @@
 	</a>
 	<nav>
 		<a href="/tour" class="nav-link">Get Started</a>
-		<a href="/docs" class="nav-link">Docs</a>
+		<a href="/docs" class="nav-link small-hidden">Docs</a>
 		<a href="https://opencollective.com/houdini" class="nav-link" target="_blank"> Support </a>
 		<a href="https://www.github.com/AlecAivazis/houdini" target="_blank" id="gh-link">
 			<img src="/static/images/github.svg" alt="Github" height="20px" />
@@ -390,6 +390,7 @@
 		.showcase-item {
 			flex-direction: column;
 			width: 95%;
+			overflow-x: hidden;
 		}
 
 		.showcase-text {
@@ -424,6 +425,17 @@
 
 		:global(code) {
 			font-size: 18px;
+			overflow-x: auto;
+		}
+	}
+
+	@media (max-width: 580px) {
+		.small-hidden {
+			display: none;
+		}
+
+		.nav-link {
+			margin-left: 20px;
 		}
 	}
 </style>

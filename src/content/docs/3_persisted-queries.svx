@@ -68,9 +68,9 @@ To support this, you can pass the `--persist-output` flag to the `generate` comm
 and provide a path to save the map:
 
 ```bash
-npx houdini generate --persist-output ./path/to/queries.json
+npx houdini generate --persist-output ./queries.json
 # or
-npx houdini generate -po ./path/to/queries.json
+npx houdini generate -po ./queries.json
 ```
 
 Once this map has been created, you will have to make it available to your server.
