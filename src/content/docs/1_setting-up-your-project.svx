@@ -14,7 +14,7 @@ What we'll cover:
 
 ## Installation
 
-houdini is available on npm.
+houdini is available on npm:
 
 ```bash
 yarn add -D houdini houdini-preprocess
@@ -27,7 +27,7 @@ npm install --save-dev houdini houdini-preprocess
 Adding houdini to an existing project can easily be done with the provided command-line tool.
 If you don't already have an existing app, visit [this link](https://kit.svelte.dev/docs)
 for help setting one up. Once you have a project and want to add houdini, execute the following command which will create a few necessary files, as well as pull down a json
-representation of your API's schema.
+representation of your API's schema:
 
 ```bash
 npx houdini init

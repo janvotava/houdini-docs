@@ -128,8 +128,8 @@
 							</p>
 						</div>
 						<pre class="showcase-example">
-                        <HighlightAuto code={point.example} />
-                    </pre>
+							<HighlightAuto code={point.example} />
+						</pre>
 					</div>
 				{/each}
 			</div>
@@ -192,6 +192,7 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		box-sizing: border-box;
 	}
 
 	.nav-link {
@@ -341,5 +342,88 @@
 		flex-grow: 1;
 		font-size: 18px;
 		font-family: 'Roboto Mono', monospace;
+	}
+
+	:global(pre) {
+		overflow: hidden;
+	}
+
+	@media (max-width: 1150px) {
+		h1 {
+			margin-left: 30px;
+		}
+
+		header {
+			padding: 0 30px;
+		}
+
+		:global(pre) {
+			margin-right: 30px;
+		}
+
+		.showcase-text {
+			margin-left: 30px;
+		}
+
+		:global(code) {
+			font-size: 15px;
+		}
+	}
+
+	@media (max-width: 1000px) {
+		h2 {
+			font-size: 32px;
+		}
+
+		p {
+			font-size: 20px;
+		}
+
+		#hero-buttons {
+			align-self: center;
+		}
+
+		.showcase-item:first-child {
+			margin-top: 100px;
+		}
+
+		.showcase-item {
+			flex-direction: column;
+			width: 95%;
+		}
+
+		.showcase-text {
+			width: 80%;
+			align-self: center;
+		}
+
+		.showcase-example {
+			width: 80%;
+			align-self: center;
+		}
+
+		#hero {
+			flex-direction: column;
+			width: 100%;
+		}
+
+		#hero div {
+			align-self: center;
+			width: 90%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		:global(#hero pre) {
+			align-self: center;
+			width: 90%;
+			margin-top: 50px;
+			margin-right: 0;
+		}
+
+		:global(code) {
+			font-size: 18px;
+		}
 	}
 </style>
