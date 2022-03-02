@@ -214,6 +214,7 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		margin-top: 15px;
 	}
 
 	nav a {
