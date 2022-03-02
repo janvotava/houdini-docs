@@ -339,7 +339,7 @@
 		margin-right: 12px;
 	}
 
-	.showcase-example {
+	:global(.showcase-example) {
 		width: 10px;
 		flex-grow: 1;
 		font-size: 18px;
@@ -352,7 +352,10 @@
 
 	@media (max-width: 1150px) {
 		h1 {
-			margin-left: 30px;
+			padding: 0 40px;
+			margin-left: 0px !important;
+			margin-right: 0px !important;
+			box-sizing: border-box;
 			text-align: center;
 			width: 100%;
 		}
@@ -371,6 +374,11 @@
 
 		.showcase-text {
 			margin-left: 30px;
+		}
+
+		:global(.showcase-example) {
+			margin-top: 30px;
+			margin-bottom: 30px;
 		}
 
 		:global(code) {
@@ -453,6 +461,10 @@
 	}
 
 	@media (max-width: 580px) {
+		h1 {
+			padding: 0 30px;
+		}
+
 		.small-hidden {
 			display: none;
 		}
