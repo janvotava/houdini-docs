@@ -114,15 +114,13 @@
 			</ul>
 		</div>
 	</aside>
-	<article id="doc-content">
-		<slot />
-	</article>
+	<slot />
 </main>
 
 <style>
 	main {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 	}
 
 	aside {
@@ -135,15 +133,6 @@
 		top: 0;
 		position: fixed;
 		background-color: #161b22;
-	}
-
-	article {
-		max-width: 850px;
-		overflow-y: auto;
-		padding-top: 30px;
-		padding-right: 100px;
-		margin-bottom: 50px;
-		margin-left: 350px;
 	}
 
 	:global(.menu-icon) {
@@ -243,12 +232,6 @@
 		border-bottom-right-radius: 10px;
 	}
 
-	article {
-		display: flex;
-		flex-grow: 1;
-		flex-direction: column;
-	}
-
 	nav > button {
 		display: none;
 	}
@@ -260,14 +243,6 @@
 	@media (max-width: 1000px) {
 		main {
 			flex-direction: column;
-		}
-
-		article {
-			margin-left: 0px;
-			padding-left: 55px;
-			padding-right: 48px;
-			padding-top: 20px;
-			max-width: none;
 		}
 
 		aside {

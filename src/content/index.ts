@@ -40,6 +40,28 @@ export async function listAll(): Promise<{ [which: string]: Page[] }> {
 		})
 	}
 
+	// add previous and next references
+	for (const [category, categoryFiles] of Object.entries(files)) {
+		for (const [i, file] of Object.entries(categoryFiles)) {
+			const previous = categoryFiles[parseInt(i, 10) - 1]
+			const next = categoryFiles[parseInt(i, 10) + 1]
+
+			if (previous) {
+				file.previous = {
+					title: previous.title,
+					link: `/${category}/${previous.slug}`
+				}
+			}
+
+			if (next) {
+				file.next = {
+					title: next.title,
+					link: `/${category}/${next.slug}`
+				}
+			}
+		}
+	}
+
 	// save the list so we dont have to compute it again
 	cacheList(files)
 
@@ -62,6 +84,14 @@ type Page = {
 	title: string
 	slug: string
 	content: string
+	previous?: {
+		title: string
+		link: string
+	}
+	next?: {
+		title: string
+		link: string
+	}
 }
 
 // cache the list in production
