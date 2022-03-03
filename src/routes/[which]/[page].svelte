@@ -14,8 +14,6 @@
 	export let content
 	export let previous
 	export let next
-
-	$: console.log(previous, next)
 </script>
 
 <article id="doc-content">

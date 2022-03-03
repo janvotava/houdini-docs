@@ -35,9 +35,9 @@
 
 	// a more human readable version of each category
 	const prettyName = {
-		tour: 'Guided Tour',
-		docs: 'Docs',
-		api: 'Api'
+		tour: 'Introduction',
+		guides: 'Guides',
+		api: 'API'
 	}
 
 	// when navigating, keep the current category in sync
@@ -62,7 +62,7 @@
 	})
 
 	// show the files associated with the current category
-	$: currentFiles = files[currentCategory] || []
+	$: currentFiles = files[currentCategory]?.pages || []
 </script>
 
 <svelte:head>
@@ -100,7 +100,7 @@
 					</button>
 				{/each}
 				{#each categories as category}
-					<a href={`/${category}`} class:current={which === category}>
+					<a href={files[category].index} class:current={which === category}>
 						{prettyName[category]}
 					</a>
 				{/each}

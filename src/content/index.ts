@@ -1,6 +1,6 @@
 import path from 'path'
 
-export async function listAll(): Promise<{ [which: string]: Page[] }> {
+export async function listAll(): Promise<{ [which: string]: Category }> {
 	// return the cached value if its been computed
 	const existing = readCache()
 	if (existing) {
@@ -13,11 +13,11 @@ export async function listAll(): Promise<{ [which: string]: Page[] }> {
 	// load the files from the appropriate directory
 	let fileModules = {
 		tour: import.meta.glob('./tour/*.svx'),
-		docs: import.meta.glob('./docs/*.svx'),
+		guides: import.meta.glob('./guides/*.svx'),
 		api: import.meta.glob('./api/*.svx')
 	}
 
-	const files: typeof content = {}
+	const files: { [category: string]: Page[] } = {}
 	for (const [category, imported] of Object.entries(fileModules)) {
 		files[category] = await Promise.all(
 			Object.entries(imported).map(async ([filepath, module]) => {
@@ -62,21 +62,37 @@ export async function listAll(): Promise<{ [which: string]: Page[] }> {
 		}
 	}
 
+	// turn the list of files into the category description
+	const categories = Object.fromEntries(
+		Object.entries(files).map(([key, files]) => [
+			key,
+			{
+				index: `/${key}/${files[0].slug}`,
+				pages: files
+			}
+		])
+	)
+
 	// save the list so we dont have to compute it again
-	cacheList(files)
+	cacheList(categories)
 
 	// return the files associated with the particular category
-	return files
+	return categories
 }
 
 export async function list(which: string): Promise<Page[]> {
 	const files = await listAll()
 	// return the files associated with the particular category
-	return files[which]
+	return files[which].pages
 }
 
 export async function getPage(which: string, slug: string): Promise<Page> {
 	return (await list(which)).find((page) => page.slug === slug)
+}
+
+type Category = {
+	index: string
+	pages: Page[]
 }
 
 type Page = {
@@ -95,7 +111,7 @@ type Page = {
 }
 
 // cache the list in production
-let content: { [which: string]: Page[] } | null = null
+let content: { [which: string]: Category } | null = null
 
 // cache the list in production
 function cacheList(value: typeof content) {

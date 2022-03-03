@@ -95,7 +95,7 @@
 	</a>
 	<nav>
 		<a href="/tour" class="nav-link">Get Started</a>
-		<a href="/docs" class="nav-link">Docs</a>
+		<a href="/api" class="nav-link">Docs</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
 		</a>
