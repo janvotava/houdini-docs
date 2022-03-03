@@ -94,7 +94,7 @@
 		<img src="/static/images/logo.svg" alt="Houdini Logo" width="175px" />
 	</a>
 	<nav>
-		<a href="/tour" class="nav-link">Get Started</a>
+		<a href="/intro" class="nav-link">Get Started</a>
 		<a href="/api" class="nav-link">API</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
@@ -112,7 +112,7 @@
 				client for <span class="svelte-text">SvelteKit</span>.
 			</h1>
 			<nav id="hero-buttons">
-				<a href="/tour" class="button-shadow" rel="prefetch">Get Started</a>
+				<a href="/intro" class="button-shadow" rel="prefetch">Get Started</a>
 				<a href="/api" class="button-shadow">API</a>
 			</nav>
 		</div>

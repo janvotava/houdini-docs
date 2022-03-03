@@ -12,7 +12,7 @@ export async function listAll(): Promise<{ [which: string]: Category }> {
 
 	// load the files from the appropriate directory
 	let fileModules = {
-		tour: import.meta.glob('./tour/*.svx'),
+		intro: import.meta.glob('./intro/*.svx'),
 		guides: import.meta.glob('./guides/*.svx'),
 		api: import.meta.glob('./api/*.svx')
 	}

@@ -35,7 +35,7 @@
 
 	// a more human readable version of each category
 	const prettyName = {
-		tour: 'Introduction',
+		intro: 'Introduction',
 		guides: 'Guides',
 		api: 'API'
 	}
