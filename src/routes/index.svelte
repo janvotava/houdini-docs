@@ -95,7 +95,7 @@
 	</a>
 	<nav>
 		<a href="/tour" class="nav-link">Get Started</a>
-		<a href="/api" class="nav-link">Docs</a>
+		<a href="/api" class="nav-link">API</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
 		</a>
@@ -113,7 +113,7 @@
 			</h1>
 			<nav id="hero-buttons">
 				<a href="/tour" class="button-shadow" rel="prefetch">Get Started</a>
-				<a href="/docs" class="button-shadow">Docs</a>
+				<a href="/api" class="button-shadow">API</a>
 			</nav>
 		</div>
 		<HighlightSvelte code={heroExample} class="shadow" />
