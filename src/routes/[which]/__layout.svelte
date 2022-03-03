@@ -133,6 +133,7 @@
 		top: 0;
 		position: fixed;
 		background-color: #161b22;
+		z-index: 10;
 	}
 
 	:global(.menu-icon) {
