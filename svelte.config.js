@@ -31,6 +31,7 @@ const config = {
 	],
 
 	kit: {
+		routes: () => true,
 		adapter: adapter(),
 		vite: {
 			optimizeDeps: {

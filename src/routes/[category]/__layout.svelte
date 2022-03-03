@@ -1,7 +1,7 @@
 <script context="module">
-	export async function load({ fetch, params }) {
+	export async function load({ fetch }) {
 		// load the page meta data by reading from the groups endpoint
-		const response = await fetch(`/${params.which}.json`)
+		const response = await fetch(`/_content`)
 		return {
 			props: await response.json()
 		}
@@ -16,21 +16,20 @@
 
 	// the list of files we can render
 	export let files
-	export let which = undefined
 
 	// some state to control the menu
 	let menuOpen = false
 	function toggleMenu() {
 		menuOpen = !menuOpen
-		currentCategory = which
+		currentCategory = $page.params.category
 	}
 
 	// pull out the current page
-	const currentPage = derived(page, ({ url }) => url.pathname)
+	$: currentPage = $page.url.pathname
 
 	// we have to drive the current category off of state so that the responsive
 	// layout can swap it around without relying on page transitions
-	let currentCategory = which
+	let currentCategory = $page.params.category
 	const categories = Object.keys(files)
 
 	// a more human readable version of each category
@@ -56,7 +55,7 @@
 			// if the window is above the thin width
 			if (window.innerWidth > 1000) {
 				menuOpen = false
-				currentCategory = which
+				currentCategory = $page.params.category
 			}
 		}
 	})
@@ -100,14 +99,14 @@
 					</button>
 				{/each}
 				{#each categories as category}
-					<a href={files[category].index} class:current={which === category}>
+					<a href={files[category].index} class:current={$page.params.category === category}>
 						{prettyName[category]}
 					</a>
 				{/each}
 			</nav>
 			<ul>
 				{#each currentFiles as file}
-					<li class:current={$currentPage.endsWith(file.slug)}>
+					<li class:current={currentPage.endsWith(file.slug)}>
 						<a href={`/${currentCategory}/${file.slug}`}>{file.title}</a>
 					</li>
 				{/each}

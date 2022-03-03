@@ -1,7 +1,7 @@
 <script context="module">
 	export async function load({ fetch, params }) {
 		// load the page meta data by reading from the groups endpoint
-		const response = await fetch(`/${params.which}/${params.page}.json`)
+		const response = await fetch(`/_content/${params.category}/${params.page}`)
 		return {
 			props: await response.json()
 		}
@@ -11,9 +11,9 @@
 <script lang="ts">
 	import Icon from '~/components/Icon.svelte'
 
-	export let content
-	export let previous
-	export let next
+	export let content: string
+	export let previous = undefined
+	export let next = undefined
 </script>
 
 <article id="doc-content">
