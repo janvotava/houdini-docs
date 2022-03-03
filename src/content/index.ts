@@ -80,14 +80,14 @@ export async function listAll(): Promise<{ [which: string]: Category }> {
 	return categories
 }
 
-export async function list(which: string): Promise<Page[]> {
+export async function list(which: string): Promise<Category> {
 	const files = await listAll()
 	// return the files associated with the particular category
-	return files[which].pages
+	return files[which]
 }
 
 export async function getPage(which: string, slug: string): Promise<Page> {
-	return (await list(which)).find((page) => page.slug === slug)
+	return (await list(which)).pages.find((page) => page.slug === slug)
 }
 
 type Category = {
