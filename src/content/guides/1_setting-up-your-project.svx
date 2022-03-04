@@ -82,8 +82,6 @@ this, add the following block of code to `src/routes/__layout.svelte`:
 </script>
 ```
 
-You might need to generate your runtime in order to fix typescript errors.
-
 **Note**: If you are building your application with
 [`adapter-static`](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) (or any other adapter that turns
 your application into a static site), you will need to set the `static` value in your config file to `true`.
