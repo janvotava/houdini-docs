@@ -1,5 +1,5 @@
 <script>
-	import { HighlightAuto, HighlightSvelte } from 'svelte-highlight'
+	import { HighlightSvelte } from 'svelte-highlight'
 
 	const heroExample = `<script>
     import { query, graphql } from '$houdini'
