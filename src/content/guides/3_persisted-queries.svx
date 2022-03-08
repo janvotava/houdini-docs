@@ -15,7 +15,7 @@ houdini passes a queries hash to the fetch function for you to use.
 
 An approach to Persisted Queries, popularized by Apollo, is known as
 [Automatic Persisted Queries](https://www.apollographql.com/docs/apollo-server/performance/apq/).
-This involves first sending a queries hash and if its unrecognized, sending the full
+This involves first sending a query's hash and if its unrecognized, sending the full
 query string. This might look something like:
 
 ```typescript

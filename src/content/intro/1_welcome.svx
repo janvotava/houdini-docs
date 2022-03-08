@@ -15,6 +15,10 @@ What we’ll cover here:
 
 If you are looking for a more exhaustive coverage of Houdini’s features and APIs, you should check out the [API docs](/api).
 
+## What We'll Build
+
+Instead of the usual todo list, we're going to build a little app to explore the wide array of monsters available in the first generation of Pokémon. For a preview of the final result, you can check it out [here]().
+
 ## Getting Started
 
 We’re going to start off with a project that’s already been configured so we can jump right to the fun stuff. You can pull down the demo by executing the following commands in your terminal:
@@ -25,6 +29,6 @@ cd hello-houdini
 npm i
 ```
 
-If you look inside of this directory, you’ll see its just a barebones SvelteKit application with a few extra files. Don’t worry too much about the extra bits right now - we’ll highlight the important things as we work through this guide. When you’re ready to set up your own application, head over to the [Setting Up Your Project](/guides/setting-up-your-project) guide.
+If you look inside of this directory, you’ll see its a barebones SvelteKit application with a few extra config files as well as some components we'll use to lay out our Pokédex. Don’t worry too much about the extra bits right now - we’ll highlight the important things as we work through this guide. When you’re ready to set up your own application, head over to the [Setting Up Your Project](/guides/setting-up-your-project) guide.
 
 This project already has a local server we will work against. You should now start it with `npm run server`. Once that’s going, open up another terminal, navigate to the project directory, and start the SvelteKit dev server with `npm run dev`.

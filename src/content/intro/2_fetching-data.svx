@@ -1,3 +1,119 @@
 ---
 title: Fetching Data
 ---
+
+# Fetching Data
+
+Before we do anything _too_ complicated, lets get something on the screen. Open up `src/routes/index.svelte` and fill it with the following content. Don't worry if you see an error after saving, we'll clear that up momentarily.
+
+```svelte
+<script>
+    import { Container, Display, Sprite } from '~/components'
+    import { query, graphql } from '$houdini'
+
+    const { data } = query(graphql\`
+        query SpeciesInfo {
+            species(id: 1) {
+                name
+                flavor_text
+                sprites {
+                    front
+                    back
+                }
+            }
+        }
+    \`)
+</script>
+
+<Container>
+    <div slot="left">
+        <Display id="species-display">
+            {$data.species.name}
+        </Display>
+        <Sprite
+            id="species-sprite"
+            src={$data.species.sprites.front}
+            speciesName={$data.species.name}
+        />
+        <Display id="species-flavor_text">
+            {$data.species.flavor_text}
+        </Display>
+    </div>
+</Container>
+```
+
+Once you've saved the file, we will have to tell Houdini to generate the necessary files so that our component can render. In order to do this, invoke the compiler with:
+
+```bash
+npm run generate
+```
+
+Keep in mind, you will have to do this every time you change any graphql string in a houdini project. I know this sounds like a big burden but bare with us. We are actively working on a way to avoid this all together, its just not ready yet.
+
+Now that you've generated the necessary files, you should see a description of the first species in the generation 1 Pokédex - the ever popular Bulbasaur. If you are still running into issues, please reach out to us on the svelte discord and we'd be happy to help.
+
+## Query Variables
+
+This is a good start but we will need to be able to show information for more species than just Bulbasaur. Let's set up our application to take look at the url for the id of the species we are interested in. To do that, rename `index.svelte` to `[...id].svelte`. That will let us have an optional parameter in the url which we will interpret as the ID (ie, `/` and `/1` will both render this page).
+
+Now that we have the actual route defined, we will have to change our query so that it can accept a variable. Doing this is relatively simple, just update the string inside of the `graphql` tag to look like the following:
+
+```graphql
+query SpeciesInfo($id: ID!) {
+	species(id: $id) {
+		name
+		flavor_text
+		sprites {
+			front
+			back
+		}
+	}
+}
+```
+
+If you run the generate command now, you will see an error since the runtime does not know how to compute the value for the `id` variable - let's fix that.
+
+In order to tell the runtime how to compute that value, you have to define a function called `SpeciesInfoVariables` in the `module` context of your component that returns the correct value. Add the following block of code under the closing `script` tag in your component:
+
+```svelte
+<script context="module">
+    export function SpeciesInfoVariables({ params }) {
+        return {
+            id: params.id ? parseInt(params.id) :  1
+        }
+    }
+</script>
+```
+
+If you didn't do it earlier, you should now execute `npm run generate` in order to see your changes. Once that's done, you should be able to navigate to `/6` to see Charizard's information. It's worth mentioning that if you _did_ run `generate` after adding the variable to the query, you don't need to run it again because of the new function. You only need to run it when you change something inside of a `graphql` tag.
+
+Note: the name of the function that returns the values for a query's variables must follow a very specific format. It must be called `{QueryName}Variables`. If you look at the query we are working with, you'll see its named `SpeciesInfo` which is why this function is named `SpeciesInfoVariables`.
+
+## Error Handling
+
+So far so good! There is one slight problem: there are only 151 species in the first generation of Pokémon. If we navigate to `/152` we will get an error since `$data.species` is null. Go ahead, give it a try.
+
+In order to prevent this, we need to check if id is between `1` and `151` and if not, render an error for the user. This is accomplished by updating `SpeciesInfoVariables` to look like:
+
+```javascript
+export function SpeciesInfoVariables({ params }) {
+	// if we were given an id, convert the string to a number
+	const id = params.id ? parseInt(params.id) : 1
+
+	// check that the id falls between 1 and 151
+	if (id < 1 || id > 151) {
+		// return a status code 400 along with the error
+		return this.error(400, 'id must be between 1 and 151')
+	}
+
+	return {
+		id
+	}
+}
+```
+
+We could also take the opportunity to make sure that the user didn't try to navigate to a nested route like `/1/foo` but we'll leave that as an exercise for you.
+
+## What's Next?
+
+Now that you understand the basics of sending queries to the server, we're going to start to dig a little deeper into some of the fancy things Houdini let's us do. In the next section we're going to give our Svelte components the power to define their own data requirements so we don't have to worry about their concerns when building this route's query.

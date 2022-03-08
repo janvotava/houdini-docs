@@ -77,3 +77,6 @@ p > code {
 	white-space: nowrap;
 	color: #a1c5f8;
 }
+
+#doc-content em {
+}
