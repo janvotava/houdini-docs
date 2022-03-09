@@ -91,7 +91,7 @@
 
 <header class="content">
 	<a href="/">
-		<img src="/static/images/logo.svg" alt="Houdini Logo" width="175px" />
+		<img src="/images/logo.svg" alt="Houdini Logo" width="175px" />
 	</a>
 	<nav>
 		<a href="/intro" class="nav-link">Get Started</a>
@@ -100,7 +100,7 @@
 			Support
 		</a>
 		<a href="https://www.github.com/AlecAivazis/houdini" target="_blank" id="gh-link">
-			<img src="/static/images/github.svg" alt="Github" height="20px" />
+			<img src="/images/github.svg" alt="Github" height="20px" />
 		</a>
 	</nav>
 </header>
