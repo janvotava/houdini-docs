@@ -94,8 +94,8 @@
 		<img src="/images/logo.svg" alt="Houdini Logo" width="175px" />
 	</a>
 	<nav>
-		<a href="/intro" class="nav-link">Get Started</a>
-		<a href="/api" class="nav-link">API</a>
+		<a href="/intro" class="nav-link" sveltekit:prefetch>Get Started</a>
+		<a href="/api" class="nav-link" sveltekit:prefetch>API</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
 		</a>
