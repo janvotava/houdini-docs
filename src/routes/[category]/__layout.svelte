@@ -64,11 +64,6 @@
 	$: currentFiles = files[currentCategory]?.pages || []
 </script>
 
-<svelte:head>
-	<link rel="stylesheet" href="/static/styles/md.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</svelte:head>
-
 <main>
 	<aside class:open={menuOpen}>
 		<h1>
@@ -120,6 +115,9 @@
 	main {
 		display: flex;
 		flex-direction: column;
+		background: #161b22;
+		color: white;
+		min-height: 100vh;
 	}
 
 	aside {

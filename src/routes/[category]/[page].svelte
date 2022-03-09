@@ -74,7 +74,6 @@
 
 	article {
 		display: flex;
-		flex-grow: 1;
 		flex-direction: column;
 
 		overflow-y: auto;

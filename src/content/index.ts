@@ -22,14 +22,15 @@ export async function listAll(): Promise<{ [which: string]: Category }> {
 		files[category] = await Promise.all(
 			Object.entries(imported).map(async ([filepath, module]) => {
 				// look at the file meta data for the name
-				const { metadata } = await module()
+				const { metadata, default: mod } = await module()
 
 				const fileName = path.basename(filepath)
 				return {
 					fileName,
 					title: metadata.title,
 					slug: fileName.substring(fileName.indexOf('_') + 1, fileName.indexOf('.')),
-					filepath
+					filepath,
+					content: mod.render().html
 				}
 			})
 		)
@@ -86,12 +87,8 @@ export async function list(which: string): Promise<Category> {
 	return files[which]
 }
 
-export async function getPage(which: string, slug: string): Promise<Page & { content: string }> {
-	const page = (await list(which)).pages.find((page) => page.slug === slug)
-	return {
-		...page,
-		content: (await import(page.filepath)).default.render().html
-	}
+export async function getPage(which: string, slug: string): Promise<Page> {
+	return (await list(which)).pages.find((page) => page.slug === slug)
 }
 
 type Category = {
@@ -112,6 +109,7 @@ type Page = {
 		title: string
 		link: string
 	}
+	content: string
 }
 
 // cache the list in production
