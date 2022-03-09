@@ -59,7 +59,7 @@ This is a good start but we will need to be able to show information for more sp
 Now that we have the actual route defined, we will have to change our query so that it can accept a variable. Doing this is relatively simple, just update the string inside of the `graphql` tag to look like the following:
 
 ```graphql
-query SpeciesInfo($id: ID!) {
+query SpeciesInfo($id: Int!) {
 	species(id: $id) {
 		name
 		flavor_text
