@@ -11,7 +11,7 @@ Before we do anything _too_ complicated, lets get something on the screen. Open 
     import { Container, Display, Sprite } from '~/components'
     import { query, graphql } from '$houdini'
 
-    const { data } = query(graphql\`
+    const { data } = query(graphql`
         query SpeciesInfo {
             species(id: 1) {
                 name
@@ -22,7 +22,7 @@ Before we do anything _too_ complicated, lets get something on the screen. Open 
                 }
             }
         }
-    \`)
+    `)
 </script>
 
 <Container>
@@ -93,7 +93,7 @@ Note: the name of the function that returns the values for a query's variables m
 
 So far so good! There is one slight problem: there are only 151 species in the first generation of Pokémon. If we navigate to `/152` we will get an error since `$data.species` is null. Go ahead, give it a try.
 
-In order to prevent this, we need to check if id is between `1` and `151` and if not, render an error for the user. This is accomplished by updating `SpeciesInfoVariables` to look like:
+In order to prevent this, we need to check if `id` is between `1` and `151` and if not, render an error for the user. This is accomplished by updating `SpeciesInfoVariables` to look like:
 
 ```javascript
 export function SpeciesInfoVariables({ params }) {

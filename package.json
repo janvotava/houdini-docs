@@ -38,6 +38,7 @@
 		"src/**/*.svelte": "npm run format"
 	},
 	"dependencies": {
-		"feather-icons": "^4.28.0"
+		"feather-icons": "^4.28.0",
+		"highlightjs-svelte": "^1.0.6"
 	}
 }

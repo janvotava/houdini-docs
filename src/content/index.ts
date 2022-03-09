@@ -22,14 +22,14 @@ export async function listAll(): Promise<{ [which: string]: Category }> {
 		files[category] = await Promise.all(
 			Object.entries(imported).map(async ([filepath, module]) => {
 				// look at the file meta data for the name
-				const { metadata, default: mod } = await module()
+				const { metadata } = await module()
 
 				const fileName = path.basename(filepath)
 				return {
 					fileName,
 					title: metadata.title,
 					slug: fileName.substring(fileName.indexOf('_') + 1, fileName.indexOf('.')),
-					content: mod.render().html
+					filepath
 				}
 			})
 		)
@@ -86,8 +86,12 @@ export async function list(which: string): Promise<Category> {
 	return files[which]
 }
 
-export async function getPage(which: string, slug: string): Promise<Page> {
-	return (await list(which)).pages.find((page) => page.slug === slug)
+export async function getPage(which: string, slug: string): Promise<Page & { content: string }> {
+	const page = (await list(which)).pages.find((page) => page.slug === slug)
+	return {
+		...page,
+		content: (await import(page.filepath)).default.render().html
+	}
 }
 
 type Category = {
@@ -99,7 +103,7 @@ type Page = {
 	fileName: string
 	title: string
 	slug: string
-	content: string
+	filepath: string
 	previous?: {
 		title: string
 		link: string
