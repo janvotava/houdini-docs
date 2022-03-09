@@ -84,7 +84,7 @@
 
 <svelte:head>
 	<title>Houdini</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover" />
 </svelte:head>
 
 <a id="skip-nav" href="#main"> Skip to Content </a>
@@ -369,11 +369,11 @@
 		}
 
 		:global(pre) {
-			margin-right: 30px;
+			margin-right: calc(env(safe-area-inset-right) + 30px);
 		}
 
 		.showcase-text {
-			margin-left: 30px;
+			margin-left: calc(env(safe-area-inset-left) + 30px);
 		}
 
 		:global(.showcase-example) {
