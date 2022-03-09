@@ -5,7 +5,7 @@ import path from 'path'
 import hljs from 'highlight.js'
 import hljs_svelte from 'highlightjs-svelte'
 
-// add svelte support
+// add svelte syntax highlighting support
 hljs_svelte(hljs)
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -28,6 +28,8 @@ const config = {
 									language: lang
 								})
 								.value.replace(/`/g, '&#96;')
+								.replace(/{/g, '&#123;')
+								.replace(/}/g, '&#125;')
 						} catch (__) {}
 					}
 

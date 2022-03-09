@@ -1,5 +1,5 @@
 <!--
-    redirect / to /tour/welcome
+    redirect /tour to /tour/welcome
 -->
 <script context="module">
 	export async function load({ fetch, params }) {
