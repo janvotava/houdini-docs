@@ -118,7 +118,7 @@ let content: { [which: string]: Category } | null = null
 // cache the list in production
 function cacheList(value: typeof content) {
 	// if we are disabled, dont do anything
-	if (true) {
+	if (process.env.NODE_ENV === 'production') {
 		return
 	}
 
