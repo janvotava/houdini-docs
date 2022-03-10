@@ -68,10 +68,9 @@
 	footer {
 		margin-left: 350px;
 		max-width: 850px;
-		padding-right: 100px;
 		box-sizing: border-box;
-		padding-left: max(0px, env(safe-area-inset-left));
-		padding-right: max(0px, env(safe-area-inset-right));
+		padding-left: env(safe-area-inset-left);
+		padding-right: calc(100px + env(safe-area-inset-right));
 	}
 
 	article {
