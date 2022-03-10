@@ -30,6 +30,8 @@
 				</p>
 			</div>
 		</a>
+	{:else}
+		<div id="previous-page" />
 	{/if}
 	{#if next}
 		<a id="next-page" class="pagination" href={next.link}>
@@ -41,6 +43,8 @@
 				</p>
 			</div>
 		</a>
+	{:else}
+		<div id="next-page" />
 	{/if}
 </footer>
 
@@ -49,18 +53,13 @@
 		display: flex;
 		flex-direction: row;
 		width: calc(100% - 350px);
-		position: relative;
 		margin-bottom: 100px;
 		height: 30px;
-	}
-	#previous-page {
-		position: absolute;
-		left: 0;
+		justify-content: space-between;
+		gap: 100px;
 	}
 
 	#next-page {
-		position: absolute;
-		right: 100px;
 		flex-direction: row-reverse;
 	}
 
@@ -121,14 +120,6 @@
 		footer {
 			margin-left: 0;
 			width: 100%;
-		}
-
-		#previous-page {
-			left: 55px;
-		}
-
-		#next-page {
-			right: 48px;
 		}
 	}
 </style>
