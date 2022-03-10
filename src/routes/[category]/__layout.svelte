@@ -11,6 +11,7 @@
 <script>
 	import { page, navigating } from '$app/stores'
 	import Icon from '~/components/Icon.svelte'
+	import { derived } from 'svelte/store'
 	import { onMount } from 'svelte'
 
 	// the list of files we can render
@@ -64,7 +65,7 @@
 </script>
 
 <svelte:head>
-	<meta name="theme-color" content="#161b22" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover" />
 </svelte:head>
 
 <main>
