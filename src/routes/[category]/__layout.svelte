@@ -11,7 +11,6 @@
 <script>
 	import { page, navigating } from '$app/stores'
 	import Icon from '~/components/Icon.svelte'
-	import { derived } from 'svelte/store'
 	import { onMount } from 'svelte'
 
 	// the list of files we can render
