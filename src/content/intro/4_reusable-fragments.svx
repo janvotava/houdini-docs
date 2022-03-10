@@ -80,7 +80,7 @@ query {
 Defining a fragment inside of your component looks a lot like the query from before. Let's see this in action by updating the `Sprite` component to look like this:
 
 ```svelte
-// src/components/Sprite.svelte
+<!-- src/components/Sprite.svelte -->
 
 <script>
 	import { fragment, graphql } from '$houdini'
@@ -144,9 +144,9 @@ Notice how our route is no longer tightly coupled to any of `Sprite`'s implement
 
 Houdini enables us to use fragments as a way to colocate our component's data requirements next to the actual logic that relies on the fields. This not only saves us the extra typing every time we render a `Sprite` but it also lets us grow this component without worrying about updating every instance of it.
 
-## Another Example
+## Composing Fragments
 
-Let's finish off this section by reusing the fragment we just defined to show the different evolved forms of the species we're looking at. First, update the route's query to look like this:
+It's worth mentioning explicitly that you are free to mix and match fragments how ever you want. Fragments can have fragments inside of them and the same fragment can show up multiple times in a single component. To illustrate this, let's add a section in our Pokédex that shows the different evolved forms of the species we're looking at. First, update the route's query to look like this:
 
 ```graphql
 query SpeciesInfo($id: Int!) {
@@ -161,10 +161,10 @@ query SpeciesInfo($id: Int!) {
 }
 ```
 
-Next, the copy and paste the following code above the `nav` in the right panel:
+Next, copy and paste the following code above the `nav` in the right panel:
 
 ```svelte
 INCOMING
 ```
 
-And finally, regenerate the runtime by executing `npm run generate` in a separate terminal. You should now be able to see the full evolution chain for the species you're looking at.
+And finally, regenerate the runtime by executing `npm run generate` in a separate terminal. You should now be able to see the specie's full evolution chain.
