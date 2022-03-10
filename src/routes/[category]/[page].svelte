@@ -113,8 +113,8 @@
 		article,
 		footer {
 			margin-left: 0px;
-			padding-left: 55px + env(safe-area-inset-left);
-			padding-right: 55px + env(safe-area-inset-right);
+			padding-left: calc(55px + env(safe-area-inset-left));
+			padding-right: calc(55px + env(safe-area-inset-right));
 			padding-top: 20px;
 			max-width: none;
 		}
