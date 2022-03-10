@@ -64,6 +64,10 @@
 	$: currentFiles = files[currentCategory]?.pages || []
 </script>
 
+<svelte:head>
+	<meta name="theme-color" content="#161b22" />
+</svelte:head>
+
 <main>
 	<aside class:open={menuOpen}>
 		<h1>

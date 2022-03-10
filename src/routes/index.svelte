@@ -483,7 +483,7 @@
 		}
 
 		:global(#hero pre) {
-			width: 60%;
+			width: 70%;
 			box-sizing: border-box;
 		}
 	}
