@@ -251,7 +251,10 @@
 
 		aside {
 			width: 100%;
-			padding: 0;
+			padding-top: 0;
+			padding-bottom: 0;
+			padding-left: max(0px, env(safe-area-inset-left));
+			padding-right: max(0px, env(safe-area-inset-right));
 			margin-right: 0px;
 			position: sticky;
 		}
