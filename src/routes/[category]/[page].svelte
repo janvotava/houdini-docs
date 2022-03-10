@@ -70,6 +70,8 @@
 		max-width: 850px;
 		padding-right: 100px;
 		box-sizing: border-box;
+		padding-left: max(0px, env(safe-area-inset-left));
+		padding-right: max(0px, env(safe-area-inset-right));
 	}
 
 	article {

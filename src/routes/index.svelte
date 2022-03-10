@@ -82,6 +82,10 @@
 	]
 </script>
 
+<svelte:head>
+	<meta name="theme-color" content="white" />
+</svelte:head>
+
 <a id="skip-nav" href="#main"> Skip to Content </a>
 
 <header class="content">
