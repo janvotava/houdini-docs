@@ -82,11 +82,6 @@
 	]
 </script>
 
-<svelte:head>
-	<title>Houdini</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover" />
-</svelte:head>
-
 <a id="skip-nav" href="#main"> Skip to Content </a>
 
 <header class="content">
@@ -95,11 +90,16 @@
 	</a>
 	<nav>
 		<a href="/intro" class="nav-link" sveltekit:prefetch>Get Started</a>
-		<a href="/api" class="nav-link" sveltekit:prefetch>API</a>
+		<a href="/api" class="nav-link micro-hidden" sveltekit:prefetch>API</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
 		</a>
-		<a href="https://www.github.com/AlecAivazis/houdini" target="_blank" id="gh-link">
+		<a
+			href="https://www.github.com/AlecAivazis/houdini"
+			class="tiny-hidden"
+			target="_blank"
+			id="gh-link"
+		>
 			<img src="/images/github.svg" alt="Github" height="20px" />
 		</a>
 	</nav>
@@ -366,6 +366,7 @@
 
 		header {
 			padding: 0 30px;
+			padding: 0 calc(env(safe-area-inset-right) + 30px) 0 calc(env(safe-area-inset-left) + 30px);
 		}
 
 		:global(pre) {
@@ -451,6 +452,14 @@
 			font-size: 18px;
 			overflow-x: auto;
 		}
+
+		#hero {
+			margin-top: 30px !important;
+		}
+
+		#hero div {
+			margin-bottom: 40px;
+		}
 	}
 
 	@media (max-width: 790px) {
@@ -471,6 +480,23 @@
 
 		.nav-link {
 			margin-left: 20px;
+		}
+
+		:global(#hero pre) {
+			width: 60%;
+			box-sizing: border-box;
+		}
+	}
+
+	@media (max-width: 450px) {
+		.tiny-hidden {
+			display: none;
+		}
+	}
+
+	@media (max-width: 380px) {
+		.micro-hidden {
+			display: none;
 		}
 	}
 </style>

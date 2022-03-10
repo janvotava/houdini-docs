@@ -1,3 +1,35 @@
 ---
 title: Reusable Fragments
 ---
+
+# Reusable Fragments
+
+As you've seen, we can get pretty far by just using GraphQL queries to define our route's data requirements. However, as our application grows this practice does not scale very well. To illustrate this point, look at how we used the `Sprite` component earlier (copied below without the unrelated bits):
+
+```svelte
+<script>
+    const { data } = query(graphql`
+        query SpeciesInfo($id: Int!) {
+            species(id: $id) {
+                name
+                sprites {
+                    front
+                }
+            }
+        }
+    `)
+</script>
+
+<Sprite
+    id="species-sprite"
+    src={$data.species.sprites.front}
+    speciesName={$data.species.name}
+/>
+
+```
+
+At first its not clear what the problem is. `Sprite` defines some props so we had to look up the necessary information in order to give those props their value. However, for the sake of argument, imagine that `Sprite` used in many different views across our application. Every place where it shows up, we will have to remember to ask for these two pieces of data so that we can provide the props with the correct value. On top of that, as `Sprite` evolves to do more, we will have to make sure that everywhere we use it also queries the new data.
+
+Wouldn't it be nice if we had some way of defining these requirements inside of `Sprite` so we didn't have to worry about the exact details and could ensure that the query included whatever information `Sprite` needs? Well, that's where GraphQL fragments come to the rescue.
+
+## Defining a Fragment
