@@ -494,7 +494,7 @@
 		}
 	}
 
-	@media (max-width: 380px) {
+	@media (max-width: 400px) {
 		.micro-hidden {
 			display: none;
 		}
