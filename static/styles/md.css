@@ -75,3 +75,7 @@ p > code {
 
 #doc-content em {
 }
+
+#doc-content ol {
+	margin-top: 5px;
+}
