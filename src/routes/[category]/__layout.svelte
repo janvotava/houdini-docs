@@ -255,6 +255,7 @@
 			padding-bottom: 0;
 			padding-left: max(0px, env(safe-area-inset-left));
 			padding-right: max(0px, env(safe-area-inset-right));
+			box-sizing: border-box;
 			margin-right: 0px;
 			position: sticky;
 		}
