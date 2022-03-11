@@ -25,12 +25,14 @@ export async function listAll(): Promise<{ [which: string]: Category }> {
 				const { metadata, default: mod } = await module()
 
 				const fileName = path.basename(filepath)
+				const slug = fileName.substring(fileName.indexOf('_') + 1, fileName.indexOf('.'))
 				return {
 					fileName,
 					title: metadata.title,
-					slug: fileName.substring(fileName.indexOf('_') + 1, fileName.indexOf('.')),
+					slug,
 					filepath,
-					content: mod.render().html
+					content: mod.render().html,
+					link: `/${category}/${slug}`
 				}
 			})
 		)
@@ -50,14 +52,14 @@ export async function listAll(): Promise<{ [which: string]: Category }> {
 			if (previous) {
 				file.previous = {
 					title: previous.title,
-					link: `/${category}/${previous.slug}`
+					link: previous.link
 				}
 			}
 
 			if (next) {
 				file.next = {
 					title: next.title,
-					link: `/${category}/${next.slug}`
+					link: next.link
 				}
 			}
 		}
@@ -68,7 +70,7 @@ export async function listAll(): Promise<{ [which: string]: Category }> {
 		Object.entries(files).map(([key, files]) => [
 			key,
 			{
-				index: `/${key}/${files[0].slug}`,
+				index: files[0].link,
 				pages: files
 			}
 		])
@@ -101,6 +103,7 @@ type Page = {
 	title: string
 	slug: string
 	filepath: string
+	link: string
 	previous?: {
 		title: string
 		link: string

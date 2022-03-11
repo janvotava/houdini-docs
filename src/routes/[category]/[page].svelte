@@ -9,12 +9,16 @@
 </script>
 
 <script lang="ts">
-	import Icon from '~/components/Icon.svelte'
+	import { Icon, SEO } from '~/components'
 
 	export let content: string
 	export let previous = undefined
 	export let next = undefined
+	export let title = ''
+	export let link = ''
 </script>
+
+<SEO {title} url={`https://www.houdinigraphql.com${link}`} />
 
 <article id="doc-content">
 	{@html content}

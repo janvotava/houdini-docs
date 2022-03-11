@@ -1,5 +1,6 @@
 <script>
 	import { HighlightSvelte } from 'svelte-highlight'
+	import { SEO } from '~/components'
 
 	const heroExample = `<script>
     import { query, graphql } from '$houdini'
@@ -85,17 +86,9 @@
 <svelte:head>
 	<meta name="theme-color" content="white" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 viewport-fit=cover" />
-	<meta name="description" content="The disappearing GraphQL client for SvelteKit." />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://houdinigraphql.com" />
-	<meta property="og:title" content="Houdini" />
-	<meta property="og:description" content="The disappearing GraphQL client for SvelteKit" />
-	<meta property="og:image" content="https://www.houdinigraphql.com/images/houdini-v5.png" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Houdini" />
-	<meta name="twitter:description" content="The disappearing GraphQL client for SvelteKit." />
-	<meta name="twitter:image" content="https://www.houdinigraphql.com/images/houdini-v5.png" />
 </svelte:head>
+
+<SEO />
 
 <a id="skip-nav" href="#main"> Skip to Content </a>
 
