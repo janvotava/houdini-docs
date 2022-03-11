@@ -74,7 +74,7 @@ With that in place we can now define a function that will invoke the `toggleFavo
 `mutation` returns an asynchronous function that takes an object with fields to match the mutation's input and returns a promise that will resolve with the response from the mutation. With that in place, we can now configure the button we added earlier to call this function:
 
 ```svelte
-<button on:click={() => toggleFavorite({id: $species.id})}>
+<button on:click={() => toggleFavorite({id: $data.species.id})}>
 ```
 
 Generate your runtime with `npm run generate` and try clicking on the grey star for any species. It should flip between gold and grey every time you click it.
