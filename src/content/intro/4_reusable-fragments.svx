@@ -114,6 +114,7 @@ query SpeciesInfo($id: Int!) {
 	species(id: $id) {
 		name
 		flavor_text
+
 		...SpriteInfo
 	}
 }
@@ -161,6 +162,7 @@ It's worth mentioning explicitly that you are free to mix and match fragments ho
         fragment SpeciesPreview on Species {
             name
             id
+
             ...SpriteInfo
         }
     `, species)

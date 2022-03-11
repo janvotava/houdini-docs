@@ -1,3 +1,82 @@
 ---
 title: Mutations
 ---
+
+# Mutations
+
+Thanks for making it this far in the introduction! We really appreciate the time you are spending to learn Houdini.
+
+So far we've only covered how to read data from our server. Clearly this is only part of the picture since most projects need to be able to update the server's state. In GraphQL, these requests are defined by a different document type than `query` and are knowns as "mutations". They look something like this:
+
+```graphql
+mutation SetFavorite {
+	toggleFavorite(id: 1) {
+		species {
+			favorite
+		}
+	}
+}
+```
+
+This example defines a mutation document named `SetFavorite` that invokes the `toggleFavorite` mutation on the server to flag Bulbasaur as one of our favorites. Every mutation in GraphQL has a return type that we can use to look up the values that have been updated in response to the mutation. Since we know that this mutation updates the `favorite` field we made sure to ask for the `favorite` field of the species.
+
+## Updating Fields in Houdini
+
+Before we explain how to use mutations in Houdini, we need a way to visualize if a species is one of our favorites. To start, add the `favorite` to the route's query. It should now look something like:
+
+```graphql
+query SpeciesInfo($id: Int!) {
+	species(id: $id) {
+		name
+		flavor_text
+		favorite
+		evolution_chain {
+			...SpeciesPreview
+		}
+		...SpriteInfo
+	}
+}
+```
+
+Don't worry about generating the runtime right away, we're going to have to generate it in a few seconds anyway. Once you've added the field, add an import for `Icon` from the component directory and drop the following block of code at the bottom of the left panel:
+
+```svelte
+<button id="favorite">
+    <Icon
+        name="star"
+        id="favorite-star"
+        fill={$data.species.favorite ? "gold" :"lightgrey"}
+    />
+</button>
+```
+
+With that in place we can now define a function that will invoke the `toggleFavorite` mutation and pass it to our button. Import `mutation` from the `$houdini` package and add the declaration for `toggleFavorite` shown below to your `script` tag (the standard one, not the one with `module="context"`).
+
+```svelte
+<script>
+    // ... everything from before
+
+    import { mutation } from '$houdini'
+
+    const toggleFavorite = mutation(graphql`
+        mutation ToggleFavorite($id: Int!) {
+            toggleFavorite(id: $id) {
+                species {
+                    id
+                    favorite
+                }
+            }
+        }
+    `)
+</script>
+```
+
+`mutation` returns an asynchronous function that takes an object with fields to match the mutation's input and returns a promise that will resolve with the response from the mutation. With that in place, we can now configure the button we added earlier to call this function:
+
+```svelte
+<button on:click={() => toggleFavorite({id: $species.id})}>
+```
+
+Generate your runtime with `npm run generate` and try clicking on the grey star for any species. It should flip between gold and grey every time you click it.
+
+That's all there is to it! You see, Houdini maintains an in-memory representation of all of the data being shown in our UI as well as which components rely on each field. Since we asked for the fields that could change as part of our mutation, Houdini was able to detect that it needed to use the new `favorite` value to update the field of the species with the matching `id` and keep our view up to date.
