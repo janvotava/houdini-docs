@@ -83,7 +83,7 @@ With that in place we can now define a function that will invoke the `toggleFavo
 
 Generate your runtime with `npm run generate` and try clicking on the grey star for any species. It should flip between gold and grey every time you click it.
 
-That's all there is to it! You see, Houdini maintains an in-memory representation of all of the data being shown in our UI as well as which components rely on each field. Since we asked for the fields that could change as part of our mutation, Houdini was able to detect that it needed to use the new `favorite` value to update the field of the species with the matching `id` and keep our view up to date.
+That's all there is to it! You see, Houdini maintains an in-memory representation of all of the data being shown in our UI as well as which components rely on each field. Since we asked for the fields that could change as part of our mutation, Houdini was able to detect that it needed to use the new `favorite` value to update the field of the species with the matching `id` and keep our view up to date. By the way, we could have omitted that `id` in the selection, Houdini will add it behind the scenes if we don't include it explicitly.
 
 ## Mutating List Values
 
