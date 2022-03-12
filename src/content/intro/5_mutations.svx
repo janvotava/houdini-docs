@@ -121,6 +121,10 @@ Before we get too far, let's add a place in our UI to show us the list of favori
 <FavoritesContainer>
 	{#each $favoriteData.favorites as favorite}
 		<FavoritePreview species={favorite} />
+	{:else}
+		<p>
+			No Favorites Selected
+		</p>
 	{/each}
 </FavoritesContainer>
 ```
@@ -141,7 +145,7 @@ mutation ToggleFavorite($id: Int!) {
 }
 ```
 
-Go head, regenerate your runtime and try clicking on the star. You should see the species pop in and out of the list on the top.
+Go head, regenerate your runtime and try clicking on the star. You should see the species pop in and out of the list of favorites.
 
 If you look closely at the mutation you'll notice that we are using now a fragment in the payload that you never defined. That fragment name follows a very specific form and acts a special instruction to the Houdini runtime to toggle the object referenced by the `species` field in the mutation in or out of the list named `FavoriteSpecies`. This was the reason for the `@list` decorator in the query above: we needed a way to identify the field as a target for a list operation. If we had named that list `AllFavorites` instead, the query would reference `AllFavorites_toggle`.
 
