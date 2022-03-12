@@ -28,9 +28,10 @@ Before we do anything _too_ complicated, lets get something on the screen. Open 
 
 <Container>
     <Panel slot="left">
-        <Display id="species-display">
-            {$data.species.name}
-        </Display>
+		<Display id="species-display">
+			{$data.species.name}
+			<span>no.{$data.species.id}</span>
+		</Display>
         <Sprite
             id="species-sprite"
             src={$data.species.sprites.front}
