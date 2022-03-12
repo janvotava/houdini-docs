@@ -80,3 +80,56 @@ With that in place we can now define a function that will invoke the `toggleFavo
 Generate your runtime with `npm run generate` and try clicking on the grey star for any species. It should flip between gold and grey every time you click it.
 
 That's all there is to it! You see, Houdini maintains an in-memory representation of all of the data being shown in our UI as well as which components rely on each field. Since we asked for the fields that could change as part of our mutation, Houdini was able to detect that it needed to use the new `favorite` value to update the field of the species with the matching `id` and keep our view up to date.
+
+## Mutating List Values
+
+This approach for updating field values does cover a lot of the use cases for mutations. However, if our mutation performs some operation on a list in our API, it is not always convenient, performant, or even possible to look up the updated value from the mutation's payload. Take for example a query for the list of our favorite species
+
+```graphql
+query FavoriteSpecies {
+	favorites {
+		name
+		flavor_text
+	}
+}
+```
+
+It wouldn't be possible to look up this list's new value in the payload of `toggleFavorite` since that mutation only has a single output field: the species we toggled. We could add a second field to the mutation output but there's a better way. Don't worry you won't have to write complicated imperative logic, Houdini makes this almost as easy as updating a field value.
+
+Before we get too far, let's add a place in our UI to show us the list of favorites. Open up `src/routes/[...id].svelte`, and add a second query to look up the set of favorite species along with some components to visualize the list. In general, having multiple queries on a single page isn't the best practice since we have to pay network latency costs twice but it simplifies the copy and pasting so we're going to do it anyway 😅. You'll also need to add imports for `FavoritePreview` and `FavoriteContainer`.
+
+```svelte
+<script>
+    // this is a second query in the same route but we could
+    // have just added the favorites selection to the existing one
+    const { data: favoriteData } = query(graphql`
+        query Favorites {
+            favorites @list(name:"FavoriteSpecies") {
+                ...FavoritePreview
+            }
+        }
+    `)
+</script>
+
+<!-- this should go in the root of your component -->
+```
+
+You might notice that we added something new to this query: the `@list` directive. Don't worry about that just yet - we'll explain what it does in a bit. For now, just regenerate your runtime and notice that in order to see your favorites in the list, you have to refresh your browser after every click. That shouldn't be too surprising since we haven't told Houdini how to update our view in response to the mutation. Connecting those dots just requires updating the mutation to look like this:
+
+```graphql
+mutation ToggleFavorite($id: Int!) {
+	toggleFavorite(id: $id) {
+		species {
+			id
+			favorite
+			...FavoriteSpecies_toggle
+		}
+	}
+}
+```
+
+Go head, regenerate your runtime and try clicking on the star. You should see the species pop in and out of the list on the top.
+
+If you look closely at the mutation you'll notice that we are using now a fragment in the payload that you never defined. That fragment name follows a very specific form and acts a special instruction to the Houdini runtime to toggle the object referenced by the `species` field in the mutation in or out of the list named `FavoriteSpecies`. This was the reason for the `@list` decorator in the query above: we needed a way to identify the field as a target for a list operation. If we had named that list `AllFavorites` instead, the query would reference `AllFavorites_toggle`.
+
+`toggle` is not the only operation you can perform on a list. Houdini also supports, `insert` and `remove` as well as specifying conditions for this operations to apply. For more information, check out the [mutation api reference](/api/mutation).
