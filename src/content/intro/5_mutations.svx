@@ -112,6 +112,11 @@ Before we get too far, let's add a place in our UI to show us the list of favori
 </script>
 
 <!-- this should go in the root of your component -->
+<FavoritesContainer>
+	{#each $favoriteData.favorites as favorite}
+		<FavoritePreview species={favorite} />
+	{/each}
+</FavoritesContainer>
 ```
 
 You might notice that we added something new to this query: the `@list` directive. Don't worry about that just yet - we'll explain what it does in a bit. For now, just regenerate your runtime and notice that in order to see your favorites in the list, you have to refresh your browser after every click. That shouldn't be too surprising since we haven't told Houdini how to update our view in response to the mutation. Connecting those dots just requires updating the mutation to look like this:
