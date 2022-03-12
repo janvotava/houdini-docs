@@ -195,6 +195,10 @@ query SpeciesInfo($id: Int!) {
 Next, copy and paste the following code above the `nav` in the right panel. You'll also want to add imports for `SpeciesPreview` and `SpeciesPreviewPlaceholder` from the component directory.
 
 ```svelte
+<script>
+    import { SpeciesPreview, SpeciesPreviewPlaceholder} from '~/components'
+</script>
+
 <div id="species-evolution-chain">
     {#each $data.species.evolution_chain as form, i }
         <SpeciesPreview species={form} number={i + 1} />
