@@ -28,7 +28,7 @@ Before we do anything _too_ complicated, lets get something on the screen. Open 
 
 <Container>
     <Panel slot="left">
-		<Display id="species-display">
+		<Display id="species-name">
 			{$data.species.name}
 			<span>no.{$data.species.id}</span>
 		</Display>
@@ -134,4 +134,4 @@ We could also take the opportunity to make sure that the user didn't try to navi
 
 ## What's Next?
 
-Now that you understand the basics of sending queries to the server, we're going to start to dig a little deeper into how we should be organizing our queries. In the next section we're going to give our Svelte components the power to define their own data requirements so we don't have to worry about their concerns when building this route's query.
+Now that you've seen the basics of a fetch data from the server, we're going to start to dig a little deeper into how we should be organizing our queries. In the next section we're going to give our Svelte components the power to define their own data requirements so we don't have to worry about their concerns when building this route's query.

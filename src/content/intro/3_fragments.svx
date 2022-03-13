@@ -1,5 +1,5 @@
 ---
-title: Reusable Fragments
+title: Reusing Parts of a Query
 ---
 
 <script>
@@ -10,7 +10,7 @@ title: Reusable Fragments
     const graphql = { name: 'graphql', register: graphqlLangDef }
 </script>
 
-# Reusable Fragments
+# Reusing Parts of a Query
 
 As you've seen, we can get pretty far by just using GraphQL queries to define our route's data requirements. However, as our application grows this practice does not scale very well. To illustrate this point, look at how we used the `Sprite` component earlier (copied below without the unrelated bits):
 
