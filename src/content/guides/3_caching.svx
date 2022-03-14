@@ -1,0 +1,61 @@
+---
+title: Caching Data
+---
+
+# Caching Data
+
+By default, houdini will only try to load queries against its local cache when you indicate it is safe to do so.
+This can be done with the `@cache` directive:
+
+```graphql
+query AllItems @cache(policy: CacheOrNetwork) {
+	items {
+		id
+		text
+	}
+}
+```
+
+There are 3 different policies that can be specified:
+
+- **CacheOrNetwork** will first check if a query can be resolved from the cache. If it can, it will return the cached value and only send a network request if data was missing.
+- **CacheAndNetwork** will use cached data if it exists and always send a network request after the component has mounted to retrieve the latest data from the server
+- **NetworkOnly** will never check if the data exists in the cache and always send a network request
+
+## Data Retention
+
+Houdini will retain a query's data for a configurable number of queries (default 10).
+For a concrete example, consider an example app that has 3 routes. If you load one of the
+routes and then click between the other two 5 times, the first route's data will still be
+resolvable (and the counter will reset if you visit it).
+If you then toggle between the other routes 10 times and then try to load the first
+route, a network request will be sent. This number is configurable with the
+`cacheBufferSize` value in your config file:
+
+```js
+// houdini.config.js
+
+export default {
+	// ...
+	cacheBufferSize: 5
+}
+```
+
+## Changing default cache policy
+
+As previously mentioned, the default cache policy is `CacheOrNetwork`. This can be changed
+by setting the `defaultCachePolicy` config value:
+
+```js
+// houdini.config.js
+
+import { CachePolicy } from '$houdini'
+
+export default {
+	// ...
+
+	// note: if you are upgrading from a previous version of houdini, you might
+	// have to generate your runtime for this type to be defined.
+	defaultCachePolicy: CachePolicy.NetworkOnly
+}
+```
