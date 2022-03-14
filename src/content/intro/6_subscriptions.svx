@@ -55,7 +55,7 @@ subscription TrackSpeciesFavorite {
 
 Now that your application is responding to these subscription events, we need to make sure that the `ToggleFavorite` mutation doesn't overwrite the changes made by the subscription. You should remove the `FavoriteSpecies_toggle` from the `ToggleFavorite` mutation before generating your runtime.
 
-That's all it takes! You should now see a species be added and removed from the list as you click on the star in a separate browser. There's a lot more that you can do with subscriptions but this is more than enough to get you going.
+That's all it takes! You should now see a species be added and removed from the list as you click on the star in a separate browser. There's a lot more that you can do with subscriptions but a majority of the use cases boil down to what you see here.
 
 ## What's next?
 
