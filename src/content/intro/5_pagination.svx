@@ -6,7 +6,7 @@ title: Rendering Long Lists
 
 You'll often run into the situation where you want to render a long list of data. It's also common for that list to be much too long to query or even render on the screen. In order to address this, most APIs will accept a set of arguments on the field designed to window the list and leave it up to the client to keep a running total if the situation calls for it.
 
-As GraphQL has matured, these arguments have somewhat standardized and fall roughly into two categories: cursor-based pagination and offset-based pagination. Houdini supports both but since our API relies on cursor-based pagination that's what we're going to cover here. If you want to read more about pagination, head over to the [pagination guide](/guides/pagination).
+As GraphQL has matured, these arguments have somewhat standardized and fall roughly into two categories: cursor-based pagination and offset-based pagination. Houdini supports both but since our API relies on cursor-based pagination that's what we're going to show here. If you want to read more about pagination, head over to the [pagination guide](/guides/pagination).
 
 ## Cursor-Based Pagination
 
@@ -201,7 +201,6 @@ In most situations houdini's automatic appending is great since it covers popula
 	let moveIndex = 0
 	$: hasPrevMove = moveIndex > 0
 	$: hasNextMove = moveIndex < $data.species.moves.edges.length -1 || $pageInfo.hasNextPage
-	$: currentMove = $data.species.moves.edges[moveIndex].node
 
     const loadNextMove = async () => {
         // if we haven't already seen this page
@@ -211,12 +210,17 @@ In most situations houdini's automatic appending is great since it covers popula
         }
 
 		// its safe to increment the move index
-		moveIndex++
-	}
+		moveIndex += 1
+    }
 
-    const loadPrevMove = async () => {
+    const loadPrevMove = () => {
         moveIndex--
     }
+
+	// when we navigate to another species, reset the move index
+	navigating.subscribe(() => {
+		moveIndex = 0
+	})
 </script>
 
 <!-- Use this instead of the move display we added earlier -->
@@ -235,4 +239,4 @@ Admittedly this example is a little bit complicated for a first-time introductio
 
 ## What's next?
 
-Subscriptions.
+With pagination out of the way, there's only one more thing we'd like to show you as part of this guide: real-time updates. The next section is relatively short but it's an exciting one. Hope you enjoy it!

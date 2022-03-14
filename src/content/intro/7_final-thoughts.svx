@@ -1,5 +1,0 @@
----
-title: Final Thoughts
----
-
-## Thinking in GraphQL
