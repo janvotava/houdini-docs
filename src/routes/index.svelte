@@ -119,8 +119,8 @@
 				client for <span class="svelte-text">SvelteKit</span>.
 			</h1>
 			<nav id="hero-buttons">
-				<a href="/intro/welcome" class="button-shadow" rel="prefetch">Get Started</a>
-				<a href="/api/index" class="button-shadow">API</a>
+				<a href="/intro/welcome" class="button-shadow" sveltekit:prefetch>Get Started</a>
+				<a href="/api/index" class="button-shadow" sveltekit:prefetch>API</a>
 			</nav>
 		</div>
 		<HighlightSvelte code={heroExample} class="shadow" />
