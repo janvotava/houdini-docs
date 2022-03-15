@@ -8,7 +8,7 @@ Updating your data in real-time is a very common requirement of a modern applica
 
 ```graphql
 subscription TrackSpeciesFavorite {
-	speciesFavoriteToggled(id: 1) {
+	speciesFavoriteToggled {
 		species {
 			favorite
 		}
@@ -26,7 +26,7 @@ Let's see a subscription in action. Go ahead and add the block of code at the en
 
     subscription(graphql`
         subscription TrackSpeciesFavorite {
-            speciesFavoriteToggled(id: 1) {
+            speciesFavoriteToggled {
                 species {
                     favorite
                 }
@@ -44,7 +44,7 @@ You probably noticed that the species does not show up in the favorites list if 
 
 ```graphql
 subscription TrackSpeciesFavorite {
-	speciesFavoriteToggled(id: 1) {
+	speciesFavoriteToggled {
 		species {
 			favorite
 			...FavoriteSpecies_toggle
