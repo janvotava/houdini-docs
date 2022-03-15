@@ -40,7 +40,7 @@ Regenerate your runtime and open up two browsers. Make sure they are both pointi
 
 ## List Operations From Subscriptions
 
-You probably noticed that the species does not show up in the favorites list if the update came from another browser. That's because Houdini does not know that the payload from a subscription needs to toggle the species like the mutation does. Fixing this should look very familiar - just mix in the `FavoriteSpecies_toggle` toggle we talked about in the [mutations section](/intro/mutations):
+You probably noticed that the species does not show up in the favorites list if the update came from another browser. That's because Houdini does not know that the payload from a subscription needs to toggle the species like the mutation does. Fixing this should look very familiar - just mix in the `FavoriteSpecies_toggle` fragment we talked about in the [mutations section](/intro/mutations):
 
 ```graphql
 subscription TrackSpeciesFavorite {
