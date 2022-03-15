@@ -97,7 +97,7 @@
 	</a>
 	<nav>
 		<a href="/intro/welcome" class="nav-link" sveltekit:prefetch>Get Started</a>
-		<a href="/api/" class="nav-link micro-hidden" sveltekit:prefetch>API</a>
+		<a href="/api/index" class="nav-link micro-hidden" sveltekit:prefetch>API</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
 		</a>
@@ -119,8 +119,8 @@
 				client for <span class="svelte-text">SvelteKit</span>.
 			</h1>
 			<nav id="hero-buttons">
-				<a href="/intro" class="button-shadow" rel="prefetch">Get Started</a>
-				<a href="/api" class="button-shadow">API</a>
+				<a href="/intro/welcome" class="button-shadow" rel="prefetch">Get Started</a>
+				<a href="/api/index" class="button-shadow">API</a>
 			</nav>
 		</div>
 		<HighlightSvelte code={heroExample} class="shadow" />
