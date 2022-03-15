@@ -25,7 +25,7 @@
 </article>
 <footer>
 	{#if previous}
-		<a id="previous-page" class="pagination" href={previous.link}>
+		<a id="previous-page" class="pagination" href={previous.link} sveltekit:prefetch>
 			<Icon name="chevron-left" class="icon" width="20px" height="20px" />
 			<div>
 				<h4>Previous</h4>
@@ -38,7 +38,7 @@
 		<div id="previous-page" />
 	{/if}
 	{#if next}
-		<a id="next-page" class="pagination" href={next.link}>
+		<a id="next-page" class="pagination" href={next.link} sveltekit:prefetch>
 			<Icon name="chevron-right" class="icon" width="20px" height="20px" />
 			<div>
 				<h4>Next</h4>

@@ -97,7 +97,11 @@
 					</button>
 				{/each}
 				{#each categories as category}
-					<a href={files[category].index} class:current={$page.params.category === category}>
+					<a
+						href={files[category].index}
+						class:current={$page.params.category === category}
+						sveltekit:prefetch
+					>
 						{prettyName[category]}
 					</a>
 				{/each}
@@ -105,7 +109,7 @@
 			<ul>
 				{#each currentFiles as file}
 					<li class:current={currentPage.endsWith(file.slug)}>
-						<a href={`/${currentCategory}/${file.slug}`}>{file.title}</a>
+						<a href={`/${currentCategory}/${file.slug}`} sveltekit:prefetch>{file.title}</a>
 					</li>
 				{/each}
 			</ul>
