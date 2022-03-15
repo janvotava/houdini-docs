@@ -11,7 +11,7 @@
 <script lang="ts">
 	import { Icon, SEO } from '~/components'
 
-	export let content: string
+	export let html: string
 	export let previous = undefined
 	export let next = undefined
 	export let title = ''
@@ -21,7 +21,7 @@
 <SEO {title} url={`https://www.houdinigraphql.com${link}`} />
 
 <article id="doc-content">
-	{@html content}
+	{@html html}
 </article>
 <footer>
 	{#if previous}

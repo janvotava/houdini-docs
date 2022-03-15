@@ -1,0 +1,51 @@
+<script>
+	import { onMount } from 'svelte'
+
+	import { Icon } from '.'
+	export let title
+
+	let expanded = false
+
+	onMount(() => {
+		console.log('helo?')
+	})
+</script>
+
+<div class="container">
+	<button on:click={() => console.log('hello?')}>
+		<Icon name={expanded ? 'chevron-down' : 'chevron-right'} class="graphql-explained-icon" />
+		GraphQL Explained: {title}
+	</button>
+	{#if expanded}
+		<div class="content">
+			<slot />
+		</div>
+	{/if}
+</div>
+
+<style>
+	:global(.graphql-explained-icon) {
+		margin-right: 10px;
+	}
+
+	.container {
+		border-radius: 10px;
+		background-color: #410f30;
+		margin-bottom: 30px;
+	}
+
+	button {
+		background: #8d005f;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 15px;
+		font-family: 'Roboto', sans-serif;
+		font-size: 20px;
+		width: 100%;
+		border: none;
+		color: white;
+		cursor: pointer;
+	}
+</style>
