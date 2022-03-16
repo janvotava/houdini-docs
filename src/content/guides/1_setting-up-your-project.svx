@@ -107,7 +107,6 @@ With that in place, the only thing left to configure your Sapper application is 
 
 ```javascript
 // in both src/client.js and src/server.js
-
 import { setEnvironment } from '$houdini'
 import env from './environment'
 
