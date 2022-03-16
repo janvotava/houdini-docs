@@ -90,7 +90,7 @@
 		flex-direction: row;
 		align-items: center;
 		font-size: 18px;
-		font-family: 'Roboto';
+		font-family: 'Hind', sans-serif;
 		font-weight: 500;
 		text-decoration: none;
 		justify-content: center;
@@ -103,7 +103,7 @@
 	}
 
 	.pagination h4 {
-		font-family: 'Roboto', sans-serif;
+		font-family: 'Hind', sans-serif;
 		margin-bottom: 5px;
 	}
 

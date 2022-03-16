@@ -163,7 +163,7 @@
 
 	h1 {
 		font-size: 30px;
-		font-family: 'Roboto', sans-serif;
+		font-family: 'Hind', sans-serif;
 		margin-top: 14px;
 		margin-bottom: 14px;
 		color: white;
@@ -184,7 +184,7 @@
 		padding-bottom: 10px;
 		color: white;
 		font-size: 18px;
-		font-family: 'Roboto', sans-serif;
+		font-family: 'Hind', sans-serif;
 		padding-left: 10px;
 		padding-right: 10px;
 		margin-right: 5px;
@@ -227,7 +227,7 @@
 	li {
 		padding: 10px 0;
 		font-size: 20px;
-		font-family: 'Roboto', sans-serif;
+		font-family: 'Hind', sans-serif;
 		padding-left: 40px;
 		padding-right: 20px;
 		margin-bottom: 5px;
