@@ -41,8 +41,8 @@ const configExample = `export default {
 }`
 
 const subscriptionExample = `subscription(graphql\`
-    subscription PostLiked(id: $ID!) { 
-        postLiked(id: $id) {
+    subscription PostLiked { 
+        postLiked {
             post { 
                 like_count
             }
