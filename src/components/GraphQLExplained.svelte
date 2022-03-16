@@ -31,7 +31,8 @@
 	.container {
 		border-radius: 10px;
 		background-color: #410f30;
-		margin-bottom: 30px;
+		margin-bottom: 60px;
+		margin-top: 30px;
 	}
 
 	button {

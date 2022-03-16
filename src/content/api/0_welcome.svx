@@ -1,3 +1,17 @@
 ---
 title: Index
 ---
+
+# Houdini API Reference
+
+All functions shown here should be imported from your local runtime. This is usually aliased as `$houdini`, eg:
+
+```js
+import { graphql, query } from '$houdini'
+```
+
+If you are unable to resolve that import, please head over to the [Setting Up Your Project guide](/guides/setting-up-your-project) for framework-specific instructions.
+
+## Exports
+
+Coming Soon!
