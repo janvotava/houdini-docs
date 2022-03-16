@@ -19,6 +19,7 @@ const mutationExample = `const addFriend = mutation(graphql\`
         addFriend(id: 1) {
             friend { 
                 id
+                ...Friends_insert
             }
         }
     }
@@ -63,7 +64,7 @@ import { graphql, query } from '$houdini'
 
 If you are unable to resolve the import, please head over to the [Setting Up Your Project guide](/guides/setting-up-your-project) for framework-specific instructions.
 
-## Exports
+## Runtime
 
 <APIShowcase
 title="query"
@@ -92,6 +93,8 @@ description="Real-time updates"
 href="/api/fragment"
 example={subscriptionExample}
 />
+
+## Setup
 
 <APIShowcase
 title="Config"
