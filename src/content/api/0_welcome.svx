@@ -2,6 +2,57 @@
 title: Index
 ---
 
+<script>
+    import { APIShowcase } from '~/components'
+    import bash from "svelte-highlight/src/languages/bash";
+
+    const queryExample = `const { data } = query(graphql\`
+    query AllTodoItems {
+        items {
+            text
+        }
+    }
+\`)`
+
+const mutationExample = `const addFriend = mutation(graphql\`
+    mutation AddFriend {
+        addFriend(id: 1) {
+            friend { 
+                id
+            }
+        }
+    }
+\`)`
+
+const fragmentExample = `const data = fragment(graphql\`
+    fragment UserAvatar on User { 
+        firstName
+        lastName
+        email
+    }
+\`)`
+
+const configExample = `export default {
+    schemaPath: './schema.graphql',
+    sourceGlob: 'src/**/*.svelte',
+    module: 'esm',
+    framework: 'kit',
+    apiUrl: 'http://localhost:4000'
+}`
+
+const subscriptionExample = `subscription(graphql\`
+    subscription PostLiked(id: $ID!) { 
+        postLiked(id: $id) {
+            post { 
+                like_count
+            }
+        }        
+    }
+\`)`
+
+const cliExample = `houdini generate --pull-schema`
+</script>
+
 # Houdini API Reference
 
 All functions shown here should be imported from your local runtime. This is usually aliased as `$houdini`, eg:
@@ -10,8 +61,49 @@ All functions shown here should be imported from your local runtime. This is usu
 import { graphql, query } from '$houdini'
 ```
 
-If you are unable to resolve that import, please head over to the [Setting Up Your Project guide](/guides/setting-up-your-project) for framework-specific instructions.
+If you are unable to resolve the import, please head over to the [Setting Up Your Project guide](/guides/setting-up-your-project) for framework-specific instructions.
 
 ## Exports
 
-Coming Soon!
+<APIShowcase
+title="query"
+description="Fetch data from the server"
+href="/api/query"
+example={queryExample}
+/>
+
+<APIShowcase
+title="mutation"
+description="Send updates to the server"
+href="/api/mutation"
+example={mutationExample}
+/>
+
+<APIShowcase
+title="fragment"
+description="Reuse part of a query"
+href="/api/fragment"
+example={fragmentExample}
+/>
+
+<APIShowcase
+title="subscription"
+description="Real-time updates"
+href="/api/fragment"
+example={subscriptionExample}
+/>
+
+<APIShowcase
+title="Config"
+description="The config file format"
+href="/api/config"
+example={configExample}
+/>
+
+<APIShowcase
+title="Command Line"
+description="Command Line Tool usage"
+href="/api/cli"
+example={cliExample}
+language={bash}
+/>

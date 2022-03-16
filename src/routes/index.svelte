@@ -249,6 +249,7 @@
 		flex-grow: 1;
 		font-size: 2.625rem;
 		margin-right: 4rem;
+		font-weight: bold;
 		line-height: 4rem;
 		color: #161b22;
 	}
