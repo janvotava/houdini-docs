@@ -64,9 +64,10 @@ ol {
 
 #doc-content pre {
 	margin-bottom: 30px;
-}
 
-#doc-content pre code.hljs {
+	background: #11141a;
+	border-radius: 10px;
+	padding: 2.5rem;
 	overflow-x: auto;
 }
 
