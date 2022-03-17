@@ -55,6 +55,7 @@
 
 	p {
 		margin-bottom: 0 !important;
+		white-space: normal !important;
 	}
 
 	button {
