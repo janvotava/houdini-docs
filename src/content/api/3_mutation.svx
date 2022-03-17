@@ -4,6 +4,8 @@ title: Mutation
 
 # Mutation
 
+Send a mutation to the server and updating your client-side cache with any changes.
+
 ```svelte
 <script>
     import { mutation, graphql } from '$houdini'
@@ -131,7 +133,7 @@ mutation RemoveItem($input: RemoveItemInput!) {
 
 ### Toggling a record
 
-Any mutation that returns an `Item` can also be used to toggle an elements membership of the list. If the item is already in the list, it will be removed; otherwise, it will be added
+Any mutation that returns an `Item` can also be used to toggle an elements membership of the list. If the item is already in the list, it will be removed; otherwise, it will be added.
 
 ```graphql
 mutation RemoveItem($input: RemoveItemInput!) {

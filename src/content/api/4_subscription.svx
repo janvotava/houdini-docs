@@ -4,6 +4,8 @@ title: Subscription
 
 # Subscription
 
+Listen for real-time updates from your server using GraphQL Subscriptions.
+
 ```svelte
 <script>
     import { graphql, subscription } from '$houdini'
