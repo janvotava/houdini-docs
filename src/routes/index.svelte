@@ -294,16 +294,14 @@
 	#hero-buttons {
 		display: flex;
 		flex-direction: row;
-		margin-top: 72px;
+		margin-top: 50px;
 		gap: 36px;
 	}
 
 	#hero-buttons a {
-		height: 67px;
-		width: 194px;
-	}
+		height: 3rem;
+		width: 10.75rem;
 
-	#hero-buttons a {
 		font-family: 'Hind', sans;
 		font-weight: bold;
 		color: white;
@@ -312,7 +310,7 @@
 		align-items: center;
 		justify-content: center;
 		border-radius: 8px;
-		font-size: 2rem;
+		font-size: 1.2rem;
 		text-decoration: none;
 	}
 
@@ -330,14 +328,14 @@
 
 	h2 {
 		color: white;
-		font-size: 2.5rem;
+		font-size: 2rem;
 		margin-bottom: 1.25rem;
 	}
 
 	p {
 		font-family: 'Hind', sans-serif;
 		color: white;
-		font-size: 1.75rem;
+		font-size: 1.4rem;
 		line-height: 1.3;
 		margin-right: 35px;
 	}
@@ -382,19 +380,18 @@
 
 		header {
 			padding: 0 30px;
-			padding: 0 calc(env(safe-area-inset-right) + 30px) 0 calc(env(safe-area-inset-left) + 30px);
+			padding: 0 calc(env(safe-area-inset-right) + 60px) 0 calc(env(safe-area-inset-left) + 60px);
 		}
 
 		:global(pre) {
-			margin-right: calc(env(safe-area-inset-right) + 30px);
+			margin-right: calc(env(safe-area-inset-right) + 60px);
 		}
 
 		.showcase-text {
-			margin-left: calc(env(safe-area-inset-left) + 30px);
+			margin-left: calc(env(safe-area-inset-left) + 60px);
 		}
 
 		:global(.showcase-example) {
-			margin-top: 30px;
 			margin-bottom: 30px;
 		}
 
@@ -440,6 +437,7 @@
 		}
 
 		:global(.showcase-example) {
+			margin-top: 30px;
 			width: 100%;
 			align-self: center;
 			margin-right: 0;
@@ -488,6 +486,12 @@
 		}
 	}
 
+	@media (max-width: 650px) {
+		:global(#hero pre) {
+			width: 95%;
+		}
+	}
+
 	@media (max-width: 580px) {
 		h1 {
 			padding: 0 30px;
@@ -502,7 +506,6 @@
 		}
 
 		:global(#hero pre) {
-			width: 70%;
 			box-sizing: border-box;
 		}
 	}

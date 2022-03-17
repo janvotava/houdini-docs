@@ -139,7 +139,7 @@ if your query is loading is to use the
 [navigating store](https://kit.svelte.dev/docs#modules-$app-stores) exported from `$app/stores`:
 
 ```svelte
-// src/routes/index.svelte
+<!-- src/routes/index.svelte -->
 
 <script>
     import { query } from '$houdini'
@@ -160,7 +160,7 @@ do not get hoisted to a `load` function, the recommended practice to is use the 
 the result of query:
 
 ```svelte
-// src/components/MyComponent.svelte
+ <!-- src/components/MyComponent.svelte -->
 
 <script>
     import { query } from '$houdini'
@@ -191,7 +191,8 @@ If you return a value from this function, it will be passed as props to your com
 
 ```svelte
 <script context="module">
-    // It has access to the same arguments and this.error this.redirect as the variable functions
+    // It has access to the same arguments,
+    // this.error, and this.redirect as the variable functions
     export function beforeLoad({page, session}){
         if(!session.authenticated){
             return this.redirect(302, '/login')
