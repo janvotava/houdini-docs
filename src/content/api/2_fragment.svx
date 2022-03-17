@@ -76,7 +76,11 @@ Fragments may also contain a paginated field, similar to queries. A paginated fr
 ```svelte
 <script>
     import { paginatedFragment, graphql } from '$houdini'
-    const { loadNextPage, data, pageInfo } = paginatedFragment(graphql`
+
+    // the reference will get passed as a prop
+    export let user
+
+    const { loadNextPage, data } = paginatedFragment(graphql`
         fragment UserWithFriends on User {
             friends(first: 10) @paginate {
                 edges {
@@ -86,7 +90,7 @@ Fragments may also contain a paginated field, similar to queries. A paginated fr
                 }
             }
         }
-    `)
+    `, user)
 </script>
 ```
 
