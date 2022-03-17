@@ -226,7 +226,7 @@
 
 	li {
 		padding: 10px 0;
-		font-size: 20px;
+		font-size: 18px;
 		font-family: 'Hind', sans-serif;
 		padding-left: 40px;
 		padding-right: 20px;
