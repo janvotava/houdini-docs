@@ -364,7 +364,7 @@
 		padding: 34px;
 	}
 
-	@media (max-width: 1350px) {
+	@media (max-width: 1450px) {
 		h1 {
 			padding: 0 40px;
 			margin-left: 0px !important;
