@@ -161,6 +161,7 @@
 		background: #161b22;
 		border-radius: 32px;
 		color: white;
+		margin-left: 4rem;
 	}
 
 	:global(.shadow) {
@@ -251,10 +252,10 @@
 	#hero h1 {
 		flex-grow: 1;
 		font-size: 2.625rem;
-		margin-right: 4rem;
 		font-weight: bold;
 		line-height: 4rem;
 		color: #161b22;
+		text-align: center;
 	}
 
 	h1,
@@ -299,6 +300,7 @@
 		flex-direction: row;
 		margin-top: 50px;
 		gap: 36px;
+		justify-content: center;
 	}
 
 	#hero-buttons a {
@@ -466,6 +468,7 @@
 			width: 100%;
 			margin-top: 50px;
 			margin-right: 0;
+			margin-left: 0;
 		}
 
 		:global(code) {
