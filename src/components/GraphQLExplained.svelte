@@ -43,4 +43,8 @@
 		color: white;
 		cursor: pointer;
 	}
+
+	.content {
+		padding: 30px;
+	}
 </style>

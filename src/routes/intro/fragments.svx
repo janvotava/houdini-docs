@@ -5,8 +5,8 @@ index: 2
 
 <script>
     import { Highlight } from 'svelte-highlight'
-    import  Icon  from '~/components/Icon.svelte'
     import graphqlLangDef from '~/lib/graphql-language'
+    import { GraphQLExplained, Icon } from '~/components'
 
     const graphql = { name: 'graphql', register: graphqlLangDef }
 </script>
@@ -41,7 +41,7 @@ At first it might not be clear what the problem is. `Sprite` defines some props 
 
 Wouldn't it be nice if we had some way of defining these requirements inside of `Sprite` so we didn't have to worry about the exact details and could ensure that the query included whatever information `Sprite` needs? Well, that's where GraphQL fragments come to the rescue.
 
-## What are Fragments?
+<GraphQLExplained title="What Are Fragments?">
 
 It's safe to skip this section if you familiar with GraphQL Fragments.
 
@@ -75,6 +75,8 @@ query {
     }
 }`} />
 </div>
+
+</GraphQLExplained>
 
 ## Using Fragments
 
