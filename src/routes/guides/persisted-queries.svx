@@ -1,5 +1,6 @@
 ---
 title: Persisted Queries
+index: 3
 ---
 
 # Persisted Queries

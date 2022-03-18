@@ -81,6 +81,9 @@
 `
 		}
 	]
+
+	// @ts-ignore
+	const files = REPLACE_WITH_FILES
 </script>
 
 <svelte:head>
@@ -96,8 +99,8 @@
 		<img src="/images/logo.svg" alt="Houdini Logo" width="175px" />
 	</a>
 	<nav>
-		<a href="/intro/welcome" class="nav-link" sveltekit:prefetch>Get Started</a>
-		<a href="/api/welcome" class="nav-link small-hidden" sveltekit:prefetch>API</a>
+		<a href={files.intro.index.slug} class="nav-link" sveltekit:prefetch>Get Started</a>
+		<a href={files.api.index.slug} class="nav-link small-hidden" sveltekit:prefetch>API</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
 		</a>

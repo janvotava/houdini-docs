@@ -1,5 +1,6 @@
 ---
 title: GraphQL
+index: 5
 ---
 
 # GraphQL API

@@ -1,5 +1,6 @@
 ---
 title: Contributing to Houdini
+index: 5
 ---
 
 # Contributing to Houdini

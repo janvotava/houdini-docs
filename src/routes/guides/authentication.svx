@@ -1,5 +1,6 @@
 ---
 title: Authentication
+index: 4
 ---
 
 # Authentication

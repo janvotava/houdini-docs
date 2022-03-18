@@ -5,6 +5,8 @@ import path from 'path'
 import hljs from 'highlight.js'
 import hljs_svelte from 'highlightjs-svelte'
 import graphqlLang from './src/lib/graphql-language.js'
+import { replaceCodePlugin } from 'vite-plugin-replace'
+import { loadFiles } from './src/lib/loadFiles.js'
 
 // add svelte syntax highlighting support
 hljs_svelte(hljs)
@@ -53,7 +55,12 @@ const config = {
 					// these are the aliases and paths to them
 					'~': path.resolve('./src')
 				}
-			}
+			},
+			plugins: [
+				replaceCodePlugin({
+					replacements: [{ from: 'REPLACE_WITH_FILES', to: JSON.stringify(await loadFiles()) }]
+				})
+			]
 		}
 	}
 }

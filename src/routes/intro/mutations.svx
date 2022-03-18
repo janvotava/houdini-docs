@@ -1,5 +1,6 @@
 ---
 title: Updating The Client
+index: 3
 ---
 
 # Updating The Client

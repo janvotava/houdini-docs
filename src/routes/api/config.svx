@@ -1,5 +1,6 @@
 ---
 title: Config
+index: 6
 ---
 
 # Config File

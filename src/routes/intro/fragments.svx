@@ -1,5 +1,6 @@
 ---
 title: Reusing Parts of a Query
+index: 2
 ---
 
 <script>

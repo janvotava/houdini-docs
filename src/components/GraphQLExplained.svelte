@@ -1,18 +1,12 @@
 <script>
-	import { onMount } from 'svelte'
-
 	import { Icon } from '.'
 	export let title
 
 	let expanded = false
-
-	onMount(() => {
-		console.log('helo?')
-	})
 </script>
 
 <div class="container">
-	<button on:click={() => console.log('hello?')}>
+	<button on:click={() => (expanded = !expanded)}>
 		<Icon name={expanded ? 'chevron-down' : 'chevron-right'} class="graphql-explained-icon" />
 		GraphQL Explained: {title}
 	</button>

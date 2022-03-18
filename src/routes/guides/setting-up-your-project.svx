@@ -1,5 +1,6 @@
 ---
 title: Setting Up Your Project
+index: 0
 ---
 
 # Setting Up Your Project

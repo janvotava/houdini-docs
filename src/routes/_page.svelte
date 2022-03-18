@@ -9,29 +9,19 @@
 	export let link = ''
 
 	// the list of files we can render
-	export let files = {}
+	// @ts-ignore
+	let categories = REPLACE_WITH_FILES
+	let categoryNames = Object.keys(categories)
 
 	// some state to control the menu
 	let menuOpen = false
 	function toggleMenu() {
 		menuOpen = !menuOpen
-		currentCategory = $page.params.category
 	}
-
-	// pull out the current page
-	$: currentPage = $page.url.pathname
 
 	// we have to drive the current category off of state so that the responsive
 	// layout can swap it around without relying on page transitions
-	let currentCategory = $page.params.category
-	const categories = Object.keys(files)
-
-	// a more human readable version of each category
-	const prettyName = {
-		intro: 'Introduction',
-		guides: 'Guides',
-		api: 'API'
-	}
+	let currentCategory = $page.url.pathname.split('/')[1].toLowerCase()
 
 	// when navigating, keep the current category in sync
 	navigating.subscribe((nav) => {
@@ -39,7 +29,6 @@
 			return
 		}
 		menuOpen = false
-		currentCategory = nav.to.pathname.split('/')[1].toLowerCase()
 	})
 
 	// whenever the browser resizes above the thin breakpoint we need to
@@ -49,13 +38,13 @@
 			// if the window is above the thin width
 			if (window.innerWidth > 1000) {
 				menuOpen = false
-				currentCategory = $page.params.category
+				currentCategory = $page.url.pathname.split('/')[1].toLowerCase()
 			}
 		}
 	})
 
 	// show the files associated with the current category
-	$: currentFiles = files[currentCategory]?.pages || []
+	$: currentFiles = categories[currentCategory]?.files || []
 </script>
 
 <svelte:head>
@@ -82,29 +71,29 @@
 		</h1>
 		<div class:hidden={!menuOpen}>
 			<nav>
-				{#each categories as category}
+				{#each categoryNames as category}
 					<button
 						on:click={() => (currentCategory = category)}
 						class:current={currentCategory === category}
 						aria-hidden
 					>
-						{prettyName[category]}
+						{categories[category].name}
 					</button>
 				{/each}
-				{#each categories as category}
+				{#each categoryNames as category}
 					<a
-						href={files[category].index}
-						class:current={$page.params.category === category}
+						href={categories[category].index.slug}
+						class:current={currentCategory === category}
 						sveltekit:prefetch
 					>
-						{prettyName[category]}
+						{categories[category].name}
 					</a>
 				{/each}
 			</nav>
 			<ul>
 				{#each currentFiles as file}
-					<li class:current={currentPage.endsWith(file.slug)}>
-						<a href={`/${currentCategory}/${file.slug}`} sveltekit:prefetch>{file.title}</a>
+					<li class:current={$page.url.pathname.endsWith(file.slug)}>
+						<a href={file.slug} sveltekit:prefetch>{file.title}</a>
 					</li>
 				{/each}
 			</ul>

@@ -1,5 +1,6 @@
 ---
 title: Pagination
+index: 1
 ---
 
 # Pagination

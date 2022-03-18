@@ -1,5 +1,6 @@
 ---
 title: API Reference
+index: 0
 ---
 
 <script>
