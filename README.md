@@ -1,6 +1,6 @@
 # Houdini Docs
 
-The main marketing and doc page for Houdini.
+The main marketing and doc page for Houdini, live at http://www.houdinigraphql.com.
 
 ## Developing
 
