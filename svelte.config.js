@@ -18,6 +18,7 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		mdsvex({
+			layout: path.resolve('./src/routes/_page.svelte'),
 			highlight: {
 				highlighter(str, lang) {
 					let code = str
@@ -42,7 +43,6 @@ const config = {
 	],
 
 	kit: {
-		routes: () => true,
 		adapter: adapter(),
 		vite: {
 			optimizeDeps: {
