@@ -17,9 +17,10 @@
 		<p>
 			{description}
 		</p>
+		<Highlight {language} code={example} class="hidden-big" />
 		<button tabindex="-1"> More Info </button>
 	</div>
-	<Highlight {language} code={example} />
+	<Highlight {language} code={example} class="hidden-small" />
 </a>
 
 <style>
@@ -75,5 +76,34 @@
 
 	.api-showcase-container:hover button {
 		background: #b42e02;
+	}
+
+	@media (min-width: 1200px) {
+		:global(.hidden-big) {
+			display: none;
+		}
+	}
+
+	@media (max-width: 1200px) {
+		.api-showcase-container {
+			flex-direction: column;
+		}
+
+		:global(.api-showcase-container pre) {
+			padding: 0 !important;
+			margin-bottom: 30px !important;
+		}
+
+		:global(.hidden-small) {
+			display: none;
+		}
+
+		.left-column {
+			width: 100%;
+		}
+
+		h3 {
+			margin-bottom: 0 !important;
+		}
 	}
 </style>
