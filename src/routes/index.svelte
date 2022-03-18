@@ -97,7 +97,7 @@
 	</a>
 	<nav>
 		<a href="/intro/welcome" class="nav-link" sveltekit:prefetch>Get Started</a>
-		<a href="/api/welcome" class="nav-link micro-hidden" sveltekit:prefetch>API</a>
+		<a href="/api/welcome" class="nav-link small-hidden" sveltekit:prefetch>API</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
 		</a>
@@ -513,6 +513,10 @@
 	@media (max-width: 450px) {
 		.tiny-hidden {
 			display: none;
+		}
+
+		#hero-buttons {
+			flex-direction: column;
 		}
 	}
 
