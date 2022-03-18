@@ -242,6 +242,10 @@
 		margin-top: 24px;
 	}
 
+	aside ul {
+		overflow-y: auto;
+	}
+
 	li {
 		padding: 10px 0;
 		font-size: 18px;
