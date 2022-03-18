@@ -18,7 +18,11 @@ If you are looking for a more exhaustive coverage of Houdini’s features and AP
 
 ## What We'll Build
 
-Instead of the usual todo list, we're going to build a little app to explore the wide array of monsters available in the first generation of Pokémon. For a preview of the final result, you can check it out [here]().
+Instead of the usual todo list, we're going to build a little app to explore the wide array of monsters available in the first generation of Pokémon.
+
+<div style="text-align: center">
+    <img src="/images/pokedex-preview.png" style="max-width: 610px" />
+</div>
 
 ## Getting Started
 
