@@ -3,10 +3,9 @@
 	import { Icon, SEO } from '~/components'
 	import { onMount } from 'svelte'
 
-	export let previous = undefined
-	export let next = undefined
 	export let title = ''
 	export let link = ''
+	export let index
 
 	// the list of files we can render
 	// @ts-ignore
@@ -45,6 +44,8 @@
 
 	// show the files associated with the current category
 	$: currentFiles = categories[currentCategory]?.files || []
+	$: previous = currentFiles[index]?.previous
+	$: next = currentFiles[index]?.next
 </script>
 
 <svelte:head>
@@ -107,11 +108,11 @@
 	</article>
 	<footer>
 		{#if previous}
-			<a id="previous-page" class="pagination" href={previous.link} sveltekit:prefetch>
+			<a id="previous-page" class="pagination" href={previous.slug} sveltekit:prefetch>
 				<Icon name="chevron-left" class="icon" width="20px" height="20px" />
 				<div>
 					<h4>Previous</h4>
-					<p href={previous.link}>
+					<p>
 						{previous.title}
 					</p>
 				</div>
@@ -120,7 +121,7 @@
 			<div id="previous-page" />
 		{/if}
 		{#if next}
-			<a id="next-page" class="pagination" href={next.link} sveltekit:prefetch>
+			<a id="next-page" class="pagination" href={next.slug} sveltekit:prefetch>
 				<Icon name="chevron-right" class="icon" width="20px" height="20px" />
 				<div>
 					<h4>Next</h4>

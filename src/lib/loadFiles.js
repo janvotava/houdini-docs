@@ -59,7 +59,11 @@ export async function loadFiles() {
 			return [
 				category,
 				{
-					files,
+					files: files.map((file, i) => ({
+						...file,
+						previous: files[i - 1],
+						next: files[i + 1]
+					})),
 					name:
 						{
 							intro: 'Introduction',

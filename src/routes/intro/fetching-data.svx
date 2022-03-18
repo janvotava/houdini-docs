@@ -4,7 +4,7 @@ index: 1
 ---
 
 <script>
-    import { GraphQLExplained } from '~/components'
+    import { GraphQLExplained, DeepDive } from '~/components'
 </script>
 
 # Fetching Data
@@ -49,7 +49,60 @@ Before we do anything _too_ complicated, lets get something on the screen. Open 
 </Container>
 ```
 
-In this example, you can see we are taking a graphql query named `SpeciesInfo` and rendering the result using some components from the project's `components` directory. There is a lot of stuff going on under the hood here but let's not worry about it for now - what matters most is that we passed a string tagged with `graphql` into the `query` function and got back a store that we are using to access the result of our query.
+In this example, you can see we are taking a graphql query named `SpeciesInfo` and rendering the result using some components from the project's `components` directory. There is a lot of stuff going on under the hood here but let's not worry about it for now - what matters most is that we passed a named query with `graphql` into the `query` function and got back a store that we are using to access the result of our query.
+
+<GraphQLExplained title="Queries">
+
+A GraphQL query is a string that describes what information you want from the API. For example, the following defines a query named `QueryUserInfo`. In Houdini, all documents like queries must be named for reasons that will become more clear later.
+
+```graphql
+query CurrentUserInfo {
+	current_user {
+		firstName
+	}
+}
+```
+
+The result of the above query might look something like:
+
+```json
+{
+	"data": {
+		"current_user": {
+			"firstName": "Bill"
+		}
+	}
+}
+```
+
+Notice how the fields in the query match the values? The format of the original query is meant to model the response type.
+
+Fields in a query can take arguments to customize their behavior, for example:
+
+```graphql
+query CurrentUserInfo {
+	current_user {
+		# specify the format for the date time stamp
+		lastLogin(format: "YYYY-MM-DD")
+	}
+}
+```
+
+might return something like this:
+
+```json
+{
+	"data": {
+		"current_user": {
+			"lastLogin": "2022-12-25"
+		}
+	}
+}
+```
+
+For more information on GraphQL Queries, [this is a good resource](https://graphql.org/learn/queries/#fields).
+
+</GraphQLExplained>
 
 Once you've saved the file, we will have to tell Houdini to generate the necessary files so that our component can render. In order to do this, invoke the compiler with:
 
@@ -61,9 +114,67 @@ Keep in mind, you will have to do this every time you change any graphql string 
 
 Now that you've generated the necessary files, you should see a description of the first species in the generation 1 Pokédex - the ever popular Bulbasaur. If you are still running into issues, please reach out to us on the svelte discord and we'd be happy to help.
 
+<DeepDive title="What happened to load?">
+
+If you were looking carefully, you might have noticed that we didn't define a `load` function as described in the [SvelteKit docs](https://kit.svelte.dev/docs/loading). Don't worry - that's where the preprocessor comes in. One of its responsibilities is moving the actual fetch into a `load`. You can think of the block at the top of this section as equivalent to:
+
+```svelte
+<script context="module">
+    export async function load({ fetch }) {
+            return {
+                _data: await fetch({
+                    text: `
+                        query SpeciesInfo {
+                            species(id: 1) {
+                                name
+                                flavor_text
+                                sprites {
+                                    front
+                                }
+                            }
+                        }
+                    `
+                }),
+            }
+    }
+</script>
+
+<script>
+    export let _data
+
+    const data = readable(_data, ...)
+</script>
+
+<!-- the rest of the components -->
+```
+
+</DeepDive>
+
 ## Query Variables
 
-This is a good start but we will need to be able to show information for more species than just Bulbasaur. Let's set up our application to take look at the url for the id of the species we are interested in. To do that, rename `index.svelte` to `[...id].svelte`. That will let us have an optional parameter in the url which we will interpret as the ID (ie, `/` and `/1` will both render this page).
+This is a good start but we will need to be able to show information for more species than just Bulbasaur. Let's set up our application to take look at the url for the id of the species we are interested in. To do that, rename `index.svelte` to `[...id].svelte`. That will let us have an optional parameter in the url which we will interpret as the ID (ie, `/` and `/1` will both render Bulbasaur's page).
+
+<GraphQLExplained title="Query Variables">
+
+All of the queries we've seen so far have had static arguments. However, most of the time you will need to want to give an argument a dynamic value based on something in your application. For example, the text of an input when filtering a list. GraphQL allows us to define references to dynamic values that must be fulfilled when sending the query. These values are known as variables and can be applied to not just queries: mutations and subscription too!
+
+Defining variables for your document looks like the follow:
+
+```graphql
+query MyQuery($variable1: Boolean) {
+	myField(argument: $variable1)
+}
+```
+
+Notice the `($variable1: Boolean)`? That's how we say that the `MyQuery` query takes one argument, called `$variable1`, that is a `Boolean`. All variables in GraphQL must start with a `$` (makes the compilers job easier) and are optional by default. In order to mark a variable as required, you have to put `!` at the end of the type:
+
+```graphql
+query MyQuery($variable1: Boolean, variable2: String!) {
+	myField(arg1: $variable1, arg2: $variable2)
+}
+```
+
+</GraphQLExplained>
 
 Now that we have the actual route defined, we will have to change our query so that it can accept a variable. Doing this is relatively simple, just update the string inside of the `graphql` tag to look like the following:
 
