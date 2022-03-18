@@ -102,7 +102,7 @@
 			Support
 		</a>
 		<a
-			href="https://www.github.com/AlecAivazis/houdini"
+			href="https://www.github.com/HoudiniGraphQL/houdini"
 			class="tiny-hidden"
 			target="_blank"
 			id="gh-link"
