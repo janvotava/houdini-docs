@@ -304,6 +304,12 @@
 		padding-bottom: 13px;
 	}
 
+	li.subcategory a::before {
+		content: '•';
+		margin-left: -10px;
+		margin-right: 10px;
+	}
+
 	li a {
 		padding-left: 2.5rem;
 		padding-right: 20px;
