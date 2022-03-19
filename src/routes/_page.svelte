@@ -88,24 +88,24 @@
 
 <main>
 	<aside class:open={menuOpen}>
-		<h1>
-			<buton
-				aria-haspopup="true"
-				aria-expanded={menuOpen}
-				class="menu-icon"
-				tabindex="0"
-				on:click={toggleMenu}
-			>
-				{#if menuOpen}
-					<Icon name="x" width="20px" stroke="#ff3e00" />
-				{:else}
-					<Icon name="menu" width="20px" />
-				{/if}
-			</buton>
-			<a href="/">Houdini</a>
-		</h1>
-		<div class:hidden={!menuOpen}>
-			<nav>
+		<div class="aside-head">
+			<h1>
+				<buton
+					aria-haspopup="true"
+					aria-expanded={menuOpen}
+					class="menu-icon"
+					tabindex="0"
+					on:click={toggleMenu}
+				>
+					{#if menuOpen}
+						<Icon name="x" width="20px" stroke="#ff3e00" />
+					{:else}
+						<Icon name="menu" width="20px" />
+					{/if}
+				</buton>
+				<a href="/">Houdini</a>
+			</h1>
+			<nav class:hidden={!menuOpen}>
 				{#each categoryNames as category}
 					<button
 						on:click={() => (currentCategory = category)}
@@ -125,6 +125,8 @@
 					</a>
 				{/each}
 			</nav>
+		</div>
+		<div class:hidden={!menuOpen}>
 			{#each currentFiles as file}
 				<a
 					class="nav"
@@ -191,9 +193,10 @@
 	}
 
 	aside {
-		padding: 20px 0px;
+		padding-top: 0px;
+		padding-bottom: 4rem;
 		padding-left: max(0px, env(safe-area-inset-left));
-		padding-right: max(0px, env(safe-area-inset-right));
+		padding-right: max(10px, calc(10px + env(safe-area-inset-right)));
 		margin-right: 50px;
 		width: 300px;
 		display: flex;
@@ -203,6 +206,8 @@
 		position: fixed;
 		background-color: #161b22;
 		z-index: 10;
+		bottom: 0;
+		overflow-y: auto;
 	}
 
 	:global(.menu-icon) {
@@ -218,6 +223,14 @@
 
 	h1 {
 		margin-left: 40px;
+		flex-shrink: 0;
+		padding-top: 1rem;
+	}
+
+	.aside-head {
+		position: sticky;
+		top: 0;
+		background: #161b22;
 	}
 
 	nav button:nth-child(1) {
@@ -272,6 +285,7 @@
 		border-bottom: 3px solid #303a48;
 		display: flex;
 		margin-bottom: 1.25rem;
+		flex-shrink: 0;
 	}
 
 	nav a:hover,
