@@ -21,7 +21,7 @@ If you are looking for a more exhaustive coverage of Houdini’s features and AP
 Instead of the usual todo list, we're going to build a little app to explore the wide array of monsters available in the first generation of Pokémon.
 
 <div style="text-align: center">
-    <img src="/images/pokedex-preview.png" style="max-width: 610px; margin-bottom: 60px" />
+    <img src="/images/pokedex-preview.png" style="max-width: 610px; margin-bottom: 60px" alt="a screenshot of the pokedex we will build throughout this guide"/>
 </div>
 
 ## Getting Started
