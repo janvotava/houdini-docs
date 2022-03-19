@@ -416,6 +416,10 @@
 			position: sticky;
 		}
 
+		.subcategory {
+			display: none !important;
+		}
+
 		aside.open {
 			height: 100%;
 			position: fixed;
