@@ -126,25 +126,29 @@
 				{/each}
 			</nav>
 		</div>
-		<div class:hidden={!menuOpen}>
+		<div class:hidden={!menuOpen} role="list">
 			{#each currentFiles as file}
 				<a
 					class="nav"
+					role="listitem"
 					class:current={!currentSubCategory && $page.url.pathname.endsWith(file.slug)}
 					href={file.slug}
 					sveltekit:prefetch>{file.title}</a
 				>
 				<!-- render the subcategories for the selected category  -->
 				{#if $page.url.pathname.endsWith(file.slug)}
-					{#each file.subcategories as subcat}
-						<a
-							href={`${file.slug}#${subcat.id}`}
-							class="subcategory nav"
-							class:current={currentSubCategory === subcat.id}
-						>
-							{subcat.text}
-						</a>
-					{/each}
+					<div role="group">
+						{#each file.subcategories as subcat}
+							<a
+								href={`${file.slug}#${subcat.id}`}
+								class="subcategory nav"
+								class:current={currentSubCategory === subcat.id}
+								role="listitem"
+							>
+								{subcat.text}
+							</a>
+						{/each}
+					</div>
 				{/if}
 			{/each}
 		</div>

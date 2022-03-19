@@ -22,7 +22,7 @@ mutation SetFavorite {
 
 This example defines a mutation document named `SetFavorite` that invokes the `toggleFavorite` mutation on the server to flag Bulbasaur as one of our favorites. Every mutation in GraphQL has a return type that we can use to look up the values that have been updated in response to the mutation. Since we know that this mutation updates the `favorite` field we made sure to ask for the `favorite` field of the species.
 
-## Updating Fields in Houdini
+## Updating Field Values
 
 Before we explain how to use mutations in Houdini, we need a way to visualize if a species is one of our favorites. To start, add the `favorite` to the route's query. It should now look something like:
 
