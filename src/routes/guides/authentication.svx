@@ -1,6 +1,7 @@
 ---
 title: Authentication
 index: 4
+description: A guide to authentication in Houdini
 ---
 
 # Authentication

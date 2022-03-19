@@ -1,6 +1,7 @@
 ---
 title: Rendering Long Lists
 index: 4
+description: The fourth part of the Houdini intro focusing on how to render long lists of data
 ---
 
 <script>

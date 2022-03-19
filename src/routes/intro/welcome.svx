@@ -1,6 +1,7 @@
 ---
 title: Getting Started
 index: 0
+description: A getting started guide for Houdini
 ---
 
 # Welcome to Houdini

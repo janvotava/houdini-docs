@@ -1,6 +1,7 @@
 ---
 title: Command Line
 index: 7
+description: A listing of all of the commands and arguments provided by the Houdini cli
 ---
 
 # Command Line Tools

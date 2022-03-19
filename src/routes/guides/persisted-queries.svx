@@ -1,6 +1,7 @@
 ---
 title: Persisted Queries
 index: 3
+description: A guide to persisted queries in Houdini
 ---
 
 # Persisted Queries

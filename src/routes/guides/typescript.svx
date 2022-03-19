@@ -1,6 +1,7 @@
 ---
 title: Typescript
 index: 2
+description: An overview of Houdini's support for Typescript
 ---
 
 # Typescript

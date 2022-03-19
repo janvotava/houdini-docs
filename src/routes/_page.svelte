@@ -7,6 +7,7 @@
 	export let title = ''
 	export let link = ''
 	export let index
+	export let description
 
 	// the list of files we can render
 	// @ts-ignore
@@ -83,6 +84,8 @@
 	<meta name="theme-color" content="#161b22" />
 </svelte:head>
 
+<SEO {title} url={`https://www.houdinigraphql.com${link}`} {description} />
+
 <main>
 	<aside class:open={menuOpen}>
 		<h1>
@@ -144,8 +147,6 @@
 			{/each}
 		</div>
 	</aside>
-
-	<SEO {title} url={`https://www.houdinigraphql.com${link}`} />
 
 	<article id="doc-content">
 		<slot />
