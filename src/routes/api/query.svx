@@ -40,7 +40,7 @@ that are passed to the `preload` function described in the [Sapper](https://sapp
 documentation. In a SvelteKit project, this function takes the same arguments passed to the `load` function
 described in the [SvelteKit](https://kit.svelte.dev/docs#Loading) docs. Regardless of the framework, you can return
 the value from `this.error` and `this.redirect` in order to change the behavior of the response. Here is a
-modified example from the [demo](./example):
+modified example [from the source repository](./https://github.com/HoudiniGraphql/houdini/tree/main/example):
 
 ```svelte
 <!-- src/routes/[filter].svelte -->
@@ -154,8 +154,7 @@ export default {
 
 The methods used for tracking the loading state of your queries changes depending
 on the context of your component. For queries that live in routes (ie, in
-`/src/routes/...`), the actual query happens in a `load` function as described
-in [What about load?](#what-about-load). Because of this, the best way to track
+`/src/routes/...`), the actual query happens in a `load` which means the best way to track
 if your query is loading is to use the
 [navigating store](https://kit.svelte.dev/docs#modules-$app-stores) exported from `$app/stores`:
 

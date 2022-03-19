@@ -212,7 +212,7 @@ Note: the name of the function that returns the values for a query's variables m
 For completeness, let's quickly add some buttons to navigate between the different species. Copy and paste this block of code as the last child of the `Container` component:
 
 ```svelte
-<div slot="right">
+<Panel slot="right">
     <nav>
         <a href={$data.species.id - 1} disabled={$data.species.id <= 1}>
             previous
@@ -221,7 +221,7 @@ For completeness, let's quickly add some buttons to navigate between the differe
             next
         </a>
     </nav>
-</div>
+</Panel>
 ```
 
 ## Error Handling
