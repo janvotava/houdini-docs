@@ -39,7 +39,7 @@ Listen for real-time updates from your server using GraphQL Subscriptions.
 
 ### Return Values
 
-`mutation` returns a store containing the latest version of the subscription value
+`subscription` returns a store containing the latest version of the subscription value
 
 Note: mutations usually do best when combined with at least one fragment grabbing
 the information needed for the mutation (for an example of this pattern, see below.)
