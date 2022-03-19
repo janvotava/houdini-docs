@@ -2,7 +2,7 @@
 	import { page, navigating } from '$app/stores'
 	import { Icon, SEO } from '~/components'
 	import { onMount } from 'svelte'
-	import throttle from 'lodash/throttle'
+	import throttle from 'lodash/throttle.js'
 
 	export let title = ''
 	export let link = ''
