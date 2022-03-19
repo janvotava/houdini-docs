@@ -23,7 +23,7 @@ yarn add -D houdini houdini-preprocess
 npm install --save-dev houdini houdini-preprocess
 ```
 
-## Configuring Your Application
+## Configuration
 
 Adding houdini to an existing project can easily be done with the provided command-line tool.
 If you don't already have an existing app, visit [this link](https://kit.svelte.dev/docs)

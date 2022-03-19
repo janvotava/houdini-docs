@@ -59,7 +59,7 @@
 		for (const element of headers) {
 			// the current category is the last element that's above the half
 			// way point on the screen
-			if (element.getBoundingClientRect().top > window.innerHeight / 2) {
+			if (element.getBoundingClientRect().top > 3) {
 				break
 			}
 
@@ -122,23 +122,26 @@
 					</a>
 				{/each}
 			</nav>
-			<ul>
-				{#each currentFiles as file}
-					<li class:current={!currentSubCategory && $page.url.pathname.endsWith(file.slug)}>
-						<a href={file.slug} sveltekit:prefetch>{file.title}</a>
-					</li>
-					<!-- render the subcategories for the selected category  -->
-					{#if $page.url.pathname.endsWith(file.slug)}
-						{#each file.subcategories as subcat}
-							<li class="subcategory" class:current={currentSubCategory === subcat.id}>
-								<a href={`${file.slug}#${subcat.id}`}>
-									{subcat.text}
-								</a>
-							</li>
-						{/each}
-					{/if}
-				{/each}
-			</ul>
+			{#each currentFiles as file}
+				<a
+					class="nav"
+					class:current={!currentSubCategory && $page.url.pathname.endsWith(file.slug)}
+					href={file.slug}
+					sveltekit:prefetch>{file.title}</a
+				>
+				<!-- render the subcategories for the selected category  -->
+				{#if $page.url.pathname.endsWith(file.slug)}
+					{#each file.subcategories as subcat}
+						<a
+							href={`${file.slug}#${subcat.id}`}
+							class="subcategory nav"
+							class:current={currentSubCategory === subcat.id}
+						>
+							{subcat.text}
+						</a>
+					{/each}
+				{/if}
+			{/each}
 		</div>
 	</aside>
 
@@ -267,6 +270,7 @@
 		height: 30px;
 		border-bottom: 3px solid #303a48;
 		display: flex;
+		margin-bottom: 1.25rem;
 	}
 
 	nav a:hover,
@@ -279,48 +283,38 @@
 		border-bottom: 3px solid #ff3e00;
 	}
 
-	ul {
-		margin-top: 24px;
-	}
-
-	aside ul {
-		overflow-y: auto;
-	}
-
-	li {
+	a.nav {
 		padding: 10px 0;
 		font-size: 18px;
 		font-family: 'Hind', sans-serif;
 		margin-bottom: 5px;
+		padding-left: 2.5rem;
+		padding-right: 20px;
+
+		display: block;
 	}
 
-	li:hover {
+	a.nav:hover {
 		background: #28303a;
 		border-top-right-radius: 10px;
 		border-bottom-right-radius: 10px;
 	}
 
-	li.subcategory {
+	a.nav.subcategory {
 		padding-bottom: 13px;
 	}
 
-	li.subcategory a::before {
+	a.nav.subcategory::before {
 		content: '•';
 		margin-left: -10px;
 		margin-right: 10px;
 	}
 
-	li a {
-		padding-left: 2.5rem;
-		padding-right: 20px;
-		width: 100%;
-		box-sizing: border-box;
-	}
-	li.subcategory a {
+	a.nav.subcategory {
 		padding-left: 3.25rem;
 	}
 
-	li.current {
+	a.nav.current {
 		background: #475465;
 		border-top-right-radius: 10px;
 		border-bottom-right-radius: 10px;
@@ -440,6 +434,10 @@
 			display: none;
 		}
 
+		nav {
+			margin-bottom: 1rem;
+		}
+
 		nav > a {
 			display: none;
 		}
@@ -448,9 +446,9 @@
 			display: flex;
 		}
 
-		li.current {
-			border-top-right-radius: 0px;
-			border-bottom-right-radius: 0px;
+		a.current {
+			border-top-right-radius: 0px !important;
+			border-bottom-right-radius: 0px !important;
 		}
 	}
 </style>
