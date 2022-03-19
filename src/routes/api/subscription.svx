@@ -45,9 +45,9 @@ the information needed for the mutation (for an example of this pattern, see bel
 
 ## List Operations
 
-Subscription bodies can contain all of the list operations described in the [mutation docs](/api/mutation#list).
+Subscription bodies can contain all of the list operations described in the [mutation docs](/api/mutation#lists).
 
-## Configuring the WebSocket client
+## Configuring the client
 
 Houdini can work with any websocket client as long as you can provide an object that satisfies
 the `SubscriptionHandler` interface as the second argument to the Environment's constructor. Keep in mind

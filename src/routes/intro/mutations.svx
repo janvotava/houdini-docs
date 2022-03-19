@@ -152,6 +152,6 @@ If you look closely at the mutation you'll notice that we are using a fragment i
 
 `toggle` is not the only operation you can perform on a list. Houdini also supports `insert` and `remove` as well as more advanced features such as specifying conditions for these operations. For more information, check out the [mutation api reference](/api/mutation).
 
-## What's Next
+## What's Next?
 
 Now that you've seen how Houdini allows us to declaratively update our client-side cache, it's time to move onto the next topic for this guide: pagination. We're going to take a look at how Houdini helps us incrementally load a long list of data.

@@ -7,6 +7,8 @@ import hljs_svelte from 'highlightjs-svelte'
 import graphqlLang from './src/lib/graphql-language.js'
 import { replaceCodePlugin } from 'vite-plugin-replace'
 import { loadFiles } from './src/lib/loadFiles.js'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 // add svelte syntax highlighting support
 hljs_svelte(hljs)
@@ -21,6 +23,7 @@ const config = {
 	preprocess: [
 		mdsvex({
 			layout: path.resolve('./src/routes/_page.svelte'),
+			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
 			highlight: {
 				highlighter(str, lang) {
 					let code = str

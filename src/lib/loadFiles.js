@@ -1,6 +1,9 @@
 import path from 'path'
 import fs from 'fs/promises'
 import { compile } from 'mdsvex'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import { parse } from 'node-html-parser'
 
 // grab the list of files
 export async function loadFiles() {
@@ -29,16 +32,32 @@ export async function loadFiles() {
 						const filepath = path.join(categoryDir, file)
 
 						// open the contents of the file so we can extract the frontmatter
-						const { data } = await compile(await fs.readFile(filepath, 'utf-8'))
+						const contents = await fs.readFile(filepath, 'utf-8')
+						const { data, code } = await compile(contents, {
+							rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+						})
 						/** @type { { [key: string]: any }} */
 						const metadata = data.fm
+
+						// parse the contents so we can extract the various headers
+						const parsed = parse(code)
+
+						// every h2 gets an entry in the timeline
+						const subcategories = parsed
+							.querySelectorAll('h2')
+							.map((h2) => ({
+								text: h2.text,
+								id: h2.attributes.id
+							}))
+							.filter((subcat) => !subcat.text.toLowerCase().endsWith('s next?'))
 
 						const fileName = file.split('.')[0]
 
 						list[metadata.index] = {
 							title: metadata.title,
 							slug: `/${category}/${fileName}`,
-							filepath
+							filepath,
+							subcategories
 						}
 					}
 

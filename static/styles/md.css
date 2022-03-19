@@ -12,19 +12,19 @@ h4 {
 }
 
 #doc-content h2 {
-	margin-top: 2.25rem;
+	padding-top: 2.25rem;
 	font-size: 28px;
 }
 
 #doc-content h3 {
-	margin-top: 1rem;
+	padding-top: 1rem;
 	font-size: 22px;
-	margin-bottom: 1.5rem;
+	padding-bottom: 1.5rem;
 }
 
 #doc-content h4 {
 	font-size: 1.25rem;
-	margin-top: 2rem;
+	padding-top: 2rem;
 }
 
 #doc-content p {
@@ -32,7 +32,7 @@ h4 {
 	line-height: 28px;
 	font-family: 'Hind', sans-serif;
 	font-weight: 500;
-	margin-bottom: 30px;
+	padding-bottom: 30px;
 }
 
 #doc-content ul,

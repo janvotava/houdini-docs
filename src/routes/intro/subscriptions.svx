@@ -39,7 +39,7 @@ Let's see a subscription in action. Go ahead and add the block of code at the en
 
 Regenerate your runtime and open up two browsers. Make sure they are both pointing at the same species and click on the favorite star. You should see the favorite status of the species toggle in both browsers.
 
-## List Operations From Subscriptions
+## List Operations
 
 You probably noticed that the species does not show up in the favorites list if the update came from another browser. That's because Houdini does not know that the payload from a subscription needs to toggle the species like the mutation does. Fixing this should look very familiar - just mix in the `FavoriteSpecies_toggle` fragment we talked about in the [mutations section](/intro/mutations):
 

@@ -2,6 +2,7 @@
 	import { page, navigating } from '$app/stores'
 	import { Icon, SEO } from '~/components'
 	import { onMount } from 'svelte'
+	import throttle from 'lodash/throttle'
 
 	export let title = ''
 	export let link = ''
@@ -21,6 +22,7 @@
 	// we have to drive the current category off of state so that the responsive
 	// layout can swap it around without relying on page transitions
 	let currentCategory = $page.url.pathname.split('/')[1].toLowerCase()
+	let currentSubCategory = null
 
 	// when navigating, keep the current category in sync
 	navigating.subscribe((nav) => {
@@ -46,6 +48,35 @@
 	$: currentFiles = categories[currentCategory]?.files || []
 	$: previous = currentFiles[index]?.previous
 	$: next = currentFiles[index]?.next
+
+	function highlightSubsection() {
+		// reset the category
+		let value = null
+
+		/** @type { HTMLHeadingElement[] }*/
+		// @ts-ignore
+		const headers = document.getElementsByTagName('h2')
+		for (const element of headers) {
+			// the current category is the last element that's above the half
+			// way point on the screen
+			if (element.getBoundingClientRect().top > window.innerHeight / 2) {
+				break
+			}
+
+			value = element.attributes.getNamedItem('id').value
+		}
+
+		// update the current subcategory
+		currentSubCategory = value
+	}
+
+	// make sure the correct subsection is highlighted
+	onMount(() => {
+		highlightSubsection()
+
+		// make sure we track the current category when scrolling
+		window.onscroll = throttle(highlightSubsection, 250)
+	})
 </script>
 
 <svelte:head>
@@ -93,9 +124,19 @@
 			</nav>
 			<ul>
 				{#each currentFiles as file}
-					<li class:current={$page.url.pathname.endsWith(file.slug)}>
+					<li class:current={!currentSubCategory && $page.url.pathname.endsWith(file.slug)}>
 						<a href={file.slug} sveltekit:prefetch>{file.title}</a>
 					</li>
+					<!-- render the subcategories for the selected category  -->
+					{#if $page.url.pathname.endsWith(file.slug)}
+						{#each file.subcategories as subcat}
+							<li class="subcategory" class:current={currentSubCategory === subcat.id}>
+								<a href={`${file.slug}#${subcat.id}`}>
+									{subcat.text}
+								</a>
+							</li>
+						{/each}
+					{/if}
 				{/each}
 			</ul>
 		</div>
@@ -250,9 +291,27 @@
 		padding: 10px 0;
 		font-size: 18px;
 		font-family: 'Hind', sans-serif;
-		padding-left: 40px;
-		padding-right: 20px;
 		margin-bottom: 5px;
+	}
+
+	li:hover {
+		background: #28303a;
+		border-top-right-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+
+	li.subcategory {
+		padding-bottom: 13px;
+	}
+
+	li a {
+		padding-left: 2.5rem;
+		padding-right: 20px;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	li.subcategory a {
+		padding-left: 3.25rem;
 	}
 
 	li.current {
