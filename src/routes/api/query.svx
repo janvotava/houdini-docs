@@ -195,6 +195,33 @@ the result of query:
 {/if}
 ```
 
+## Refetching Data
+
+Refetching data is done with the `refetch` function provided from the result of a query:
+
+```svelte
+
+<script lang="ts">
+    import { query, graphql, AllItems } from '$houdini'
+
+    // load the items
+    const { refetch } = query<AllItems>(graphql`
+        query AllItems($completed: Boolean) {
+            items(completed: $completed) {
+                id
+                text
+            }
+        }
+    `)
+
+    let completed = true
+
+    $: refetch({ completed })
+</script>
+
+<input type=checkbox bind:checked={completed}>
+```
+
 ## Hooks
 
 Sometimes you will need to add additional logic to a component's query. For example, you might want to

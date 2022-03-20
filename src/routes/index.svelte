@@ -403,10 +403,6 @@
 		:global(code) {
 			font-size: 15px;
 		}
-
-		article {
-			padding-top: 6rem;
-		}
 	}
 
 	@media (max-width: 1000px) {
@@ -420,6 +416,10 @@
 		p {
 			font-size: 20px;
 			margin-right: 0;
+		}
+
+		article {
+			padding-top: 2rem;
 		}
 
 		#hero-buttons {
