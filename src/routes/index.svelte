@@ -361,7 +361,7 @@
 		font-family: 'Roboto Mono', monospace;
 	}
 
-	:global(pre) {
+	:global(#main pre) {
 		overflow: hidden;
 	}
 

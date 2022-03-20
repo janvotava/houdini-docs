@@ -474,4 +474,13 @@
 			border-bottom-right-radius: 0px !important;
 		}
 	}
+
+	@media (max-width: 450px) {
+		article,
+		footer {
+			margin-left: 0px;
+			padding-left: calc(30px + env(safe-area-inset-left));
+			padding-right: calc(30px + env(safe-area-inset-right));
+		}
+	}
 </style>
