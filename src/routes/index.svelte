@@ -403,6 +403,10 @@
 		:global(code) {
 			font-size: 15px;
 		}
+
+		article {
+			padding-top: 6rem;
+		}
 	}
 
 	@media (max-width: 1000px) {
