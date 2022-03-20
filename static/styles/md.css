@@ -50,7 +50,7 @@ ol {
 }
 
 #doc-content ol > li {
-	list-style: numbers;
+	list-style: decimal;
 }
 
 #doc-content ul > li {
