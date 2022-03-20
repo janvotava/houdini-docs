@@ -524,6 +524,27 @@
 		#hero-buttons {
 			flex-direction: column;
 		}
+		header,
+		:global(#main pre) {
+			padding-left: calc(10% + env(safe-area-inset-left));
+			padding-right: calc(10% + env(safe-area-inset-right));
+		}
+
+		.showcase-item {
+			margin-bottom: 75px;
+		}
+
+		.showcase-text {
+			padding: 0 30px;
+		}
+
+		article {
+			padding-top: 1rem;
+		}
+
+		#info {
+			margin-top: 6rem;
+		}
 	}
 
 	@media (max-width: 400px) {
