@@ -10,6 +10,7 @@ specifiers:
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^3.2.1
   feather-icons: ^4.28.0
+  flexsearch: ^0.7.21
   highlight.js: ^11.4.0
   highlightjs-svelte: ^1.0.6
   husky: ^7.0.4
@@ -31,6 +32,7 @@ specifiers:
 
 dependencies:
   feather-icons: 4.28.0
+  flexsearch: 0.7.21
   highlightjs-svelte: 1.0.6
   lodash: 4.17.21
   vite-plugin-replace: 0.1.1
@@ -38,7 +40,7 @@ dependencies:
 devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.33
   '@sveltejs/adapter-static': 1.0.0-next.29
-  '@sveltejs/kit': 1.0.0-next.301_svelte@3.46.4
+  '@sveltejs/kit': 1.0.0-next.302_svelte@3.46.4
   '@typescript-eslint/eslint-plugin': 5.12.0_39008ab451aed7e12174fadc21405fee
   '@typescript-eslint/parser': 5.12.0_eslint@7.32.0+typescript@4.5.5
   eslint: 7.32.0
@@ -228,10 +230,10 @@ packages:
       esbuild: 0.14.23
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.301_svelte@3.46.4:
+  /@sveltejs/kit/1.0.0-next.302_svelte@3.46.4:
     resolution:
       {
-        integrity: sha512-F/XP1VEu+fpvgY04JekNxAFupccNMKOyXtbox0LwNJvBulL15/Tzy6tf4g+9t2Jy7mprwI3h0ZC9G/nVujRFnQ==
+        integrity: sha512-+YUSU7uN5n8i0NOVRaBQgxbaCgFqn63YNudm8kqu27iaw8iCw9Ua6YuE0uMeAtYif+uSletFiMy73f55mMfJNQ==
       }
     engines: { node: '>=14.13' }
     hasBin: true
@@ -1599,6 +1601,13 @@ packages:
         integrity: sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==
       }
     dev: true
+
+  /flexsearch/0.7.21:
+    resolution:
+      {
+        integrity: sha512-W7cHV7Hrwjid6lWmy0IhsWDFQboWSng25U3VVywpHOTJnnAZNPScog67G+cVpeX9f7yDD21ih0WDrMMT+JoaYg==
+      }
+    dev: false
 
   /fs.realpath/1.0.0:
     resolution: { integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8= }

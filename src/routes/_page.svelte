@@ -1,8 +1,9 @@
 <script>
 	import { page, navigating } from '$app/stores'
-	import { Icon, SEO } from '~/components'
+	import { Icon, SEO, SearchInput, SearchDialog, searching } from '~/components'
 	import { onMount } from 'svelte'
 	import throttle from 'lodash/throttle.js'
+	import { browser } from '$app/env'
 
 	export let title = ''
 	export let link = ''
@@ -50,6 +51,17 @@
 	$: previous = currentFiles[index]?.previous
 	$: next = currentFiles[index]?.next
 
+	// when the searching state toggles on the browser, hide the body's scroll
+	$: {
+		if (browser && $searching) {
+			document.body.style.overflowY = 'hidden'
+		}
+
+		if (browser && !searching) {
+			document.body.style.overflowY = 'auto'
+		}
+	}
+
 	function highlightSubsection() {
 		// reset the category
 		let value = null
@@ -86,8 +98,10 @@
 
 <SEO {title} url={`https://www.houdinigraphql.com${link}`} {description} />
 
+<SearchDialog />
+
 <main>
-	<aside class:open={menuOpen}>
+	<aside class:open={menuOpen} class:blur={$searching}>
 		<div class="aside-head">
 			<h1>
 				<buton
@@ -104,6 +118,7 @@
 					{/if}
 				</buton>
 				<a href="/">Houdini</a>
+				<SearchInput id="nav-search-input" />
 			</h1>
 			<nav class:hidden={!menuOpen}>
 				{#each categoryNames as category}
@@ -126,6 +141,7 @@
 				{/each}
 			</nav>
 		</div>
+		<SearchInput id="left-nav-search-input" />
 		<div class:hidden={!menuOpen} role="list">
 			{#each currentFiles as file}
 				<a
@@ -154,10 +170,10 @@
 		</div>
 	</aside>
 
-	<article id="doc-content">
+	<article id="doc-content" class:blur={$searching}>
 		<slot />
 	</article>
-	<footer>
+	<footer class:blur={$searching}>
 		{#if previous}
 			<a id="previous-page" class="pagination" href={previous.slug} sveltekit:prefetch>
 				<Icon name="chevron-left" class="icon" width="20px" height="20px" />
@@ -215,7 +231,6 @@
 	}
 
 	:global(.menu-icon) {
-		margin-right: 15px;
 		display: none;
 	}
 
@@ -248,6 +263,7 @@
 		margin-bottom: 14px;
 		color: white;
 		height: 45px;
+		gap: 20px;
 	}
 
 	a,
@@ -405,6 +421,25 @@
 		color: #ff3e00;
 	}
 
+	.blur {
+		filter: blur(4px);
+		-o-filter: blur(4px);
+		-ms-filter: blur(4px);
+		-moz-filter: blur(4px);
+		-webkit-filter: blur(4px);
+	}
+
+	:global(#nav-search-input) {
+		margin-top: -5px;
+		display: none;
+		width: 60%;
+	}
+
+	:global(#left-nav-search-input) {
+		margin-bottom: 1rem;
+		width: 80%;
+	}
+
 	@media (max-width: 1000px) {
 		article,
 		footer {
@@ -446,6 +481,7 @@
 
 		h1 {
 			margin-left: 20px;
+			margin-right: 20px;
 		}
 
 		:global(.menu-icon) {
@@ -472,6 +508,14 @@
 		a.current {
 			border-top-right-radius: 0px !important;
 			border-bottom-right-radius: 0px !important;
+		}
+
+		:global(#left-nav-search-input) {
+			display: none;
+		}
+
+		:global(#nav-search-input) {
+			display: flex;
 		}
 	}
 
