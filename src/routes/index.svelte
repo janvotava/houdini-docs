@@ -388,7 +388,8 @@
 			padding: 0 calc(env(safe-area-inset-right) + 60px) 0 calc(env(safe-area-inset-left) + 60px);
 		}
 
-		:global(pre) {
+		:global(.showcase-item pre),
+		:global(#hero pre) {
 			margin-right: calc(env(safe-area-inset-right) + 60px);
 		}
 
