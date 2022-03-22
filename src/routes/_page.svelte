@@ -380,6 +380,10 @@
 		flex-direction: row-reverse;
 	}
 
+	article {
+		margin: auto;
+	}
+
 	article,
 	footer {
 		max-width: 850px;
