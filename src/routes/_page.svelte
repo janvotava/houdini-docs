@@ -57,7 +57,7 @@
 			document.body.style.overflowY = 'hidden'
 		}
 
-		if (browser && !searching) {
+		if (browser && !$searching) {
 			document.body.style.overflowY = 'auto'
 		}
 	}
