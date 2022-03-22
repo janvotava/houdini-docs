@@ -170,9 +170,11 @@
 		</div>
 	</aside>
 
-	<article id="doc-content" class:blur={$searching}>
-		<slot />
-	</article>
+	<div class="doc-gutter">
+		<article id="doc-content" class:blur={$searching}>
+			<slot />
+		</article>
+	</div>
 	<footer class:blur={$searching}>
 		{#if previous}
 			<a id="previous-page" class="pagination" href={previous.slug} sveltekit:prefetch>
@@ -380,11 +382,15 @@
 
 	article,
 	footer {
-		margin-left: 350px;
 		max-width: 850px;
 		box-sizing: border-box;
 		padding-left: env(safe-area-inset-left);
 		padding-right: calc(100px + env(safe-area-inset-right));
+	}
+
+	.doc-gutter,
+	footer {
+		margin-left: 350px;
 	}
 
 	article {
