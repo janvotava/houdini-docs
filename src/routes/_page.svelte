@@ -450,11 +450,15 @@
 	@media (max-width: 1000px) {
 		article,
 		footer {
-			margin-left: 0px;
 			padding-left: calc(55px + env(safe-area-inset-left));
 			padding-right: calc(55px + env(safe-area-inset-right));
 			padding-top: 20px;
 			max-width: none;
+		}
+
+		.doc-gutter,
+		footer {
+			margin-left: 0px;
 		}
 
 		footer {
@@ -529,7 +533,6 @@
 	@media (max-width: 450px) {
 		article,
 		footer {
-			margin-left: 0px;
 			padding-left: calc(30px + env(safe-area-inset-left));
 			padding-right: calc(30px + env(safe-area-inset-right));
 		}
