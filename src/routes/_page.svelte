@@ -232,6 +232,7 @@
 
 	:global(.menu-icon) {
 		display: none;
+		margin-top: -10px;
 	}
 
 	aside h1 {
