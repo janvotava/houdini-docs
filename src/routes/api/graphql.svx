@@ -26,38 +26,38 @@ For more information on using these fragments, head over to the [mutation docs](
 
 ## Directives
 
-### list
+### `@list(name: String!)`
 
 `@list` marks a field as the target for list operations. Must be passed a name which defines the fragments that can be used to mutate the list. See the [list operations](#list-operations) for more information.
 
-### prepend
+### `@prepend`
 
 `@prepend` is used in conjunction with the [list operation fragments](#list-operations) to tell the runtime to add the element at the start of the list. Can be used with both `_insert` and `_toggle` fragments.
 
-### append
+### `@append`
 
 `@append` is used in conjunction with the [list operation fragments](#list-operations) to tell the runtime to add the element at the end of the list. Can be used with both `_insert` and `_toggle` fragments.
 
-### when
+### `@when`
 
 `@when` provides a conditional under which the [list operation](#list-operations) should be executed. It takes arguments that match the arguments of the field tagged with `@list` or `@paginate`. For more information, check out the [mutation docs](/api/mutation#lists)
 
-### when_not
+### `@when_not`
 
 `@when` provides a conditional under which the [list operation](#list-operations) should not be executed. It takes arguments that match the arguments of the field tagged with `@list` or `@paginate`. For more information, check out the [mutation docs](/api/mutation#lists)
 
-### parentID
+### `@parentID`
 
 A field marked with `@list` may not be uniquely identifiable as is the case with fields inside of most fragments. `@parentID` is used to indicate which owner of a particular fragment should be modified by the [list operation](#list-operations).
 
-### cache
+### `@cache`
 
 `@cache` is used on a query document to indicate what [cache policy](/api/query#caching-data) should be used by the runtime. For a full list of cache policies, check out the [query docs](/api/query#caching-data).
 
-### paginate
+### `@paginate`
 
 A field marked with `@paginate` is updated with calls to the page loaders returned by the pagination function. For more information on pagination check out the [guide](/guides/pagination).
 
-### [TypeName]\_delete
+### `@[TypeName]_delete`
 
 For example, `@User_delete` is used to delete the user with an id found in the body of a subscription or mutation. For more information see the [mutation docs](/api/mutation#lists).
