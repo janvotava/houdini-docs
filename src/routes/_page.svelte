@@ -174,35 +174,35 @@
 		<article id="doc-content" class:blur={$searching}>
 			<slot />
 		</article>
+		<footer class:blur={$searching}>
+			{#if previous}
+				<a id="previous-page" class="pagination" href={previous.slug} sveltekit:prefetch>
+					<Icon name="chevron-left" class="icon" width="20px" height="20px" />
+					<div>
+						<h4>Previous</h4>
+						<p>
+							{previous.title}
+						</p>
+					</div>
+				</a>
+			{:else}
+				<div id="previous-page" />
+			{/if}
+			{#if next}
+				<a id="next-page" class="pagination" href={next.slug} sveltekit:prefetch>
+					<Icon name="chevron-right" class="icon" width="20px" height="20px" />
+					<div>
+						<h4>Next</h4>
+						<p>
+							{next.title}
+						</p>
+					</div>
+				</a>
+			{:else}
+				<div id="next-page" />
+			{/if}
+		</footer>
 	</div>
-	<footer class:blur={$searching}>
-		{#if previous}
-			<a id="previous-page" class="pagination" href={previous.slug} sveltekit:prefetch>
-				<Icon name="chevron-left" class="icon" width="20px" height="20px" />
-				<div>
-					<h4>Previous</h4>
-					<p>
-						{previous.title}
-					</p>
-				</div>
-			</a>
-		{:else}
-			<div id="previous-page" />
-		{/if}
-		{#if next}
-			<a id="next-page" class="pagination" href={next.slug} sveltekit:prefetch>
-				<Icon name="chevron-right" class="icon" width="20px" height="20px" />
-				<div>
-					<h4>Next</h4>
-					<p>
-						{next.title}
-					</p>
-				</div>
-			</a>
-		{:else}
-			<div id="next-page" />
-		{/if}
-	</footer>
 </main>
 
 <style>
@@ -369,7 +369,6 @@
 	footer {
 		display: flex;
 		flex-direction: row;
-		width: calc(100% - 350px);
 		margin-bottom: 100px;
 		height: 30px;
 		justify-content: space-between;
@@ -384,6 +383,10 @@
 		margin: auto;
 	}
 
+	footer {
+		margin: 0 auto 100px auto;
+	}
+
 	article,
 	footer {
 		max-width: 850px;
@@ -392,8 +395,7 @@
 		padding-right: calc(100px + env(safe-area-inset-right));
 	}
 
-	.doc-gutter,
-	footer {
+	.doc-gutter {
 		margin-left: 350px;
 	}
 
