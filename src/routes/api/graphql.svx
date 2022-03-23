@@ -82,6 +82,8 @@ For example, `@User_delete` is used to delete the user with an id found in the b
 ```graphql
 mutation DeleteItem($input: DeleteItemInput!) {
 	deleteItem(input: $input) {
+		# this will delete the item with the matching id from the cache
+		# and remove it from all lists
 		deletedID @Item_delete
 	}
 }
