@@ -30,34 +30,55 @@ For more information on using these fragments, head over to the [mutation docs](
 
 `@list` marks a field as the target for list operations. Must be passed a name which defines the fragments that can be used to mutate the list. See the [list operations](#list-operations) for more information.
 
-### `@prepend`
+### `@prepend(parentID: ID)`
 
-`@prepend` is used in conjunction with the [list operation fragments](#list-operations) to tell the runtime to add the element at the start of the list. Can be used with both `_insert` and `_toggle` fragments.
+`@prepend` is used in conjunction with the [list operation fragments](#list-operations) to tell the runtime to add the element at the start of the list. Can be used with both `_insert` and `_toggle` fragments. If the list is a member of a fragment, you will have to pass a value for the `parentID` so the correct list can be updated, otherwise the argument should be omitted.
 
-### `@append`
+### `@append(parentID: ID)`
 
-`@append` is used in conjunction with the [list operation fragments](#list-operations) to tell the runtime to add the element at the end of the list. Can be used with both `_insert` and `_toggle` fragments.
+`@append` is used in conjunction with the [list operation fragments](#list-operations) to tell the runtime to add the element at the end of the list. Can be used with both `_insert` and `_toggle` fragments. If the list is a member of a fragment, you will have to pass a value for the `parentID` so the correct list can be updated, otherwise the argument should be omitted.
 
 ### `@when`
 
-`@when` provides a conditional under which the [list operation](#list-operations) should be executed. It takes arguments that match the arguments of the field tagged with `@list` or `@paginate`. For more information, check out the [mutation docs](/api/mutation#lists)
+`@when` provides a conditional under which the [list operation](#list-operations) should be executed. It takes arguments that match the arguments of the field tagged with `@list` or `@paginate`. For more information, check out the [mutation docs](/api/mutation#lists).
+
+```graphql
+mutation UncompleteItem($id: ID!) {
+	uncheckItem(item: $id) {
+		item {
+			# only remove the item from the list of filtered items
+			# if we are only showing the completed ones
+			...All_Items_remove @when(completed: true)
+		}
+	}
+}
+```
 
 ### `@when_not`
 
 `@when` provides a conditional under which the [list operation](#list-operations) should not be executed. It takes arguments that match the arguments of the field tagged with `@list` or `@paginate`. For more information, check out the [mutation docs](/api/mutation#lists)
 
-### `@parentID`
+```graphql
+mutation NewItem($input: AddItemInput!) {
+	addItem(input: $input) {
+		# only add the item to the list if we can see uncompleted items
+		...All_Items_insert @when_not(completed: true)
+	}
+}
+```
 
-A field marked with `@list` may not be uniquely identifiable as is the case with fields inside of most fragments. `@parentID` is used to indicate which owner of a particular fragment should be modified by the [list operation](#list-operations).
-
-### `@cache`
+### `@cache(policy: CachePolicy)`
 
 `@cache` is used on a query document to indicate what [cache policy](/api/query#caching-data) should be used by the runtime. For a full list of cache policies, check out the [query docs](/api/query#caching-data).
 
-### `@paginate`
+### `@paginate(name: String)`
 
-A field marked with `@paginate` is updated with calls to the page loaders returned by the pagination function. For more information on pagination check out the [guide](/guides/pagination).
+A field marked with `@paginate` is updated with calls to the page loaders returned by the pagination function. For more information on pagination check out the [guide](/guides/pagination). If you pass a value for the `name` argument, the underlying list can be updated using the [operation fragments](/api/mutations#lists).
 
 ### `@[TypeName]_delete`
 
 For example, `@User_delete` is used to delete the user with an id found in the body of a subscription or mutation. For more information see the [mutation docs](/api/mutation#lists).
+
+```
+
+```
