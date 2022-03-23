@@ -229,12 +229,13 @@ check if the current session is valid before a query is sent to the server. In o
 houdini will look for hook functions defined in the module context which can be used to perform
 any logic you need.
 
+Hooks can be used to pass data to components as well as populate your SvelteKit route's `stuff` by returning an
+object with `props` or `stuff` keys.
+
 ### `beforeLoad`
 
 Called before Houdini executes load queries against the server. You can expect the same
 arguments as SvelteKit's [`load`](https://kit.svelte.dev/docs#loading) hook.
-
-If you return a value from this function, it will be passed as props to your component.
 
 ```svelte
 <script context="module">
@@ -246,7 +247,9 @@ If you return a value from this function, it will be passed as props to your com
         }
 
     	return {
-    	    message: "There are this many items"
+            props: {
+                message: "This will be passed to your component"
+            }
         }
     }
 </script>
