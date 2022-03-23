@@ -274,9 +274,9 @@
 
 	#hero h1 {
 		flex-grow: 1;
-		font-size: 2.625rem;
+		font-size: 40px;
 		font-weight: bold;
-		line-height: 4rem;
+		line-height: 3.25rem;
 		color: #161b22;
 		text-align: center;
 	}
@@ -328,7 +328,7 @@
 
 	li {
 		font-family: 'Hind', sans-serif;
-		font-size: 1.5rem;
+		font-size: 20px;
 		line-height: 1.25;
 		position: relative;
 	}
