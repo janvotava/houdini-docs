@@ -21,7 +21,7 @@
 
 	const bullets = [
 		'The same API for Kit, Sapper, or vanilla Svelte',
-		'Normalized cache with declarative updates and list mutations',
+		'Normalized cache with declarative field updates and list mutations',
 		'Colocated data requirements',
 		'First-class support for advanced patterns like subscriptions and pagination'
 	]
