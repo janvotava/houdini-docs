@@ -19,6 +19,12 @@
 {/each}
 `
 
+	const bullets = [
+		'Normalized cache with declarative updates',
+		'Colocated data requirements',
+		'Generated types for all of your documents'
+	]
+
 	const sellingPoints = [
 		{
 			header: 'Composable',
@@ -49,9 +55,9 @@
     const createProject = mutation(graphql\`
             mutation CreateProject {
                 createProject(name: "houdini") {
-                    project { 
+                    project {
                         ...All_Projects_insert
-                    } 
+                    }
                 }
             }
     \`)
@@ -121,12 +127,19 @@
 				The disappearing <span id="graphql-text">GraphQL</span>
 				client for <span class="svelte-text">SvelteKit</span>.
 			</h1>
+			<ul>
+				{#each bullets as bullet}
+					<li>{bullet}</li>
+				{/each}
+			</ul>
 			<nav id="hero-buttons">
 				<a href="/intro/welcome" class="button-shadow" sveltekit:prefetch>Get Started</a>
 				<a href="/api/welcome" class="button-shadow" sveltekit:prefetch>API</a>
 			</nav>
 		</div>
-		<HighlightSvelte code={heroExample} class="shadow" />
+		<div>
+			<HighlightSvelte code={heroExample} class="shadow" />
+		</div>
 	</section>
 	<section id="info">
 		<div id="angle" />
@@ -156,12 +169,9 @@
 	}
 
 	:global(#hero pre) {
-		width: 10px;
-		flex-grow: 1;
 		background: #161b22;
 		border-radius: 32px;
 		color: white;
-		margin-left: 4rem;
 	}
 
 	:global(.shadow) {
@@ -243,10 +253,22 @@
 		margin-top: 90px;
 	}
 
-	#hero div {
+	#hero div:first-child {
 		width: 10px;
 		flex-grow: 1;
 		margin-top: 24px;
+		display: flex;
+		flex-direction: column;
+		gap: 3.25rem;
+	}
+
+	#hero div:last-child {
+		width: 10px;
+		flex-grow: 1;
+		margin-top: 24px;
+		display: flex;
+		flex-direction: column;
+		margin-left: 4rem;
 	}
 
 	#hero h1 {
@@ -294,11 +316,42 @@
 		background: #161b22;
 		padding-top: 11.5rem;
 	}
+	ul {
+		width: 70%;
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		max-width: 455px;
+	}
+
+	li {
+		font-family: 'Hind', sans-serif;
+		font-size: 1.5rem;
+		line-height: 1.25;
+		position: relative;
+	}
+
+	li::before {
+		content: ' ';
+		width: 12px;
+		height: 12px;
+		font-size: 32px;
+		line-height: 20px;
+		background: #ff3e00;
+		border-radius: 50%;
+		margin-left: -30px;
+		margin-right: 10px;
+		display: inline-block;
+		margin-top: -3px;
+		position: absolute;
+		right: calc(100%);
+		top: 9px;
+	}
 
 	#hero-buttons {
 		display: flex;
 		flex-direction: row;
-		margin-top: 50px;
 		gap: 36px;
 		justify-content: center;
 	}
@@ -460,7 +513,7 @@
 			width: 100%;
 		}
 
-		#hero div {
+		#hero div:first-child {
 			align-self: center;
 			width: 90%;
 			display: flex;
@@ -468,12 +521,17 @@
 			align-items: center;
 		}
 
-		:global(#hero pre) {
+		#hero div:last-child {
 			align-self: center;
 			width: 100%;
 			margin-top: 50px;
 			margin-right: 0;
 			margin-left: 0;
+		}
+
+		:global(#hero pre) {
+			margin: auto;
+			width: 70%;
 		}
 
 		:global(code) {
@@ -485,7 +543,7 @@
 			margin-top: 30px !important;
 		}
 
-		#hero div {
+		#hero div:first-child {
 			margin-bottom: 40px;
 		}
 	}
