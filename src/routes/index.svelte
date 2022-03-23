@@ -412,6 +412,8 @@
 		flex-grow: 1;
 		font-size: 18px;
 		font-family: 'Roboto Mono', monospace;
+
+		margin-left: 4rem;
 	}
 
 	:global(#main pre) {
@@ -504,7 +506,7 @@
 			width: 100%;
 			align-self: center;
 			margin-right: 0;
-			padding: 0 50px;
+			padding: 0 10%;
 			box-sizing: border-box;
 		}
 
