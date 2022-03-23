@@ -248,7 +248,7 @@ arguments as SvelteKit's [`load`](https://kit.svelte.dev/docs#loading) hook.
 
     	return {
             props: {
-                message: "This will be passed to your component"
+                message: "Number of items:"
             }
         }
     }
