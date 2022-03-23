@@ -20,6 +20,7 @@
 `
 
 	const bullets = [
+		'The same API for Kit, Sapper, or just Svelte',
 		'Normalized cache with declarative updates',
 		'Colocated data requirements',
 		'Generated types for all of your documents'
@@ -125,7 +126,7 @@
 		<div>
 			<h1>
 				The disappearing <span id="graphql-text">GraphQL</span>
-				client for <span class="svelte-text">SvelteKit</span>.
+				client for the <span class="svelte-text">Svelte</span> community.
 			</h1>
 			<ul>
 				{#each bullets as bullet}
