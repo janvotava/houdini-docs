@@ -20,8 +20,8 @@
 `
 
 	const bullets = [
-		'The same API for Kit, Sapper, or just Svelte',
-		'Normalized cache with declarative updates',
+		'The same API for Kit, Sapper, or vanilla Svelte',
+		'Normalized cache with declarative updates and list mutations',
 		'Colocated data requirements',
 		'First-class support for advanced patterns like subscriptions and pagination'
 	]
@@ -318,7 +318,7 @@
 		padding-top: 11.5rem;
 	}
 	ul {
-		width: 75%;
+		width: 70%;
 		margin: auto;
 		display: flex;
 		flex-direction: column;
