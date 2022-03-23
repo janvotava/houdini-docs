@@ -317,7 +317,7 @@
 		padding-top: 11.5rem;
 	}
 	ul {
-		width: 70%;
+		width: 75%;
 		margin: auto;
 		display: flex;
 		flex-direction: column;
