@@ -23,7 +23,7 @@
 		'The same API for Kit, Sapper, or just Svelte',
 		'Normalized cache with declarative updates',
 		'Colocated data requirements',
-		'Generated types for all of your documents'
+		'First-class support for advanced patterns like subscriptions and pagination'
 	]
 
 	const sellingPoints = [
