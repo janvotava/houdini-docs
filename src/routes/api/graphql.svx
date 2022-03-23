@@ -79,6 +79,10 @@ A field marked with `@paginate` is updated with calls to the page loaders return
 
 For example, `@User_delete` is used to delete the user with an id found in the body of a subscription or mutation. For more information see the [mutation docs](/api/mutation#lists).
 
-```
-
+```graphql
+mutation DeleteItem($input: DeleteItemInput!) {
+	deleteItem(input: $input) {
+		deletedID @Item_delete
+	}
+}
 ```
