@@ -278,8 +278,6 @@ Called after Houdini executes load queries against the server. You can expect th
 arguments as SvelteKit's [`load`](https://kit.svelte.dev/docs#loading) hook, plus an additional
 `data` property referencing query result data.
 
-If you return a value from this function, it will be passed as props to your component.
-
 ```svelte
 <script context="module">
     export function MyProfileVariables({ page: { params: { id } } }) {
@@ -289,11 +287,19 @@ If you return a value from this function, it will be passed as props to your com
         if(!data.MyProfile){
             return this.error(404)
         }
+
+        return {
+            props: {
+                message: "Hello I'm"
+            }
+        }
     }
 </script>
 
 <script>
     import { query, graphql } from '$houdini'
+
+    export let message
 
     // load the items
     const { data } = query(graphql`
@@ -305,5 +311,5 @@ If you return a value from this function, it will be passed as props to your com
     `)
 </script>
 
-Hello I'm {$data.profile.name}
+{message} {$data.profile.name}
 ```
