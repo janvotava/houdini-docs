@@ -107,7 +107,7 @@
 	</a>
 	<nav>
 		<a href={files.intro.index.slug} class="nav-link" sveltekit:prefetch>Get Started</a>
-		<a href={files.api.index.slug} class="nav-link small-hidden" sveltekit:prefetch>API</a>
+		<a href={files.api.index.slug} class="nav-link small-hidden" sveltekit:prefetch>Docs</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
 			Support
 		</a>
@@ -135,7 +135,7 @@
 			</ul>
 			<nav id="hero-buttons">
 				<a href="/intro/welcome" class="button-shadow" sveltekit:prefetch>Get Started</a>
-				<a href="/api/welcome" class="button-shadow" sveltekit:prefetch>API</a>
+				<a href="/api/welcome" class="button-shadow" sveltekit:prefetch>Docs</a>
 			</nav>
 		</div>
 		<div>
