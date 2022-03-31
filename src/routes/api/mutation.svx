@@ -116,7 +116,9 @@ With this field tagged, any mutation that returns an `Item` can be used to inser
 ```graphql
 mutation NewItem($input: AddItemInput!) {
 	addItem(input: $input) {
-		...All_Items_insert
+		item {
+			...All_Items_insert
+		}
 	}
 }
 ```
@@ -128,7 +130,9 @@ Any mutation that returns an `Item` can also be used to remove an item from the 
 ```graphql
 mutation RemoveItem($input: RemoveItemInput!) {
 	removeItem(input: $input) {
-		...All_Items_remove
+		item {
+			...All_Items_remove
+		}
 	}
 }
 ```
@@ -138,9 +142,11 @@ mutation RemoveItem($input: RemoveItemInput!) {
 Any mutation that returns an `Item` can also be used to toggle an elements membership of the list. If the item is already in the list, it will be removed; otherwise, it will be added.
 
 ```graphql
-mutation RemoveItem($input: RemoveItemInput!) {
-	removeItem(input: $input) {
-		...All_Items_toggle
+mutation ToggleItem($input: ToggleItemInput!) {
+	toggleItem(input: $input) {
+		item {
+			...All_Items_toggle
+		}
 	}
 }
 ```
