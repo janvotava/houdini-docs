@@ -173,7 +173,9 @@ For example, in a todo list you might not want to add the result to the list if 
 ```graphql
 mutation NewItem($input: AddItemInput!) {
 	addItem(input: $input) {
-		...All_Items_insert @when_not(completed: true)
+		item {
+			...All_Items_insert @when_not(completed: true)
+		}
 	}
 }
 ```
