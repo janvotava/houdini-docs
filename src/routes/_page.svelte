@@ -324,6 +324,7 @@
 	a.nav {
 		padding: 10px 0;
 		font-size: 18px;
+		line-height: 25px;
 		font-family: 'Hind', sans-serif;
 		margin-bottom: 5px;
 		padding-left: 2.5rem;
