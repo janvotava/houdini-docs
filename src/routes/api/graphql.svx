@@ -94,13 +94,23 @@ mutation DeleteItem($input: DeleteItemInput!) {
 
 ### `@parentID(value: String!)`
 
-`@parentID` is used to identify the root ID for the document containing a list marked with `@list` or `@paginate` when it cannot be inferred. For example, imagine a situation where there are multiple users rendered on a view that shows their top 5 bands. That listing is represented with a fragment containing `@list(name: "FavoriteBands")`. If we wanted add a band to just our own list, we need to specify that we want to add something to the list that starts from a fragment on a User with the correct ID:
+`@parentID` is used to identify the root ID for the document containing a list marked with `@list` or `@paginate` when it cannot be inferred. For example, imagine a situation where there are multiple users rendered on a view that shows their top 5 bands. That listing is represented with a fragment containing `@list(name: "Favorite_Bands")`:
 
 ```graphql
-mutation FavoriteBand($input: FavoriteBandInput!) {
+fragment UserSummary on User {
+	favorites @list(name: "Favorite_Bands") {
+		name
+	}
+}
+```
+
+If we wanted add a band to the list associated with the current user, we need to specify that we want to add something to the list that is defined inside of a fragment on a User with the correct ID:
+
+```graphql
+mutation FavoriteBand($input: FavoriteBandInput!, $userID: String!) {
 	setFavorite(input: $input) {
 		# only add the item to the list if we can see uncompleted items
-		...All_Items_insert @parentID(value: "abcdef")
+		...Favorite_Bands_insert @parentID(value: $userID)
 	}
 }
 ```
