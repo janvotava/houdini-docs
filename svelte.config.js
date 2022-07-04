@@ -6,7 +6,7 @@ import hljs from 'highlight.js'
 import hljs_svelte from 'highlightjs-svelte'
 import graphqlLang from './src/lib/graphql-language.js'
 import { replaceCodePlugin } from 'vite-plugin-replace'
-import { loadFiles } from './src/lib/loadFiles.js'
+import { loadOutline } from './src/lib/loadOutline.js'
 import { loadContent } from './src/lib/loadContent.js'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -23,7 +23,10 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [
 		mdsvex({
-			layout: path.resolve('./src/routes/_page.svelte'),
+			layout: {
+				blank: path.resolve('./src/routes/_blank.svelte'),
+				_: path.resolve('./src/routes/_page.svelte')
+			},
 			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
 			highlight: {
 				highlighter(str, lang) {
@@ -50,7 +53,7 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		routes: (route) => route !== path.join('src', 'routes', '_page.svelte'),
+		routes: (route) => !route.startsWith('_') || route === '_content.js',
 		vite: {
 			optimizeDeps: {
 				include: ['highlight.js/lib/core']
@@ -64,7 +67,7 @@ const config = {
 			plugins: [
 				replaceCodePlugin({
 					replacements: [
-						{ from: 'REPLACE_WITH_FILES', to: JSON.stringify(await loadFiles()) },
+						{ from: 'REPLACE_WITH_OUTLINE', to: JSON.stringify(await loadOutline()) },
 						{ from: 'REPLACE_WITH_CONTENT', to: JSON.stringify(await loadContent()) }
 					]
 				})

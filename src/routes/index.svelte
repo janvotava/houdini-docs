@@ -1,6 +1,6 @@
 <script>
 	import { HighlightSvelte } from 'svelte-highlight'
-	import { SEO } from '~/components'
+	import { SEO, Icon } from '~/components'
 
 	const heroExample = `<script>
     import { query, graphql } from '$houdini'
@@ -22,10 +22,11 @@
 	const bullets = [
 		'The same API for Kit, Sapper, or vanilla Svelte',
 		'Normalized cache with declarative field updates and list mutations',
-		'Colocated data requirements',
+		'Colocate data requirements or define operations in external files with generated stores',
 		'First-class support for advanced patterns like subscriptions and pagination'
 	]
-
+	// Server Side Rendering
+	// First Contentful Paint
 	const sellingPoints = [
 		{
 			header: 'Composable',
@@ -90,7 +91,7 @@
 	]
 
 	// @ts-ignore
-	const files = REPLACE_WITH_FILES
+	const files = REPLACE_WITH_OUTLINE.inline
 </script>
 
 <svelte:head>
@@ -107,9 +108,10 @@
 	</a>
 	<nav>
 		<a href={files.intro.index.slug} class="nav-link" sveltekit:prefetch>Get Started</a>
-		<a href={files.api.index.slug} class="nav-link small-hidden" sveltekit:prefetch>Docs</a>
+		<a href={files.guides.index.slug} class="nav-link small-hidden" sveltekit:prefetch>Guides</a>
+		<a href={files.api.index.slug} class="nav-link small-hidden" sveltekit:prefetch>API</a>
 		<a href="https://opencollective.com/houdini" class="nav-link small-hidden" target="_blank">
-			Support
+			Sponsor
 		</a>
 		<a
 			href="https://www.github.com/HoudiniGraphQL/houdini"
@@ -135,13 +137,15 @@
 			</ul>
 			<nav id="hero-buttons">
 				<a href="/intro/welcome" class="button-shadow" sveltekit:prefetch>Get Started</a>
-				<a href="/api/welcome" class="button-shadow" sveltekit:prefetch>Docs</a>
 			</nav>
 		</div>
 		<div>
 			<HighlightSvelte code={heroExample} class="shadow" />
 		</div>
 	</section>
+	<div class="tease">
+		<Icon name="chevron-down" width="3rem" height="3rem" />
+	</div>
 	<section id="info">
 		<div id="angle" />
 		<article>
@@ -206,6 +210,11 @@
 		width: auto;
 		height: auto;
 		clip: auto;
+	}
+
+	.tease {
+		align-self: center;
+		margin-top: 150px;
 	}
 
 	header {
@@ -301,7 +310,7 @@
 	#info {
 		display: flex;
 		flex-direction: column;
-		margin-top: 12rem;
+		margin-top: 3rem;
 		flex-grow: 1;
 	}
 
@@ -557,7 +566,6 @@
 			box-sizing: border-box;
 		}
 	}
-
 	@media (max-width: 650px) {
 		:global(#hero pre) {
 			width: 95%;

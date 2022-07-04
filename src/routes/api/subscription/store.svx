@@ -4,54 +4,39 @@ index: 4
 description: Subscriptions in Houdini
 ---
 
-# Subscription
+<script>
+    import { HeaderWithMode } from '~/components'
+</script>
+
+<HeaderWithMode title="Subscription" />
 
 Listen for real-time updates from your server using GraphQL Subscriptions.
 
 ```svelte
 <script>
-    import { graphql, subscription } from '$houdini'
+	import ItemUpdate from '$houdini/stores/ItemUpdate'
 
-    // this information should usually come from a fragment
-    export let itemID
-
-    subscription(
-        graphql`
-            subscription ItemUpdate($id: ID!) {
-                itemUpdate(id: $id) {
-                    item {
-                        id
-                        completed
-                        text
-                    }
-                }
-            }
-        `,
-        { id: itemID }
-    )
+	ItemUpdate.listen({ id: itemID })
 </script>
+
+latestValue: {$ItemUpdate.item.text}
 ```
 
-### Inputs
+### Store Methods
 
-1. A string tagged with `graphql` containing a single document with one named subscription
-2. An object containing any arguments for the subscription
+A subscription store holds onto the latest value from the subscription and has the following methods:
 
-### Return Values
-
-`subscription` returns a store containing the latest version of the subscription value
-
-Note: mutations usually do best when combined with at least one fragment grabbing
-the information needed for the mutation (for an example of this pattern, see below.)
+- `listen`: takes an optional object to use as variables and causes the store to start listening for events
+- `unlisten`: causes the store to stop listening. This gets called automatically when using the `$` syntax to retrieve the value
 
 ## List Operations
 
-Subscription bodies can contain all of the list operations described in the [mutation docs](/api/mutation#lists).
+Subscription bodies can contain all of the list operations described in [this document](/api/list-operations).
 
 ## Configuring the client
 
 Houdini can work with any websocket client as long as you can provide an object that satisfies
-the `SubscriptionHandler` interface as the second argument to the Environment's constructor. Keep in mind
+the `SubscriptionHandler` interface as the second argument to the HoudiniClient's constructor. Keep in mind
 that WebSocket connections only exist between the browser and your API, therefor you must remember to
 pass `null` when configuring your environment on the rendering server.
 
@@ -61,7 +46,7 @@ If your API supports the [`graphql-ws`](https://github.com/enisdenjo/graphql-ws)
 client and pass it directly:
 
 ```typescript
-// environment.ts
+// client.ts
 
 import { createClient } from 'graphql-ws'
 import { browser } from '$app/env'
@@ -73,7 +58,7 @@ let socketClient = browser
 	  })
 	: null
 
-export default new Environment(fetchQuery, socketClient)
+export default new HoudiniClient(fetchQuery, socketClient)
 ```
 
 ### Using `subscriptions-transport-ws`
@@ -82,7 +67,7 @@ If you are using the deprecated `subscriptions-transport-ws` library and associa
 you will have to slightly modify the above block:
 
 ```typescript
-// environment.ts
+// client.ts
 
 import { SubscriptionClient } from 'subscriptions-transport-ws'
 import { browser } from '$app/env'
@@ -106,5 +91,5 @@ if (browser) {
 	}
 }
 
-export default new Environment(fetchQuery, socketClient)
+export default new HoudiniClient(fetchQuery, socketClient)
 ```

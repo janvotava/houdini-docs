@@ -1,9 +1,10 @@
 <script>
-	import { page, navigating } from '$app/stores'
+	import { page, navigating, session } from '$app/stores'
 	import { Icon, SEO, SearchInput, SearchDialog, searching } from '~/components'
 	import { onMount } from 'svelte'
 	import throttle from 'lodash/throttle.js'
 	import { browser } from '$app/env'
+	import mode from '~/lib/mode'
 
 	export let title = ''
 	export let link = ''
@@ -12,7 +13,10 @@
 
 	// the list of files we can render
 	// @ts-ignore
-	let categories = REPLACE_WITH_FILES
+	const outline = REPLACE_WITH_OUTLINE
+
+	let categories = outline[$mode]
+	// @ts-ignore
 	let categoryNames = Object.keys(categories)
 
 	// some state to control the menu
@@ -345,7 +349,7 @@
 
 	a.nav.subcategory::before {
 		content: '•';
-		margin-left: -10px;
+		margin-left: 10px;
 		margin-right: 10px;
 	}
 

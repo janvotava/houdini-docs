@@ -1,13 +1,21 @@
 /// <reference types="@sveltejs/kit" />
 
-// See https://kit.svelte.dev/docs/typescript
+interface SessionData {
+	// Your session data
+	mode: 'inline' | 'store'
+}
+
+// See https://kit.svelte.dev/docs#typescript
 // for information about these interfaces
 declare namespace App {
-	interface Locals {}
+	interface Locals {
+		session: import('svelte-kit-cookie-session').Session<SessionData>
+		cookies: Record<string, string> // all parsed cookies are automatically set from handleSession to avoid overhead
+	}
 
 	interface Platform {}
 
-	interface Session {}
+	interface Session extends SessionData {}
 
 	interface Stuff {}
 }

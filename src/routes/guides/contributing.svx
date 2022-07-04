@@ -1,6 +1,6 @@
 ---
 title: Contributing to Houdini
-index: 7
+index: 8
 description: A guide for contributing to Houdini
 ---
 
@@ -99,7 +99,7 @@ sent to the server, and a caching layer used to orchestrate data across the appl
 ### The Cache
 
 As with most of this guide, the most reliable place to get an understanding of how
-the cache's internals are organized is the [test suite](https://github.com/HoudiniGraphQL/houdini/tree/main/src/runtime/cache/cache.test.ts).
+the cache's internals are organized is the [test suite](https://github.com/HoudiniGraphql/houdini/tree/main/src/runtime/cache/tests).
 However, here is a brief explanation of the overall architecture so you can orient yourself:
 
 Houdini's cache is built on top of two core interactions: writing data and
@@ -126,6 +126,15 @@ an object matching the entire corresponding selection.
 For a general introduction to normalized caching for GraphQL queries, check out the
 [urql page on Normalized Caching](https://formidable.com/open-source/urql/docs/graphcache/normalized-caching/),
 which gives a very good overview of the task, even if some of the actual implementation details differ from houdini's.
+
+## Integration tests
+
+The best way to ensure that your feature works is to create a test that simulates the user's experience. We do this
+using a suite of integration tests that verify some of the more complex behaviors. You can find these tests in the dedicated
+[integration folder](https://github.com/HoudiniGraphql/houdini/tree/main/integration) at the root of Houdini's repository.
+
+The general idea is to create specific routes in a SvelteKit application that showcase a single behavior and then
+use [https://playwright.dev/] to simulate a user interacting with the UI and verify that things are working as expected.
 
 ## Piecing It All Together
 
@@ -195,7 +204,7 @@ With the information embedded in the artifacts, all that's left is to teach the 
 is broken down into two parts:
 
 1. When the cache encounters a request to subscribe to a field marked as a list,
-   it [saves a handler to that list](https://github.com/HoudiniGraphql/houdini/blob/main/src/runtime/cache/subscription.ts#L52L217) in an internal Map under the provided name.
+   it [saves a handler to that list](https://github.com/HoudiniGraphql/houdini/blob/main/src/runtime/cache/subscription.ts#L55-L72) in an internal Map under the provided name.
 1. When writing data, if the cache [encounters a field with a list of operations](https://github.com/HoudiniGraphql/houdini/blob/main/src/runtime/cache/cache.ts#L487)
    embedded in the selection object, it [inserts the result](https://github.com/HoudiniGraphql/houdini/blob/main/src/runtime/cache/cache.ts#L517) in the list
    using the handler it stored in step one.
