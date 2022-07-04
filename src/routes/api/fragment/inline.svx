@@ -19,7 +19,7 @@ Specify the data requirements for a Svelte component.
 	// the reference will get passed as a prop
 	export let user
 
-	const data = fragment(
+	$: data = fragment(
 		graphql`
 			fragment UserAvatar on User {
 				profilePicture
