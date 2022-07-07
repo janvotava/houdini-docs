@@ -90,7 +90,7 @@ this, add the following block of code to `src/routes/__layout.svelte` and any `_
 
 ```html
 <script context="module">
-	import { houdiniClient } from '../lib/graphql/client'
+	import houdiniClient from '../client'
 
 	houdiniClient.init()
 </script>
