@@ -4,6 +4,10 @@ index: 1
 description: A guide for setting up your Houdini project
 ---
 
+<script>
+	import { Warning } from '~/components'
+</script>
+
 # Setting Up Your Project
 
 This guide should walk you through all of the steps necessary to add Houdini to an existing
@@ -28,7 +32,15 @@ npm install --save-dev houdini
 
 Adding houdini to an existing project can easily be done with the provided command-line tool.
 If you don't already have an existing app, visit [this link](https://kit.svelte.dev/docs)
-for help setting one up. Once you have a project and want to add houdini, execute the following command which will create a few necessary files, as well as pull down a json
+for help setting one up.
+
+<Warning>
+
+    There is a bug introduced in version 1.0.0-next.356 of SvelteKit that prevents query fetches from resolving. Please install an earlier version for now.
+
+</Warning>
+
+Once you have a project and want to add houdini, execute the following command which will create a few necessary files, as well as pull down a json
 representation of your API's schema:
 
 ```bash
