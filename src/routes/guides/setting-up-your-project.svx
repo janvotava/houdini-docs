@@ -57,6 +57,13 @@ import houdini from 'houdini/preprocess'
 
 export default {
 	preprocess: [houdini()],
+
+	kit: {
+		// ...
+		alias: {
+			$houdini: './$houdini',
+		}
+	}
 }
 ```
 
@@ -66,11 +73,6 @@ Next, you need to update your `vite.config.js` to look like:
 import path from 'path'
 
 export default {
-	resolve: {
-		alias: {
-			$houdini: path.resolve('.', '$houdini')
-		}
-	},
 	server: {
 		fs: {
 			allow: ['.']
@@ -132,6 +134,8 @@ redirect as it will update your browsers `location` attribute, causing a hard tr
 use `this.error` to return an error and handle the redirect in a way that's appropriate for your application.
 
 ## Typescript
+
+If you are in a SvelteKit project, this step is done automatically.
 
 The only thing required to configure when setting up a project with typescript is to teach the compiler how to resolve the `$houdini`
 import:
