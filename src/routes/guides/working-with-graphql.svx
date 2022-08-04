@@ -80,7 +80,7 @@ hooks, etc. Here's an example of a SvelteKit route that uses a query document:
     $: browser && ViewerProfileStore.fetch()
 </script>
 
-{$ViewerProfileStore.data.viewerProfile.firstName}
+{$ViewerProfileStore.data.viewer.firstName}
 ```
 
 And mutation store looks something like
