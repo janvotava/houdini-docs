@@ -152,7 +152,7 @@ svelte components. For example, a route that depends on the result of a query lo
 	`)
 </script>
 
-{$ViewerProfileStore.data.viewerProfile.firstName}
+{$data.viewer.firstName}
 ```
 
 Notice that you didn't have to define a loader for your route? That the magic of the preprocessor.
